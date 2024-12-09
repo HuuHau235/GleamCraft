@@ -36,7 +36,7 @@
 <header class="bg-light border-bottom d-flex align-items-center">
     <div class="container-fluid d-flex justify-content-between align-items-center px-4">
         <a href="/" class="navbar-brand d-flex align-items-center">
-            <img src="../../../assets/images/brands/logo.jpg" alt="Logo">
+        <img src="../assets/images/brands/logo.jpg" alt="Logo">
         </a>
 
         <nav>
