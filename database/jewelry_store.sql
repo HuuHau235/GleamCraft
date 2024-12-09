@@ -88,3 +88,10 @@ CREATE TABLE Payments (
     payment_date DATETIME,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
+DROP TABLE IF EXISTS Brands;
+CREATE TABLE Brands (
+    brand_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
