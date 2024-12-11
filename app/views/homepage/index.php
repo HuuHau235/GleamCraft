@@ -28,13 +28,11 @@
                 <img src="../assets/images/brands/body_img4.jpg" alt="" style="width: 500px; height: 500px;">
             </div>
             <div class="col-md-6">
-                <ul>
-                    <li>Tạo sự tự tin và tăng cường vẻ đẹp của bạn</li>
-                    <li>Mang lại sức khỏe và may mắn</li>
-                    <li>Biểu tượng của tình yêu và sự kết nối</li>
-                    <li>Tăng cường sự tập trung</li>
-                    <li>Biểu tượng của thành công và quyền lực</li>
-                </ul>
+                <p>Tạo sự tự tin và tăng cường vẻ đẹp của bạn</p>
+                <p>Mang lại sức khỏe và may mắn</p>
+                <p>Biểu tượng của tình yêu và sự kết nối</p>
+                <p>Tăng cường sự tập trung</p>
+                <p>Biểu tượng của thành công và quyền lực</p>
             </div>
         </div>
     </div>
@@ -74,6 +72,22 @@
                     Hoàn thiện vẻ ngoài của bạn với đôi hoa tai được chế tác tinh xảo này. Tự tin tỏa sáng tại bất kỳ sự kiện nào.
                 </p>
             </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h2 class="mb-4">Sản phẩm kim cương</h2>
+        <div class="row">
+            <?php foreach ($products as $product): ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="../assets/images/brands/<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" style="height: 300px;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"><?= $product['name'] ?></h5>
+                            <p class="card-text"><?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <script src="../assets/js/body.js"></script>
