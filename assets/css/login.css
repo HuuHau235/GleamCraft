@@ -34,7 +34,7 @@ body {
 .fa-eye:hover {
     color: #007bff;
 }
-.register {
+.login {
     background: linear-gradient(90deg, #FB724C 0%, #FE904B 50%, #EE5757 100%);
 }
 .icon-container {
