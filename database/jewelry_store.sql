@@ -3,6 +3,15 @@ drop database if exists gleamcraft;
 create database gleamcraft;
 use gleamcraft;
 
+
+
+DROP TABLE IF EXISTS Brands;
+CREATE TABLE Brands (
+    brand_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 -- Table: Users
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
@@ -11,7 +20,6 @@ CREATE TABLE Users (
     email VARCHAR(255),
     password VARCHAR(255),
     phone VARCHAR(15),
-    address TEXT,
     role VARCHAR(50),
     created_at DATETIME
 );
@@ -88,10 +96,4 @@ CREATE TABLE Payments (
     payment_date DATETIME,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
-DROP TABLE IF EXISTS Brands;
-CREATE TABLE Brands (
-    brand_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+
