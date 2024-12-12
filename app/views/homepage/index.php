@@ -10,10 +10,10 @@
 <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6">
-            <h2 class="h2 highlight-text">Nhẫn đá quý - Sang trọng và đẳng cấp</h2>
-                <p>
-                    Nhẫn đá quý - Sang trọng và đẳng cấp Mang trong mình sức mạnh và vẻ đẹp tự nhiên của đá quý,
-                     nhẫn đá quý là biểu tượng của sự trường tồn và đẳng cấp, nâng cao vẻ đẹp và phong cách của người đeo.
+            <h2 class="h2 highlight-text">Gemstone Rings - Luxurious and Classy</h2>
+                <p>                 
+                    Gemstone Rings - Luxury and ClassBearing the power and natural beauty of gemstones,
+                    gemstone rings are symbols of longevity and class, enhancing the beauty and style of the wearer.
                 </p>
             </div>
             <div class="col-md-6 text-center">
@@ -28,11 +28,11 @@
                 <img src="../assets/images/brands/body_img4.jpg" alt="" style="width: 500px; height: 500px;">
             </div>
             <div class="col-md-6">
-                <p>Tạo sự tự tin và tăng cường vẻ đẹp của bạn</p>
-                <p>Mang lại sức khỏe và may mắn</p>
-                <p>Biểu tượng của tình yêu và sự kết nối</p>
-                <p>Tăng cường sự tập trung</p>
-                <p>Biểu tượng của thành công và quyền lực</p>
+                <p>Build your confidence and enhance your beauty</p>
+                <p>Bring health and luck</p>
+                <p>Symbol of love and connection</p>
+                <p>Increase concentration</p>
+                <p>Symbol of success and power</p>
             </div>
         </div>
     </div>
@@ -40,10 +40,10 @@
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h2 class="h2">Trang điểm cho bản thân với sự thanh lịch vượt thời gian</h2>
-                <p>
-                    Tôn vinh phong cách của bạn với những chiếc vòng cổ trang sức được chế tác tinh xảo phản ánh vẻ đẹp và cá tính của bạn. 
-                    Mỗi thiết kế là sự pha trộn giữa nghệ thuật và sự tinh tế, mang đến cho bạn ấn tượng lâu dài.
+                <h2 class="h2">Adorn yourself with timeless elegance</h2>
+                <p>               
+                    Celebrate your style with exquisitely crafted jewelry necklaces that reflect your beauty and personality. 
+                    Each design is a blend of artistry and sophistication, giving you a lasting impression.
                 </p>
             </div>
             <div class="col-md-6 text-center">
@@ -58,24 +58,24 @@
                 <img src="../assets/images/brands/body_img3.jpg" alt="" style="width: 500px; height: 500px;">
             </div>
             <div class="col-md-6">
-                <h2 class="h2">Tỏa sáng rạng rỡ chỉ với ba bước đơn giản</h2>
-                <h4>Chọn phong cách của bạn</h4>
-                <p>
-                    Khám phá bộ sưu tập hoa tai đa dạng của chúng tôi để tìm kiểu phù hợp với phong cách của bạn. Chọn một thiết kế phản ánh tính cách và sự thanh lịch của bạn.
+                <h2 class="h2">Shine bright in just three simple steps</h2>
+                <h4>Choose your style</h4>
+                <p>            
+                    Explore our diverse collection of earrings to find the style that suits your style. Choose a design that reflects your personality and elegance.
                 </p>
-                <h4>Tùy chỉnh kim cương của bạn</h4>
+                <h4>Customize your diamond</h4>
                 <p>
-                    Làm nổi bật vẻ đẹp của riêng bạn bằng cách tùy chỉnh kim cương: chọn kích thước, kiểu cắt và chất liệu. Mỗi lựa chọn tạo ra một tác phẩm độc đáo chỉ dành cho bạn.
+                    Highlight your own beauty by customizing your diamond: choose the size, cut, and material. Each choice creates a unique piece just for you.
                 </p>
-                <h4>Mặc với sự tự tin</h4>
+                <h4>Wear with confidence</h4>
                 <p>
-                    Hoàn thiện vẻ ngoài của bạn với đôi hoa tai được chế tác tinh xảo này. Tự tin tỏa sáng tại bất kỳ sự kiện nào.
+                    Complete your look with these exquisitely crafted earrings. Shine confidently at any event.
                 </p>
             </div>
         </div>
     </div>
     <div class="container mt-5">
-        <h2 class="mb-4">Sản phẩm kim cương</h2>
+        <h2 class="mb-4">Diamond products</h2>
         <div class="row">
             <?php foreach ($products as $product): ?>
                 <div class="col-md-3 mb-4">
