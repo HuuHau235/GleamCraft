@@ -53,6 +53,7 @@ class Login_Data
                 } else {
                     echo "An error occurred. Please try again.";
                 }
+
             }
         } else {
             echo "Please enter both email and password.";
