@@ -16,17 +16,16 @@
     <div class="container py-5">
         <form action="../../models/login_data.php" method="POST">
             <div class="row justify-content-center align-items-center" style="height: 100%;">
-                <div class="col-md-5 text-center image-container">
+                <div class="col-sm-5 text-center image-container">
                     <img src="../../../assets/images/anh_login_logout.png" alt="Image" class="img-fluid">
                 </div>
-                <div class="col-md-5">
+                <div class="col-sm-5">
                     <div class="form-container">
                         <h3 class="mb-4">Login</h3>
-                        <p>Don't have an account? <a href="./register.php" style="color: #FE8B4B ;">Create Now</a></p>
+                        <p>Don't have an account? <a href="./register.php" style="color: #FE8B4B;">Create Now</a></p>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Enter your email">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
                         </div>
                         <div class="mb-3 position-relative">
                             <label for="password" class="form-label">Password</label>
@@ -36,7 +35,14 @@
                                 style="top: 38px; right: 10px; cursor: pointer;"></i>
                         </div>
 
-                        <button type="submit" name="login" class="btn register w-100">Login</button>
+                        <!-- Hiển thị lỗi từ URL -->
+                        <?php
+                        if (isset($_GET['error'])) {
+                            echo "<p style='color: red;'>{$_GET['error']}</p>";
+                        }
+                        ?>
+
+                        <button type="submit" name="login" class="btn login w-100">Login</button>
                         <p><a href="">Forgot a password?</a></p>
                         <div class="or-container">
                             <span>OR</span>
