@@ -5,21 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">    
-    <style>
-    footer .col-md-4, footer .col-md-2 {
-        padding-left: 20px;
-        padding-right: 20px;  
-    }
-    footer h5 {
-        font-size: 1.75rem; 
-        letter-spacing: 2px; 
-    }
-    footer p, footer a {
-        font-size: 1.25rem;  
-        letter-spacing: 1.5px;
-    }
-</style>
-
+    <link rel="stylesheet" href="../assets/css/header.css">
 </head>
 <body>
 <footer class="bg-dark text-light py-5">
@@ -33,8 +19,7 @@
             <h5>GleamCraft</h5>
             <ul class="list-unstyled">
                 <li><a href="/about" class="text-light text-decoration-none">About us</a></li>
-                <li><a href="/products/men" class="text-light text-decoration-none">Products men</a></li>
-                <li><a href="/products/women" class="text-light text-decoration-none">Products women</a></li>
+                <li><a href="/products/" class="text-light text-decoration-none">Products</a></li>
                 <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
             </ul>
             </div>

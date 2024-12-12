@@ -14,7 +14,10 @@ class HomepageController {
 
         // Tải header
         require_once '../app/views/shared/header.php';
-
+        
+        // Tải banner
+        require_once '../app/views/shared/banner.php';
+        
         // Truyền biến $products sang view
         require_once '../app/views/homepage/index.php';
 
