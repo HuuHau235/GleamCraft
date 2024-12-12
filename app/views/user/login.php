@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
@@ -23,23 +22,25 @@
                 <div class="col-sm-5">
                     <div class="form-container">
                         <h3 class="mb-4">Login</h3>
-                        <p>Don't have an account? <a href="./register.php" style="color: #FE8B4B ;">Create Now</a></p>
+                        <p>Don't have an account? <a href="./register.php" style="color: #FE8B4B;">Create Now</a></p>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Enter your email">
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Enter your email">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
                         </div>
                         <div class="mb-3 position-relative">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Enter your password">
-                            <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Enter your password">
                             <i class="fas fa-eye position-absolute" id="togglePassword"
                                 style="top: 38px; right: 10px; cursor: pointer;"></i>
                         </div>
+
+                        <!-- Hiển thị lỗi từ URL -->
+                        <?php
+                        if (isset($_GET['error'])) {
+                            echo "<p style='color: red;'>{$_GET['error']}</p>";
+                        }
+                        ?>
 
                         <button type="submit" name="login" class="btn login w-100">Login</button>
                         <p><a href="">Forgot a password?</a></p>
@@ -60,9 +61,6 @@
                                 </div>
                             </button>
                         </div>
-                    </div>
-                </div>
-            </div>
                     </div>
                 </div>
             </div>
