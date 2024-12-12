@@ -1,0 +1,61 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    /* Loại bỏ padding-top nếu không cần thiết */
+    margin-top: 0; /* Thêm margin-top để đảm bảo rằng nội dung không bị đẩy xuống bởi header */
+}
+
+/* Giảm padding-top hoặc loại bỏ khi không cần */
+.banner {
+    margin-top: 0; /* Đảm bảo banner không bị đẩy xuống */
+}
+
+.navbar-brand img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.user-icon {
+    font-size: 2rem;
+}
+
+.tooltip-box {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 10;
+}
+
+.tooltip-box a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin: 5px 0;
+    padding: 5px;
+    display: block;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.tooltip-box a:hover {
+    background-color: #f1f1f1;
+}
+
+.user-icon:hover .tooltip-box {
+    display: block;
+}
