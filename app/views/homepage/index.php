@@ -17,7 +17,7 @@
                 </p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/images.jpg" alt="" style="width: 500px; height: 500px;">
+                <img src="../assets/images/brands/images.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/body_img4.jpg" alt="" style="width: 500px; height: 500px;">
+                <img src="../assets/images/brands/body_img4.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
             <div class="col-md-6">
                 <p>Build your confidence and enhance your beauty</p>
@@ -47,7 +47,7 @@
                 </p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/body_img2.jpg" alt="" style="width: 500px; height: 500px;">
+                <img src="../assets/images/brands/body_img2.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/body_img3.jpg" alt="" style="width: 500px; height: 500px;">
+                <img src="../assets/images/brands/body_img3.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
             <div class="col-md-6">
                 <h2 class="h2">Shine bright in just three simple steps</h2>

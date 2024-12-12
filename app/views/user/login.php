@@ -14,7 +14,7 @@
 
 <body>
     <div class="container py-5">
-        <form action="../../models/login_data.php" method="POST">
+        <form action="../../controllers/AuthCotroller.php" method="POST">
             <div class="row justify-content-center align-items-center" style="height: 100%;">
                 <div class="col-sm-5 text-center image-container">
                     <img src="../../../assets/images/anh_login_logout.png" alt="Image" class="img-fluid">
