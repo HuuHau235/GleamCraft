@@ -53,7 +53,20 @@ class Login_Data
                 } else {
                     echo "An error occurred. Please try again.";
                 }
-
+                $errorMessage = '';
+                switch ($error) {
+                    case 'wrong_password':
+                        $errorMessage = 'You have entered the wrong password. Please re-enter.';
+                        break;
+                    case 'email_not_found':
+                        $errorMessage = 'Email does not exist, please re-enter.';
+                        break;
+                    case 'query_error':
+                        $errorMessage = 'An error occurred. Please try again.';
+                        break;
+                }
+                header("Location: ../views/user/login.php?error=" . urlencode($errorMessage));
+                exit();
             }
         } else {
             echo "Please enter both email and password.";

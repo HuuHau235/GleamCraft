@@ -35,7 +35,6 @@
                                 style="top: 38px; right: 10px; cursor: pointer;"></i>
                         </div>
 
-                        <!-- Hiển thị lỗi từ URL -->
                         <?php
                         if (isset($_GET['error'])) {
                             echo "<p style='color: red;'>{$_GET['error']}</p>";
@@ -43,7 +42,7 @@
                         ?>
 
                         <button type="submit" name="login" class="btn login w-100">Login</button>
-                        <p><a href="">Forgot a password?</a></p>
+                        <p><a href="../../models/Forgot_password.php">Forgot a password?</a></p>
                         <div class="or-container">
                             <span>OR</span>
                         </div>
@@ -67,6 +66,7 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/login.js"></script>
 </body>
 
 </html>

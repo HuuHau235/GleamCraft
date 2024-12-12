@@ -4,7 +4,7 @@ create database gleamcraft;
 use gleamcraft;
 
 
-
+-- Table: Brands
 DROP TABLE IF EXISTS Brands;
 CREATE TABLE Brands (
     brand_id INT AUTO_INCREMENT PRIMARY KEY,
