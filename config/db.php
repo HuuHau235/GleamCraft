@@ -3,7 +3,7 @@ class Database {
     protected $host = "localhost";
     protected $dbName = "gleamcraft";
     protected $username = "root";
-    protected $password = "1234";
+    protected $password = "";
     private $conn; // Lưu đối tượng kết nối với database thành công
 
     // Hàm kết nối

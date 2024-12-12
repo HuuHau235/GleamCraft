@@ -14,48 +14,48 @@
         </div>
 
         <form class = "register-form" action="../../models/register-back.php" method="POST">
-            <h1>Tạo tài khoản của bạn</h1>
+            <h1>Create Your Account</h1>
             <div class = "cta">
-                <p>Bạn đã có tài khoản?</p>
-                <p class="login"><a href="../views/user/login.php">Đăng nhập</a></p>
+                <p>Already have an account?</p>
+                <p class="login"><a href="../views/user/login.php">Login</a></p>
             </div>
             <div class = "information">
                 <div class = "first-name">
-                    <p>Họ Tên</p>
-                    <input type="text" name="username" placeholder="Nhập họ tên...">
+                    <p>First Name</p>
+                    <input type="text" name="username" placeholder="Enter your name...">
                 </div>
                 <div class = "phonenumber">
-                    <p>Số điện thoại</p>
-                    <input type="text" name="phonenumber" placeholder="Nhập số điện thoại...">
+                    <p>Phone</p>
+                    <input type="text" name="phonenumber" placeholder="Enter phone number...">
                 </div>
                 <div class = "email">
                     <p>Email</p>
-                    <input type="text" name="email" placeholder="Nhập email...">
+                    <input type="text" name="email" placeholder="Enter email...">
                 </div>
                 <div class="password">
-                    <p>Mật khẩu</p>
-                    <input type="password" name="password" placeholder="Nhập mật khẩu...">
+                    <p>Password</p>
+                    <input type="password" name="password" placeholder="Enter password...">
                 </div>
                 <div class = "confirm-password">
-                    <p>Xác nhận mật khẩu</p>
-                    <input type="password" name="confirm-password"  placeholder="Nhập mật khẩu xác thực...">
+                    <p>Confirm password</p>
+                    <input type="password" name="confirm-password"  placeholder="Enter authentication password...">
                 </div>
-                <button class="register-btn">Đăng ký</button>
+                <button class="register-btn">Register</button>
 
                 <div class="or-container">
-                    <span>Hoặc</span>
+                    <span>OR</span>
                 </div>
                 <div class="register-method">
                     <button type="button" class="btn btn-outline-secondary w-100 my-1">
                         <div class="icon-container">
                             <span class="fab fa-facebook-f"></span>
-                            Đăng ký với Facebook
+                            Continue with Facebook
                         </div>
                     </button>
                     <button type="button" class="btn btn-outline-secondary w-100 my-1">
                         <div class="icon-container">
                             <span class="fab fa-google"></span>
-                            Đăng ký với Google
+                            Continue with Google
                         </div>
                     </button>
                 </div>
