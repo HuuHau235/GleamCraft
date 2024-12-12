@@ -90,6 +90,6 @@
             <?php endforeach; ?>
         </div>
     </div>
-    <script src="../assets/js/body.js"></script>
+    <script src="../assets/js/homepage.js"></script>
 </body>
 </html>
