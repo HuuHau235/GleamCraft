@@ -17,7 +17,7 @@
             <h1>Create Your Account</h1>
             <div class = "cta">
                 <p>Already have an account?</p>
-                <p class="login"><a href="../views/user/login.php">Login</a></p>
+                <p class="login"><a href="login.php">Login</a></p>
             </div>
             <div class = "information">
                 <div class = "first-name">
