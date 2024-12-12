@@ -30,13 +30,53 @@
         .user-icon {
             font-size: 2rem;
         }
+        /* Style for the user icon */
+        .user-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Tooltip container (hidden by default) */
+        .tooltip-box {
+            display: none;
+            position: absolute;
+            top: 110%; /* Adjust position below the icon */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 10;
+        }
+
+        /* Links inside tooltip */
+        .tooltip-box a {
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin: 5px 0;
+            padding: 5px;
+            display: block;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .tooltip-box a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .user-icon:hover .tooltip-box {
+            display: block;
+        }
     </style>
 </head>
 <body>
 <header class="bg-light border-bottom d-flex align-items-center">
     <div class="container-fluid d-flex justify-content-between align-items-center px-4">
         <a href="/" class="navbar-brand d-flex align-items-center">
-        <img src="../assets/images/brands/logo.jpg" alt="Logo">
+            <img src="../assets/images/brands/logo.jpg" alt="Logo">
         </a>
 
         <nav>
@@ -50,9 +90,13 @@
             </ul>
         </nav>
 
-        <a href="/user/profile" class="text-dark user-icon">
+        <div class="user-icon position-relative">
             <i class="bi bi-person"></i>
-        </a>
+            <div class="tooltip-box">
+                <a href="app/views/user/login.php" class="d-block text-dark">Login</a>
+                <a href="app/views/user/register.php" class="d-block text-dark">Register</a>
+            </div>
+        </div>
     </div>
 </header>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
