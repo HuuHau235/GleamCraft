@@ -13,15 +13,15 @@ CREATE TABLE Brands (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 -- Table: Users
-DROP TABLE IF EXISTS Users;
-CREATE TABLE Users (
-    user_id INT PRIMARY KEY auto_increment,
-    name VARCHAR(255),
-    email VARCHAR(255),
-    password VARCHAR(255),
-    phone VARCHAR(15),
-    role VARCHAR(50),
-    created_at DATETIME
+DROP TABLE IF EXISTS Users; -- sửa lại bảng user để tự động tăng user_id
+CREATE TABLE Users ( 
+    user_id INT PRIMARY KEY AUTO_INCREMENT, 
+    name VARCHAR(255) NOT NULL, 
+    email VARCHAR(255) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL, 
+    phone VARCHAR(15), 
+    role VARCHAR(50) NOT NULL, 
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP 
 );
 
 -- Table: Categories
