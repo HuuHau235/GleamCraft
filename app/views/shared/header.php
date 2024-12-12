@@ -41,12 +41,12 @@
 
         <nav>
             <ul class="nav">
-                <li class="nav-item"><a href="/" class="nav-link text-dark">Trang chủ</a></li>
-                <li class="nav-item"><a href="/about" class="nav-link text-dark">Về chúng tôi</a></li>
-                <li class="nav-item"><a href="/collections" class="nav-link text-dark">Bộ sưu tập</a></li>
-                <li class="nav-item"><a href="/products/women" class="nav-link text-dark">Sản phẩm nữ</a></li>
-                <li class="nav-item"><a href="/products/men" class="nav-link text-dark">Sản phẩm nam</a></li>
-                <li class="nav-item"><a href="/brands" class="nav-link text-dark">Thương hiệu khác</a></li>
+                <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
+                <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
+                <li class="nav-item"><a href="/products/women" class="nav-link text-dark">Products women</a></li>
+                <li class="nav-item"><a href="/products/men" class="nav-link text-dark">Products men</a></li>
+                <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
             </ul>
         </nav>
 
