@@ -28,8 +28,8 @@
         <div class="user-icon position-relative">
             <i class="bi bi-person"></i>
             <div class="tooltip-box">
-                <a href="app/views/user/login.php" class="d-block text-dark">Login</a>
-                <a href="app/views/user/register.php" class="d-block text-dark">Register</a>
+                <a href="../app/views/user/login.php" class="d-block text-dark">Login</a>
+                <a href="../app/views/user/register.php" class="d-block text-dark">Register</a>
             </div>
         </div>
     </div>
