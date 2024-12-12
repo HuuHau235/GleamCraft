@@ -27,28 +27,28 @@
         <div class="row">
             <div class="col-md-3">
                 <h5>GleamCraft</h5>
-                <p>GleamCraft là nhà cung cấp đồ trang sức kim cương cao cấp và sang trọng.</p>
+                <p>GleamCraft is a supplier of high-end and luxury diamond jewelry.</p>
             </div>
             <div class="col-md-3">
             <h5>GleamCraft</h5>
             <ul class="list-unstyled">
-                <li><a href="/about" class="text-light text-decoration-none">Về chúng tôi</a></li>
-                <li><a href="/products/men" class="text-light text-decoration-none">Sản phẩm nam giới</a></li>
-                <li><a href="/products/women" class="text-light text-decoration-none">Sản phẩm nữ giới</a></li>
-                <li><a href="/privacy-policy" class="text-light text-decoration-none">Chính sách bảo mật</a></li>
+                <li><a href="/about" class="text-light text-decoration-none">About us</a></li>
+                <li><a href="/products/men" class="text-light text-decoration-none">Products men</a></li>
+                <li><a href="/products/women" class="text-light text-decoration-none">Products women</a></li>
+                <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
             </ul>
             </div>
             <div class="col-md-3">
                 <h5>GleamCraft</h5>
                 <ul class="list-unstyled">
-                    <li><a href="/brands" class="text-light text-decoration-none">Các thương hiệu khác</a></li>
-                    <li><a href="/careers" class="text-light text-decoration-none">Nghề nghiệp</a></li>
-                    <li><a href="/reviews" class="text-light text-decoration-none">Đánh giá</a></li>
+                    <li><a href="/brands" class="text-light text-decoration-none">Brands</a></li>
+                    <li><a href="/careers" class="text-light text-decoration-none">Careers</a></li>
+                    <li><a href="/reviews" class="text-light text-decoration-none">Reviews</a></li>
                     <li><a href="/faq" class="text-light text-decoration-none">Q&A</a></li>
                 </ul>
             </div>
             <div class="col-md-3">
-                <h5>Liên hệ</h5>
+                <h5>Contact</h5>
                 <p class="mb-1">+84 334 224 702</p>
                 <p class="mb-2">hhai989402@gmail.com</p>
                 <div class="d-flex gap-2">
