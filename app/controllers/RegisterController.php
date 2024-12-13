@@ -1,9 +1,8 @@
 <?php
 session_start();
 error_reporting(E_ALL);
-require_once "../../config/db.php"; 
-
-// dùng để gửi email
+require_once "../../config/db.php";
+require_once "../models/RegisterModel.php"; 
 require '../PHPMailer-master/src/PHPMailer.php';
 require '../PHPMailer-master/src/SMTP.php';
 require '../PHPMailer-master/src/Exception.php';
@@ -19,11 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
+    // Lấy dữ liệu từ form
     $username = $_POST['username'];
     $phonenumber = $_POST['phonenumber'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm-password'];
+
+    // Tạo đối tượng model để xử lý dữ liệu
+    $registerModel = new RegisterModel($conn);
 
     // Kiểm tra mật khẩu và xác nhận mật khẩu khớp nhau 
     if ($password !== $confirm_password) { 
@@ -40,31 +43,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Kiểm tra email đã có trong bảng users hay chưa
-    $check_email_sql = "SELECT * FROM users WHERE email = ?";
-    $email_stmt = $conn->prepare($check_email_sql);
-    $email_stmt->execute([$email]);
-    $email_res = $email_stmt->fetchAll();
-
-    if (count($email_res) > 0) {
+    if (count($registerModel->checkEmailExists($email)) > 0) {
         $_SESSION['error'] = "Email đã tồn tại!";
         header("location:../views/user/register.php");
         exit();
     }
 
-    // Kiểm tra và xác định vai trò
-    $role = (count($conn->query("SELECT * FROM users WHERE role = 'admin'")->fetchAll()) > 0) ? "user" : "admin";
+    // Lấy vai trò người dùng
+    $role = $registerModel->getRole();
 
     // Thêm người dùng vào cơ sở dữ liệu
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$username, $email, $password, $phonenumber, $role]);
-
-    if ($stmt) {
+    if ($registerModel->registerUser($username, $email, $password, $phonenumber, $role)) {
         sendWelcomeEmail($username, $email, $password); // Gửi email chào mừng
         $_SESSION['success'] = "Đăng ký thành công!";
         header("location:../views/user/login.php");
         exit();
     } else {
-        $_SESSION['error'] = "Lỗi khi đăng ký: " . implode(", ", $stmt->errorInfo());
+        $_SESSION['error'] = "Lỗi khi đăng ký.";
         header("location:../views/user/register.php");
         exit();
     }
@@ -93,7 +88,7 @@ function sendWelcomeEmail($username, $email, $password) {
         // Nội dung email
         $mail->isHTML(true);
         $mail->Subject = "CHÀO MỪNG ĐẾN VỚI GleamCraft";
-        $mail->Body = 'XIN CHÀO ' . $username . ',<br><br>CẢM ƠN BẠN ĐÃ ĐĂNG KÝ. CHÚC BẠN CÓ TRẢI NGHIỆM TUYỆT VỜI VỚI GleamCraft!<br><br>'
+        $mail->Body = 'XIN CHÀO ' . $username . ',<br><br>CẢM ƠN BẠN ĐÃ ĐĂNG KÝ. CHÚC BẠN CÓ TRẢI NGHIỆM TUYỆT VỜI VỚI GleamCraft!<br><br>' 
             . 'TÊN ĐĂNG NHẬP CỦA BẠN LÀ: ' . $username . '<br>'
             . 'MẬT KHẨU CỦA BẠN LÀ: ' . $password . '<br><br> CHÚC BẠN MỘT NGÀY TỐT LÀNH!';
         $mail->AltBody = 'XIN CHÀO ' . $username . "\n"
