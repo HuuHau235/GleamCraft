@@ -13,7 +13,7 @@
             <img src="../../../assets/images/anh_login_logout.png" alt="">
         </div>
 
-        <form class = "register-form" action="../../controllers/UserController.php" method="POST">
+        <form class="register-form" action="../../controllers/RegisterController.php" method="POST">
             <h1>Create Your Account</h1>
             <div class = "cta">
                 <p>Already have an account?</p>
