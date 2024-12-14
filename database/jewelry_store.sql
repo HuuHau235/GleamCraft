@@ -3,15 +3,6 @@ drop database if exists gleamcraft;
 create database gleamcraft;
 use gleamcraft;
 
-
--- Table: Brands
-DROP TABLE IF EXISTS Brands;
-CREATE TABLE Brands (
-    brand_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
 -- Table: Users
 DROP TABLE IF EXISTS Users; -- sửa lại bảng user để tự động tăng user_id
 CREATE TABLE Users ( 
@@ -47,7 +38,6 @@ CREATE TABLE Products (
     name VARCHAR(255),
     description TEXT,
     price DECIMAL(10, 2),
-    stock INT,
     category_id INT,
     brand_id INT,
     image VARCHAR(255),
@@ -104,3 +94,13 @@ CREATE TABLE Payments (
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
 
+-- Insert data into the Products table for homepage
+INSERT INTO products (name, image, price) VALUES
+('Diamond necklace', 'Day-chuyen-1.jpg', 817000),
+('Diamond necklace', 'Day-chuyen-2.jpg', 785000),
+('Diamond necklace', 'Day-chuyen-3.jpg', 1250000),
+('Diamond Ring', 'Nhan-1.jpg', 637000),
+('Diamond Ring', 'Nhan-2.jpg', 632000),
+('Diamond Ring', 'Nhan-3.jpg', 1674000),
+('Diamond Earing', 'Khuyen-1.jpg', 708000),
+('Diamond Earing', 'Khuyen-2.jpg', 1600000);
