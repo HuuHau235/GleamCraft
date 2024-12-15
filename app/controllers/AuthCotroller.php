@@ -4,7 +4,7 @@ require_once '../models/Login_Data.php';
 
 class AuthController
 {
-    private $auth;
+    private $auth; // Khởi tạo một biến 
 
     public function __construct($conn)
     {
@@ -13,6 +13,7 @@ class AuthController
 
     public function processLogin($email, $password)
     {
+        // Kiểm tra xem có rỗng hay không
         if (!empty($email) && !empty($password)) {
             $loginResult = $this->auth->login($email, $password);
 

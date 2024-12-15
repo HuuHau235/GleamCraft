@@ -15,7 +15,7 @@ class Login_Data
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);// Lấy dữ liệu của một hàng
             if ($user) {
                 if ($password == $user['password']) {
                     return ['success' => true, 'user' => $user];
