@@ -33,7 +33,7 @@ CREATE TABLE Brands (
 );
 -- Table: Products
 DROP TABLE IF EXISTS Products;
-CREATE TABLE Products (
+CREATE TABLE Products ( 
     product_id INT PRIMARY KEY auto_increment,
     name VARCHAR(255),
     description TEXT,
