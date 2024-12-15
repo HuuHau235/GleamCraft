@@ -1,7 +1,7 @@
 <?php
 require_once "../../config/db.php";
 
-class RegisterModel {
+class UserModel {
 
     private $conn;
 

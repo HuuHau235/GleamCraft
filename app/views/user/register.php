@@ -41,7 +41,7 @@
                     <input type="password" name="confirm-password"  placeholder="Enter authentication password...">
                 </div>
                 <button class="register-btn">Register</button>
-
+                
                 <div class="or-container">
                     <span>OR</span>
                 </div>
