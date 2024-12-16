@@ -19,7 +19,7 @@
                 <h4 class="mb-0 title">Shopping Continue</h4>
             </div>
             <div class="cart">
-            <div class="contain_cart p-4">
+            <!-- <div class="contain_cart p-4">
                 <div class="row g-0 align-items-center">
                     <div class="col-md-2">
                         <img src="https://via.placeholder.com/300" class="img-fluid rounded-start" alt="Product Image">
@@ -44,8 +44,8 @@
                         </button>
                     </div>
                 </div>
-            </div>
-            <div class="contain_cart p-4">
+            </div> -->
+            <!-- <div class="contain_cart p-4">
                 <div class="row g-0 align-items-center">
                     <div class="col-md-2">
                         <img src="https://via.placeholder.com/300" class="img-fluid rounded-start" alt="Product Image">
@@ -70,7 +70,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="contain_cart p-4">
                 <div class="row g-0 align-items-center">
                     <div class="col-md-2">
@@ -84,13 +84,13 @@
                     </div>
                     <div class="col-md-3 text-center">
                         <div class="d-flex justify-content-center align-items-center">
-                            <button class="btn btn-outline-secondary btn-sm">-</button>
-                            <input type="text" value="1" class="form-control mx-2 text-center" style="width: 50px;">
-                            <button class="btn btn-outline-secondary btn-sm">+</button>
+                            <button class="btn btn-outline-secondary btn-sm" id="reduce">-</button>
+                            <input type="text" value="1" class="form-control mx-2 text-center" id="quantity" style="width: 50px;">
+                            <button class="btn btn-outline-secondary btn-sm" id="increase">+</button>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-between align-items-center">
-                        <p class="price mb-0">5.000.000 VND</p>
+                        <p class="price mb-0" id=">5.000.000 VND</p>
                         <button class="btn btn-sm">
                             <i class="fa-solid fa-trash"></i>
                         </button>
@@ -104,6 +104,7 @@
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/shoping_cart.js"></script>
 </body>
 
 </html>

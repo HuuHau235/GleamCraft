@@ -4,7 +4,7 @@ create database gleamcraft;
 use gleamcraft;
 
 -- Table: Users
-DROP TABLE IF EXISTS Users; -- sửa lại bảng user để tự động tăng user_id
+DROP TABLE IF EXISTS Users; 
 CREATE TABLE Users ( 
     user_id INT PRIMARY KEY AUTO_INCREMENT, 
     name VARCHAR(255) NOT NULL, 
@@ -18,38 +18,29 @@ CREATE TABLE Users (
 -- Table: Categories
 DROP TABLE IF EXISTS Categories;
 CREATE TABLE Categories (
-    category_id INT PRIMARY KEY auto_increment,
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     description TEXT,
-    gender VARCHAR(50) 
+    gender INT CHECK (gender IN (0, 1)) -- 0 for Female, 1 for Male
 );
 
-DROP TABLE IF EXISTS Brands;
-CREATE TABLE Brands (
-    brand_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
 -- Table: Products
 DROP TABLE IF EXISTS Products;
-CREATE TABLE Products (
-    product_id INT PRIMARY KEY auto_increment,
+CREATE TABLE Products ( 
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     description TEXT,
     price DECIMAL(10, 2),
     category_id INT,
-    brand_id INT,
     image VARCHAR(255),
     created_at DATETIME,
-    FOREIGN KEY (category_id) REFERENCES Categories(category_id),
-    FOREIGN KEY (brand_id) REFERENCES Brands(brand_id)
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
 
 -- Table: Orders
 DROP TABLE IF EXISTS Orders;
 CREATE TABLE Orders (
-    order_id INT PRIMARY KEY auto_increment,
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     total_price DECIMAL(10, 2),
     status VARCHAR(50),
@@ -60,7 +51,7 @@ CREATE TABLE Orders (
 -- Table: Order_Items
 DROP TABLE IF EXISTS Order_Items;
 CREATE TABLE Order_Items (
-    order_item_id INT PRIMARY KEY auto_increment,
+    order_item_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     product_id INT,
     quantity INT,
@@ -72,10 +63,9 @@ CREATE TABLE Order_Items (
 -- Table: Reviews
 DROP TABLE IF EXISTS Reviews;
 CREATE TABLE Reviews (
-    review_id INT PRIMARY KEY auto_increment,
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
     product_id INT,
     user_id INT,
-    rating INT,
     comment TEXT,
     created_at DATETIME,
     FOREIGN KEY (product_id) REFERENCES Products(product_id),
@@ -85,7 +75,7 @@ CREATE TABLE Reviews (
 -- Table: Payments
 DROP TABLE IF EXISTS Payments;
 CREATE TABLE Payments (
-    payment_id INT PRIMARY KEY auto_increment,
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     payment_method VARCHAR(50),
     payment_status VARCHAR(50),
@@ -104,4 +94,5 @@ INSERT INTO products (name, image, price) VALUES
 ('Diamond Ring', 'Nhan-3.jpg', 1674000),
 ('Diamond Earing', 'Khuyen-1.jpg', 708000),
 ('Diamond Earing', 'Khuyen-2.jpg', 1600000);
+
 

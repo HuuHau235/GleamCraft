@@ -2,7 +2,8 @@
 session_start();
 error_reporting(E_ALL);
 require_once "../../config/db.php";
-require_once "../models/RegisterModel.php"; 
+require_once "../models/UserModel.php"; 
+
 require '../PHPMailer-master/src/PHPMailer.php';
 require '../PHPMailer-master/src/SMTP.php';
 require '../PHPMailer-master/src/Exception.php';
@@ -26,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $confirm_password = $_POST['confirm-password'];
 
     // Tạo đối tượng model để xử lý dữ liệu
-    $registerModel = new RegisterModel($conn);
+    $UserModel = new UserModel($conn);
 
     // Kiểm tra mật khẩu và xác nhận mật khẩu khớp nhau 
     if ($password !== $confirm_password) { 
@@ -43,17 +44,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Kiểm tra email đã có trong bảng users hay chưa
-    if (count($registerModel->checkEmailExists($email)) > 0) {
+    if (count($UserModel->checkEmailExists($email)) > 0) {
         $_SESSION['error'] = "Email đã tồn tại!";
         header("location:../views/user/register.php");
         exit();
     }
 
     // Lấy vai trò người dùng
-    $role = $registerModel->getRole();
+    $role = $UserModel->getRole();
 
     // Thêm người dùng vào cơ sở dữ liệu
-    if ($registerModel->registerUser($username, $email, $password, $phonenumber, $role)) {
+    if ($UserModel->registerUser($username, $email, $password, $phonenumber, $role)) {
         sendWelcomeEmail($username, $email, $password); // Gửi email chào mừng
         $_SESSION['success'] = "Đăng ký thành công!";
         header("location:../views/user/login.php");
