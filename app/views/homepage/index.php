@@ -80,7 +80,9 @@
             <?php foreach ($products as $product): ?>
                 <div class="col-md-3 mb-4">
                     <div class="card">
-                        <img src="../assets/images/brands/<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" style="height: 300px;">
+                    <a href="/Gleamcraft_MVC/public/product/detail/<?= $product['product_id'] ?>">
+                            <img src="../assets/images/brands/<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" style="height: 300px;">
+                        </a>
                         <div class="card-body text-center">
                             <h5 class="card-title"><?= $product['name'] ?></h5>
                             <p class="card-text"><?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
@@ -90,6 +92,7 @@
             <?php endforeach; ?>
         </div>
     </div>
+
     <script src="../assets/js/homepage.js"></script>
 </body>
 </html>

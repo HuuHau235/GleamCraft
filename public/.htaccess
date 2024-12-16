@@ -1,0 +1,11 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Định nghĩa base path (nếu dự án không ở thư mục gốc)
+RewriteBase /Gleamcraft_MVC/public/
+
+# Rewrite tất cả yêu cầu đến index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
