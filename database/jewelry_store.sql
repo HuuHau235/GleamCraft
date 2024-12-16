@@ -104,3 +104,4 @@ INSERT INTO products (name, image, price) VALUES
 ('Diamond Ring', 'Nhan-3.jpg', 1674000),
 ('Diamond Earing', 'Khuyen-1.jpg', 708000),
 ('Diamond Earing', 'Khuyen-2.jpg', 1600000);
+
