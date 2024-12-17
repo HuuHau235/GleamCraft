@@ -1,0 +1,31 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    
+}
+
+.container {
+    display: flex;
+    border-top: 1px solid black;
+    
+}
+.filter {
+
+}
+
+.type{
+    
+}
+.gem-colors div
+.red,
+.pink,
+.green,
+.blue {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+.gem-colors div.red { background-color: #f00; }
+.gem-colors div.pink { background-color: rgb(255, 0, 208);}
+.gem-colors div.green { background-color: #0f0; }
+.gem-colors div.blue { background-color: #00f; }
+
