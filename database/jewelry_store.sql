@@ -21,7 +21,8 @@ CREATE TABLE Categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     description TEXT,
-    gender INT CHECK (gender IN (0, 1)) -- 0 for Female, 1 for Male
+    gender INT CHECK (gender IN (0, 1)), -- 0 for Female, 1 for Male
+    color ENUM('red', 'pink', 'green', 'blue') -- Restricted to 4 colors
 );
 
 -- Table: Products
