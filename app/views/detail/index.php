@@ -42,7 +42,8 @@
             </div>
 
             <div class="col-md-6 product-info">
-                
+                <h1><strong><?= $product['name']; ?></strong></h1>
+                <h3><?= number_format($product['price'], 0, ',', '.'); ?> VND</h3>
                 <div class="gem-colors">
                     <span>Blue</span>
                     <span>Red</span>
