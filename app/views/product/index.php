@@ -10,37 +10,37 @@
 <body>
 
 <div class="container">
-    <form class="filter" id="filterForm" method="POST">
+    <form class="filter" action="../../controllers/ProductController.php" method="POST">
         <!-- Lọc theo giới tính -->
-        <div class="gender">
+        <div class="gender" id="gender">
             <h2>Gender</h2>
-            <label><input type="radio" name="gender" value="male"> Male </label> <br>
-            <label><input type="radio" name="gender" value="female"> Female </label> <br>
+            <label><input type="radio" name="gender" value="1"> Male </label> <br>
+            <label><input type="radio" name="gender" value="0"> Female </label> <br>
+            <label><input type="radio" name="gender" value="2"> Unisex </label> <br>
         </div>
         <div class="underline"></div>
 
         <!-- Lọc theo loại trang sức -->
-        <div class="type">
+        <div class="category" id="category">
             <h2>Type of Jewelry</h2>
-            <label><input type="radio" name="type" value="ring"> Ring </label> <br>
-            <label><input type="radio" name="type" value="necklace"> Necklace </label> <br>
-            <label><input type="radio" name="type" value="bracelet"> Bracelet </label> <br>
-            <label><input type="radio" name="type" value="earing"> Earring </label> <br>
+            <label><input type="radio" name="category" value="1"> Ring </label> <br>
+            <label><input type="radio" name="category" value="2"> Necklace </label> <br>
+            <label><input type="radio" name="category" value="3"> Bracelet </label> <br>
+            <label><input type="radio" name="category" value="4"> Earring </label> <br>
         </div>
         <div class="underline"></div>
 
         <!-- Lọc theo màu đá quý -->
-        <div class="gem-colors">
+        <div class="gem-colors" id="color">
             <h2>Gem Colors</h2>
             <label><input type="radio" name="color" value="Red"> <div class="red"></div> Red</label><br>
-            <label><input type="radio" name="color" value="Pink"> <div class="pink"></div> Pink</label><br>
-            <label><input type="radio" name="color" value="Green"> <div class="green"></div> Green</label><br>
+            <label><input type="radio" name="color" value="white"> <div class="white"></div> White</label><br>
             <label><input type="radio" name="color" value="Blue"> <div class="blue"></div> Blue</label><br>
         </div>
         <div class="underline"></div>
 
         <!-- Lọc theo giá -->
-        <div class="price">
+        <div class="price" id="price_range">
             <details>
                 <summary>Price Range</summary>
                 <label><input type="radio" name="price" value="400-500"> 400.000vnd - 500.000vnd </label><br>
@@ -56,10 +56,10 @@
         </div>
         <button type="submit" id="filterBtn">Select</button>
     </form>
-</div>
 
-<div class="products" id="productList">
-    
+    <div class="products">
+        
+    </div>
 </div>
 </body>
 </html>
