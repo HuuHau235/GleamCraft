@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once '../../../config/db.php'; 
-require_once '../../../app/models/CartManager.php';
+require_once '../../../config/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +15,7 @@ require_once '../../../app/models/CartManager.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/shoping_cart.css">
 </head>
+
 <body>
     <section class="cart-section">
         <div class="container">
@@ -24,38 +24,40 @@ require_once '../../../app/models/CartManager.php';
                 <h4 class="mb-0 title">Shopping Continue</h4>
             </div>
             <div class="cart">
-            <?php foreach ($cartDetails as $item): ?>
-            <div class="cart mb-3">
-                <div class="contain_cart p-4 border rounded">
-                    <div class="row g-0 align-items-center">
-                        <div class="col-md-2">
-                            <img src="../../../assets/images/brands/<?= htmlspecialchars($item['image']); ?>" 
-                                 class="img-fluid rounded-start" alt="<?= htmlspecialchars($item['name']); ?>">
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($item['name']); ?></h5>
-                                <p class="card-text text-muted"><?= htmlspecialchars($item['description']); ?></p>
+                <?php foreach ($cartItems as $item): ?>
+                    <div class="cart-item mb-3">
+                        <div class="contain_cart p-4 border rounded">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-md-2">
+                                    <img src="../../../assets/images/brands/<?= htmlspecialchars($item['product_image']); ?>"
+                                        class="img-fluid rounded-start"
+                                        alt="<?= htmlspecialchars($item['product_name']); ?>">
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= htmlspecialchars($item['product_name']); ?></h5>
+                                        <p class="card-text text-muted">
+                                            <?= htmlspecialchars($item['product_description']); ?></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <button class="btn btn-outline-secondary btn-sm" type="button">-</button>
+                                        <input type="text" value="<?= $item['quantity']; ?>"
+                                            class="form-control mx-2 text-center" style="width: 50px;">
+                                        <button class="btn btn-outline-secondary btn-sm" type="button">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex justify-content-between align-items-center">
+                                    <p class="price mb-0"><?= number_format($item['product_price'], 0); ?> VND</p>
+                                    <button class="btn btn-sm text-danger" type="submit" name="remove_item" value="">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <button class="btn btn-outline-secondary btn-sm" type="button">-</button>
-                                <input type="text" value="<?= $item['quantity']; ?>" 
-                                       class="form-control mx-2 text-center" style="width: 50px;">
-                                <button class="btn btn-outline-secondary btn-sm" type="button">+</button>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-flex justify-content-between align-items-center">
-                            <p class="price mb-0"><?= number_format($item['price'], 0); ?> VND</p>
-                            <button class="btn btn-sm text-danger" type="submit" name="remove_item" value="">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
         </div>
         <div class="button">

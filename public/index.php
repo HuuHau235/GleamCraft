@@ -6,7 +6,6 @@ require_once '../app/init.php';
 // Lấy URL từ request
 $requestUri = $_SERVER['REQUEST_URI'];
 $basePath = '/public'; // Thư mục chứa ứng dụng của bạn
-
 // Xử lý URI
 $processedUri = str_replace($basePath, '', $requestUri);  // Loại bỏ base path
 if ($processedUri === '' || $processedUri === '/') {
