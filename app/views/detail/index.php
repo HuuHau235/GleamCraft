@@ -20,7 +20,7 @@
 
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
                     <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                     <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
                     <li class="nav-item"><a href="/products/" class="nav-link text-dark">Products</a></li>
@@ -67,25 +67,54 @@
 
         <div class="comments-section">
             <h3>All comments</h3>
-            <div class="comment">
-                <input type="text" class="review-input" placeholder="Write your review...">
-            </div>
+            <!-- Form thêm đánh giá -->
+            <form method="POST" action="/Gleamcraft_MVC/public/review/add">
+                <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Your Review:</label>
+                    <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
 
-            <div class="comment">
-                <div class="comment-content">
-                    <strong>Duc Thien</strong>
-                    <p>The ring shop is both beautiful and luxurious!!</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-content">
-                    <strong>Duc Thien</strong>
-                    <p>The ring shop is both beautiful and luxurious!!</p>
-                </div>
+            <!-- Hiển thị các đánh giá -->
+            <div class="all-comments">
+                <?php if (!empty($reviews)): ?>
+                    <?php foreach ($reviews as $review): ?>
+                        <div class="comment">
+                            <div class="comment-content">
+                                <strong><?= $review['user_name']; ?></strong>
+                                <p><?= $review['comment']; ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No reviews yet.</p>
+                <?php endif; ?>
             </div>
         </div>
 
-
+        <div class="related-products my-5">
+            <h3 class="text-center">Related Products</h3>
+            <div class="row">
+                <?php if (!empty($relatedProducts)): ?>
+                    <?php foreach ($relatedProducts as $relatedProduct): ?>
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <img src="../../../assets/images/brands/<?= $relatedProduct['image']; ?>" class="card-img-top" alt="<?= $relatedProduct['name']; ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $relatedProduct['name']; ?></h5>
+                                <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+                                <a href="/Gleamcraft_MVC/public/product/detail/<?= $relatedProduct['product_id']; ?>" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No related products found.</p>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
