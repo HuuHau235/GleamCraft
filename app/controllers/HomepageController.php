@@ -11,17 +11,7 @@ class HomepageController {
 
         // Lấy danh sách sản phẩm từ Model
         $products = $productModel->getAllProducts();
-
-        // Tải header
-        require_once '../app/views/shared/header.php';
-        
-        // Tải banner
-        require_once '../app/views/shared/banner.php';
-        
-        // Truyền biến $products sang view
         require_once '../app/views/homepage/index.php';
 
-        // Tải footer
-        require_once '../app/views/shared/footer.php';
     }
 }

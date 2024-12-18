@@ -19,7 +19,7 @@ class DetailController {
         }
 
         // Lấy các sản phẩm liên quan (ngẫu nhiên)
-        $relatedProducts = $productModel->getRelatedProducts();  // Lấy sản phẩm liên quan ngẫu nhiên
+        $relatedProducts = $productModel->getRelatedProducts();
 
         // Truyền dữ liệu sang view
         require_once '../app/views/detail/index.php';
@@ -27,4 +27,5 @@ class DetailController {
         // Tải footer
         require_once '../app/views/shared/footer.php';
     }
+  
 }

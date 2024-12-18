@@ -20,7 +20,7 @@ class AuthController
             if ($loginResult['success']) {
                 $user = $loginResult['user'];
                 $this->auth->setUserSession($user);
-                header("Location: ../../public/index.php");
+                header("Location: ../../public/");
                 exit();
             } else {
                 $errorMessage = '';
