@@ -65,7 +65,6 @@ CREATE TABLE Reviews (
     review_id INT PRIMARY KEY AUTO_INCREMENT,
     product_id INT,
     user_id INT,
-    rating INT,
     comment TEXT,
     created_at DATETIME,
     FOREIGN KEY (product_id) REFERENCES Products(product_id),

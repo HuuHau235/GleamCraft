@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header><br>
     <div class="container product-detail">
         <div class="row">
             <div class="col-md-6">
@@ -65,33 +65,27 @@
             </div>
         </div>
 
-        <div class="comments-section">
-            <h3>All comments</h3>
-            <!-- Form thêm đánh giá -->
-            <form method="POST" action="/Gleamcraft_MVC/public/review/add">
-                <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
+        <div class="container mt-4">
+            <h3>Leave a Review</h3>
+            <form action="/Gleamcraft_MVC/public/product/detail/<?= htmlspecialchars($product['product_id']); ?>/add-review" method="POST">
                 <div class="mb-3">
                     <label for="comment" class="form-label">Your Review:</label>
-                    <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
+                    <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit Review</button>
             </form>
+        </div>
 
-            <!-- Hiển thị các đánh giá -->
-            <div class="all-comments">
-                <?php if (!empty($reviews)): ?>
-                    <?php foreach ($reviews as $review): ?>
-                        <div class="comment">
-                            <div class="comment-content">
-                                <strong><?= $review['user_name']; ?></strong>
-                                <p><?= $review['comment']; ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p>No reviews yet.</p>
-                <?php endif; ?>
-            </div>
+        <!-- Hiển thị các đánh giá -->
+        <div class="mt-4">
+            <h3>Reviews</h3>
+            <?php foreach ($productModel->getReviewsByProductId($product['product_id']) as $review): ?>
+                <div class="border p-2 mb-2">
+                    <strong><?= htmlspecialchars($review['user_name']); ?>:</strong>
+                    <p><?= htmlspecialchars($review['comment']); ?></p>
+                    <small><?= htmlspecialchars($review['created_at']); ?></small>
+                </div>
+            <?php endforeach; ?>
         </div>
 
         <div class="related-products my-5">
