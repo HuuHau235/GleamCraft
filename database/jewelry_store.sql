@@ -95,4 +95,15 @@ INSERT INTO products (name, image, price) VALUES
 ('Diamond Earing', 'Khuyen-1.jpg', 708000),
 ('Diamond Earing', 'Khuyen-2.jpg', 1600000);
 
+-- add table Cart
+CREATE TABLE cart (
+    cart_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    product_name VARCHAR(255) DEFAULT NULL,
+    product_image VARCHAR(255) DEFAULT NULL,
+    product_description TEXT DEFAULT NULL,
+    product_price DECIMAL(10,2) DEFAULT NULL,
+    INDEX product_idx (product_id)
+);
 
