@@ -12,26 +12,26 @@
 <div class="container">
     <form class="filter" action="../../controllers/ProductController.php" method="POST">
         <!-- Lọc theo giới tính -->
-        <div class="gender" id="gender">
+        <div class="gender">
             <h2>Gender</h2>
-            <label><input type="radio" name="gender" value="1"> Male </label> <br>
-            <label><input type="radio" name="gender" value="0"> Female </label> <br>
-            <label><input type="radio" name="gender" value="2"> Unisex </label> <br>
+            <label><input type="radio" name="gender" value="1"> Male </label><br>
+            <label><input type="radio" name="gender" value="0"> Female </label><br>
+            <label><input type="radio" name="gender" value="2"> Both </label><br>
         </div>
         <div class="underline"></div>
 
         <!-- Lọc theo loại trang sức -->
-        <div class="category" id="category">
+        <div class="category">
             <h2>Type of Jewelry</h2>
-            <label><input type="radio" name="category" value="ring"> Ring </label> <br>
-            <label><input type="radio" name="category" value="necklace"> Necklace </label> <br>
-            <label><input type="radio" name="category" value="bracelet"> Bracelet </label> <br>
-            <label><input type="radio" name="category" value="earring"> Earring </label> <br>
+            <label><input type="radio" name="type_name" value="ring"> Ring </label><br>
+            <label><input type="radio" name="type_name" value="necklace"> Necklace </label><br>
+            <label><input type="radio" name="type_name" value="bracelet"> Bracelet </label><br>
+            <label><input type="radio" name="type_name" value="earring"> Earring </label><br>
         </div>
         <div class="underline"></div>
 
         <!-- Lọc theo màu đá quý -->
-        <div class="gem-colors" id="color">
+        <div class="gem-colors">
             <h2>Gem Colors</h2>
             <label><input type="radio" name="color" value="Red"> <div class="red"></div> Red</label><br>
             <label><input type="radio" name="color" value="white"> <div class="white"></div> White</label><br>
@@ -40,25 +40,39 @@
         <div class="underline"></div>
 
         <!-- Lọc theo giá -->
-        <div class="price" id="price_range">
+        <div class="price">
             <details>
                 <summary>Price Range</summary>
-                <label><input type="radio" name="price" value="400-500"> 400.000vnd - 500.000vnd </label><br>
-                <label><input type="radio" name="price" value="500-600"> 500.000vnd - 600.000vnd </label><br>
-                <label><input type="radio" name="price" value="600-700"> 600.000vnd - 700.000vnd </label><br>
-                <label><input type="radio" name="price" value="700-800"> 700.000vnd - 800.000vnd </label><br>
-                <label><input type="radio" name="price" value="800-900"> 800.000vnd - 900.000vnd </label><br>
-                <label><input type="radio" name="price" value="900-1000"> 900.000vnd - 1.000.000vnd </label><br>
-                <label><input type="radio" name="price" value="1000-2000"> 1.000.000vnd - 2.000.000vnd </label><br>
-                <label><input type="radio" name="price" value="2000-5000"> 2.000.000vnd - 5.000.000vnd </label><br>
-                <label><input type="radio" name="price" value="5000-10000"> 5.000.000vnd - 10.000.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="400-500"> 400.000vnd - 500.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="500-600"> 500.000vnd - 600.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="600-700"> 600.000vnd - 700.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="700-800"> 700.000vnd - 800.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="800-900"> 800.000vnd - 900.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="900-1000"> 900.000vnd - 1.000.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="1000-2000"> 1.000.000vnd - 2.000.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="2000-5000"> 2.000.000vnd - 5.000.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="5000-10000"> 5.000.000vnd - 10.000.000vnd </label><br>
             </details>
         </div>
         <button type="submit" id="filterBtn">Select</button>
     </form>
 
     <div class="products">
-        
+        <?php if (!empty($products)) : ?>
+            <?php foreach ($products as $product) : ?>
+                <div class="product">
+                    <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
+                    <h3><?php echo $product['name']; ?></h3>
+                    <p>Description: <?php echo $product['description']; ?></p>
+                    <p>Color: <?php echo ucfirst($product['color']); ?></p>
+                    <p>Gender: <?php echo $product['gender'] == 0 ? 'Female' : ($product['gender'] == 1 ? 'Male' : 'Both'); ?></p>
+                    <p>Type: <?php echo ucfirst($product['type_name']); ?></p>
+                    <p>Price: <?php echo number_format($product['price'], 2); ?> VND</p>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <p>No products found.</p>
+        <?php endif; ?>
     </div>
 
 </div>
