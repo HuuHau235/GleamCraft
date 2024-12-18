@@ -4,10 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .banner-text {  
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black;
+            padding: 10px 20px;
+            font-size: 4rem;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            animation: moveUp 2s ease-out forwards;
+        }
+
+        @keyframes moveUp {
+            from {
+                bottom: -50px;
+                opacity: 0;
+            }
+            to {
+                bottom: 50px;
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body class="body">
-<div class="container content-section">
+    <header class="bg-light border-bottom d-flex align-items-center">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <img src="../assets/images/brands/logo.jpg" alt="Logo">
+            </a>
+
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
+                    <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
+                    <li class="nav-item"><a href="/products/" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-icon position-relative">
+                <i class="bi bi-person"></i>
+                <div class="tooltip-box">
+                    <a href="../../../app/views/user/login.php" class="d-block text-dark">Login</a>
+                    <a href="../../../app/views/user/register.php" class="d-block text-dark">Register</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="banner">
+        <img src="../assets/images/brands/Day-chuyen-1.jpg" alt="Banner Image">
+        <div class="banner-text">Welcome to GleamCraft </div>
+    </div> <br> 
+
+    <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6">
             <h2 class="h2 highlight-text">Gemstone Rings - Luxurious and Classy</h2>
@@ -92,7 +175,44 @@
             <?php endforeach; ?>
         </div>
     </div>
-
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>GleamCraft</h5>
+                    <p>GleamCraft is a supplier of high-end and luxury diamond jewelry.</p>
+                </div>
+                <div class="col-md-3">
+                <h5>GleamCraft</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/about" class="text-light text-decoration-none">About us</a></li>
+                    <li><a href="/products/" class="text-light text-decoration-none">Products</a></li>
+                    <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
+                </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>GleamCraft</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/brands" class="text-light text-decoration-none">Brands</a></li>
+                        <li><a href="/careers" class="text-light text-decoration-none">Careers</a></li>
+                        <li><a href="/reviews" class="text-light text-decoration-none">Reviews</a></li>
+                        <li><a href="/faq" class="text-light text-decoration-none">Q&A</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <p class="mb-1">+84 334 224 702</p>
+                    <p class="mb-2">hhai989402@gmail.com</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-linkedin fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="../assets/js/homepage.js"></script>
 </body>
 </html>
