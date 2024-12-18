@@ -21,19 +21,18 @@ CREATE TABLE Categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     description TEXT,
-    gender INT CHECK (gender IN (0, 1)) -- 0 for Female, 1 for Male
+    color ENUM('red', 'white', 'blue'), -- Giới hạn màu sắc chỉ có 3 lựa chọn: red, white, blue
+    gender INT CHECK (gender IN (0, 1, 2)) -- 0: Nữ, 1: Nam, 2: Cả hai
 );
 
 -- Table: Products
 DROP TABLE IF EXISTS Products;
-CREATE TABLE Products ( 
+CREATE TABLE Products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
-    description TEXT,
     price DECIMAL(10, 2),
     category_id INT,
     image VARCHAR(255),
-    created_at DATETIME,
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
 
@@ -96,4 +95,15 @@ INSERT INTO products (name, image, price) VALUES
 ('Diamond Earing', 'Khuyen-1.jpg', 708000),
 ('Diamond Earing', 'Khuyen-2.jpg', 1600000);
 
+-- add table Cart
+CREATE TABLE cart (
+    cart_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    product_name VARCHAR(255) DEFAULT NULL,
+    product_image VARCHAR(255) DEFAULT NULL,
+    product_description TEXT DEFAULT NULL,
+    product_price DECIMAL(10,2) DEFAULT NULL,
+    INDEX product_idx (product_id)
+);
 

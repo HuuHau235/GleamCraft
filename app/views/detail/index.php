@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="../../../assets/css/header.css">
     <link rel="stylesheet" href="../../../assets/css/detail.css">
 </head>
+
 <body>
     <header class="bg-light border-bottom d-flex align-items-center">
         <div class="container-fluid d-flex justify-content-between align-items-center px-4">
@@ -38,7 +40,8 @@
     <div class="container product-detail">
         <div class="row">
             <div class="col-md-6">
-                <img src="../../../assets/images/brands/<?= $product['image']; ?>" class="img-fluid product-image" style="width: 600px; height: 400px;" alt="<?= $product['name']; ?>">
+                <img src="../../../assets/images/brands/<?= $product['image']; ?>" class="img-fluid product-image"
+                    style="width: 600px; height: 400px;" alt="<?= $product['name']; ?>">
             </div>
 
             <div class="col-md-6 product-info">
@@ -52,7 +55,13 @@
                 <div class="mb-3">
                     <input type="number" id="quantity" class="form-control" value="1" min="1" style="width: 70px;">
                 </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <a
+                    href="../../../app/models/CartManager.php?add_to_cart=true&product_id=<?= $product['product_id']; ?>&quantity=1">
+                    <button class="add-to-cart-btn">
+                        Add to Cart
+                    </button>
+                </a>
+
             </div>
         </div>
 
@@ -110,4 +119,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

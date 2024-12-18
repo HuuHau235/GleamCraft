@@ -46,8 +46,7 @@ details summary {
     margin-right: 5px; 
 }
 .gem-colors div.red { background-color: #f00; }
-.gem-colors div.pink { background-color: rgb(255, 0, 208);}
-.gem-colors div.green { background-color: #0f0; }
+.gem-colors div.white { background-color: white;}
 .gem-colors div.blue { background-color: #00f; }
 
 #filterBtn {
