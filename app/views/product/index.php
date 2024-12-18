@@ -23,10 +23,10 @@
         <!-- Lọc theo loại trang sức -->
         <div class="category" id="category">
             <h2>Type of Jewelry</h2>
-            <label><input type="radio" name="category" value="1"> Ring </label> <br>
-            <label><input type="radio" name="category" value="2"> Necklace </label> <br>
-            <label><input type="radio" name="category" value="3"> Bracelet </label> <br>
-            <label><input type="radio" name="category" value="4"> Earring </label> <br>
+            <label><input type="radio" name="category" value="ring"> Ring </label> <br>
+            <label><input type="radio" name="category" value="necklace"> Necklace </label> <br>
+            <label><input type="radio" name="category" value="bracelet"> Bracelet </label> <br>
+            <label><input type="radio" name="category" value="earring"> Earring </label> <br>
         </div>
         <div class="underline"></div>
 
@@ -60,6 +60,7 @@
     <div class="products">
         
     </div>
+
 </div>
 </body>
 </html>
