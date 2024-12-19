@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once '../../../config/db.php';
+require_once 'C:\xampp\htdocs\GleamCraft_MVC\config\db.php';
+require_once "../../models/CartManager.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,10 @@ require_once '../../../config/db.php';
 </head>
 
 <body>
+
+    <?php
+    include_once "../shared/header.php";
+    ?>
     <section class="cart-section">
         <div class="container">
             <div class="title_cart d-flex align-items-center gap-2 mb-3">
@@ -29,7 +34,7 @@ require_once '../../../config/db.php';
                         <div class="contain_cart p-4 border rounded">
                             <div class="row g-0 align-items-center">
                                 <div class="col-md-2">
-                                    <img src="../../../assets/images/brands/<?= htmlspecialchars($item['product_image']); ?>"
+                                    <img src="<?= htmlspecialchars($item['product_image']); ?>"
                                         class="img-fluid rounded-start"
                                         alt="<?= htmlspecialchars($item['product_name']); ?>">
                                 </div>
@@ -37,7 +42,8 @@ require_once '../../../config/db.php';
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($item['product_name']); ?></h5>
                                         <p class="card-text text-muted">
-                                            <?= htmlspecialchars($item['product_description']); ?></p>
+                                            <?= htmlspecialchars($item['product_description']); ?>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 text-center">
@@ -50,9 +56,13 @@ require_once '../../../config/db.php';
                                 </div>
                                 <div class="col-md-4 d-flex justify-content-between align-items-center">
                                     <p class="price mb-0"><?= number_format($item['product_price'], 0); ?> VND</p>
-                                    <button class="btn btn-sm text-danger" type="submit" name="remove_item" value="">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
+                                    <a
+                                        href="../../models/DeleteCart.php?product_id=<?php echo htmlspecialchars($item['product_id']); ?>">
+                                        <button class="btn btn-sm text-danger" type="button">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>

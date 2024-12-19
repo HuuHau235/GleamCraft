@@ -6,7 +6,7 @@ class Product {
     private $db;
 
     public function __construct() {
-        // Kết nối cơ sở dữ liệu bằng MySQLi
+        // Kết nối cơ sở dữ liệu
         $this->db = new \mysqli('localhost', 'root', '', 'gleamcraft');
         
         // Kiểm tra kết nối
@@ -17,7 +17,7 @@ class Product {
 
     // Lấy tất cả sản phẩm (dùng cho trang chủ)
     public function getAllProducts() {
-        $query = "SELECT * FROM products";
+        $query = "SELECT * FROM products ORDER BY RAND() LIMIT 8";
         $result = $this->db->query($query);
         
         if ($result->num_rows > 0) {
@@ -53,5 +53,5 @@ class Product {
             return [];
         }
     }
-
+    
 }
