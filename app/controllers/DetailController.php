@@ -27,5 +27,32 @@ class DetailController {
         // Tải footer
         require_once '../app/views/shared/footer.php';
     }
-  
+    public function addReview($id) {
+        // Kiểm tra nếu yêu cầu là POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user_id = $_SESSION['user_id'] ?? null; // Giả sử user đã đăng nhập
+            $comment = trim($_POST['comment']);      // Nội dung đánh giá
+    
+            if (!$user_id) {
+                echo "You need to log in to leave a review.";
+                return;
+            }
+    
+            if (empty($comment)) {
+                echo "Comment cannot be empty.";
+                return;
+            }
+    
+            // Thêm đánh giá vào cơ sở dữ liệu
+            $productModel = new \App\Models\Product();
+            if ($productModel->addReview($product_id, $user_id, $comment)) {
+                // Chuyển hướng về trang chi tiết sản phẩm
+                header("Location: /Gleamcraft_MVC/public/product/detail/$product_id");
+                exit;
+            } else {
+                echo "Error adding review.";
+            }
+        }
+    }
+    
 }

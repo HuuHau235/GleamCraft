@@ -46,20 +46,6 @@
                         <div class="or-container">
                             <span>OR</span>
                         </div>
-                        <div class="text-center mt-3">
-                            <button type="button" class="btn btn-outline-secondary w-100 my-1">
-                                <div class="icon-container">
-                                    <span class="fab fa-facebook-f"></span>
-                                    Sign up with Facebook
-                                </div>
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary w-100 my-1">
-                                <div class="icon-container">
-                                    <span class="fab fa-google"></span>
-                                    Sign up with Google
-                                </div>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

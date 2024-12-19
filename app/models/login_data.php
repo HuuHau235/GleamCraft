@@ -11,21 +11,33 @@ class Login_Data
     public function login($email, $password)
     {
         try {
-            $query = "SELECT * FROM Users WHERE email=:email";
+            $query = "SELECT * FROM Users WHERE email = ?";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+            if ($stmt === false) {
+                return ['success' => false, 'error' => 'prepare_failed'];
+            }
+
+
+            $stmt->bind_param("s", $email);
+
+
             $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);// Lấy dữ liệu của một hàng
+
+            // Lấy kết quả
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc(); 
+
             if ($user) {
-                if ($password == $user['password']) {
+                if ($password === $user['password']) { 
                     return ['success' => true, 'user' => $user];
                 } else {
                     return ['success' => false, 'error' => 'wrong_password'];
                 }
             }
             return ['success' => false, 'error' => 'email_not_found'];
-        } catch (PDOException $e) {
-            return ['success' => false, 'error' => 'query_error'];
+        } catch (Exception $e) {
+            return ['success' => false, 'error' => 'query_error', 'message' => $e->getMessage()];
         }
     }
 

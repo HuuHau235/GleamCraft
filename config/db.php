@@ -4,25 +4,27 @@ class Database {
     protected $dbName = "gleamcraft";
     protected $username = "root";
     protected $password = "";
-    private $conn; // Lưu đối tượng kết nối với database thành công
+    private $conn; 
 
     // Hàm kết nối
     public function connect() {
-        $this->conn = null; // Đảm bảo rằng không có dữ liệu nào kết nối trước đó
+        $this->conn = null; 
         try {
-            $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->dbName,$this->username,$this->password
+            $this->conn = new mysqli(
+                $this->host,
+                $this->username,
+                $this->password,
+                $this->dbName
             );
-            // Đặt chế độ lỗi cho PDO
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Kết nối thành công!"; // In ra thông báo nếu kết nối thành công
-        } catch (PDOException $e) {
-            echo "Kết nối thất bại: " . $e->getMessage(); // Thông báo lỗi nếu kết nối thất bại
+            if ($this->conn->connect_error) {
+                die("Kết nối thất bại: " . $this->conn->connect_error);
+            }
+        } catch (Exception $e) {
+            echo "Kết nối thất bại: " . $e->getMessage(); 
         }
         return $this->conn;
     }
 }
 
-// Khởi tạo lớp và kiểm tra kết nối
 $db = new Database();
 $conn = $db->connect();

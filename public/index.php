@@ -19,6 +19,13 @@ elseif (preg_match('/^\/product\/detail\/(\d+)$/', $processedUri, $matches)) {
     $controller = new \App\Controllers\DetailController();
     $controller->show($productId);
 }
+// Xử lý đánh giá sản phẩm
+if (preg_match('/^\/Gleamcraft_MVC\/public\/product\/detail\/(\d+)$/', $_SERVER['REQUEST_URI'], $matches)) {
+    $productId = $matches[1];
+    $controller = new \App\Controllers\DetailController();
+    $controller->show($productId);
+    exit;
+}
 // Nếu không tìm thấy trang
 else {
     echo "Page not found.";
