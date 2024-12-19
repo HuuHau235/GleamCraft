@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once '../../../config/db.php';
+require_once 'C:\xampp\htdocs\GleamCraft_MVC\config\db.php';
+require_once "../../models/CartManager.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,9 +51,11 @@ require_once '../../../config/db.php';
                                 </div>
                                 <div class="col-md-4 d-flex justify-content-between align-items-center">
                                     <p class="price mb-0"><?= number_format($item['product_price'], 0); ?> VND</p>
-                                    <button class="btn btn-sm text-danger" type="submit" name="remove_item" value="">
+                                  <form action="" method ="POST">
+                                  <button class="btn btn-sm text-danger" type="submit" name="remove_item" value="">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
+                                  </form>
                                 </div>
                             </div>
                         </div>
