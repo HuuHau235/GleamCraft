@@ -13,19 +13,24 @@ class UserModel {
     public function checkEmailExists($email) {
         $check_email_sql = "SELECT * FROM users WHERE email = ?";
         $stmt = $this->conn->prepare($check_email_sql);
-        $stmt->execute([$email]);
-        return $stmt->fetchAll();
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     // Thêm người dùng vào cơ sở dữ liệu
     public function registerUser($username, $email, $password, $phone, $role) {
         $stmt = $this->conn->prepare("INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, ?)");
-        return $stmt->execute([$username, $email, $password, $phone, $role]);
+        $stmt->bind_param("sssss", $username, $email, $password, $phone, $role);
+        return $stmt->execute();
     }
 
     // Kiểm tra và xác định vai trò của người dùng
     public function getRole() {
-        $role_check = $this->conn->query("SELECT * FROM users WHERE role = 'admin'")->fetchAll();
+        $role_check_sql = "SELECT * FROM users WHERE role = 'admin'";
+        $result = $this->conn->query($role_check_sql);
+        $role_check = $result->fetch_all(MYSQLI_ASSOC);
         return (count($role_check) > 0) ? "user" : "admin";
     }
 }

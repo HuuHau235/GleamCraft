@@ -1,42 +1,44 @@
 <?php
-require_once 'C:\xampp\htdocs\GleamCraft_MVC\config\db.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "gleamcraft";
 
-class Cart {
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+class Cart
+{
     private $conn;
-
-    public function __construct($conn) {
+    public function __construct($conn)
+    {
         $this->conn = $conn;
     }
 
-    // Add product to cart
-    public function addToCart($product_id, $quantity, $product_name, $product_image, $product_description, $product_price) {
+    public function addToCart($product_id, $quantity, $product_name, $product_image, $product_description, $product_price)
+    {
         try {
-            // Check if product already exists in the cart
-            $checkQuery = "SELECT * FROM cart WHERE product_id = :product_id";
-            $stmt = $this->conn->prepare($checkQuery);
-            $stmt->bindParam(':product_id', $product_id);
-            $stmt->execute();
+            $checkQuery = "SELECT * FROM cart WHERE product_id = ?";
+            $stmt = mysqli_prepare($this->conn, $checkQuery);
+            mysqli_stmt_bind_param($stmt, "i", $product_id); // i for integer
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
 
-            if ($stmt->rowCount() > 0) {
-                // If product exists, update quantity
-                $updateQuery = "UPDATE cart SET quantity = quantity + :quantity WHERE product_id = :product_id";
-                $updateStmt = $this->conn->prepare($updateQuery);
-                $updateStmt->bindParam(':quantity', $quantity);
-                $updateStmt->bindParam(':product_id', $product_id);
-                $updateStmt->execute();
+            if (mysqli_num_rows($result) > 0) {
+                $updateQuery = "UPDATE cart SET quantity = quantity + ? WHERE product_id = ?";
+                $updateStmt = mysqli_prepare($this->conn, $updateQuery);
+                mysqli_stmt_bind_param($updateStmt, "ii", $quantity, $product_id); // ii for two integers
+                mysqli_stmt_execute($updateStmt);
             } else {
-                // If product does not exist, insert it into the cart
+
                 $insertQuery = "INSERT INTO cart (product_id, quantity, product_name, product_image, product_description, product_price) 
-                                VALUES (:product_id, :quantity, :product_name, :product_image, :product_description, :product_price)";
-                $stmt = $this->conn->prepare($insertQuery);
-                $stmt->execute([
-                    ':product_id' => $product_id,
-                    ':quantity' => $quantity,
-                    ':product_name' => $product_name,
-                    ':product_image' => $product_image,
-                    ':product_description' => $product_description,
-                    ':product_price' => $product_price
-                ]);
+                                VALUES (?, ?, ?, ?, ?, ?)";
+                $insertStmt = mysqli_prepare($this->conn, $insertQuery);
+                mysqli_stmt_bind_param($insertStmt, "iisssd", $product_id, $quantity, $product_name, $product_image, $product_description, $product_price);
+                // i for integer, s for string, d for double (float)
+                mysqli_stmt_execute($insertStmt);
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
@@ -44,40 +46,42 @@ class Cart {
     }
 
     // Get all products in the cart
-    public function getAllCartItems() {
+    public function getAllCartItems()
+    {
         try {
-            $query = "SELECT * FROM cart";  
-            $stmt = $this->conn->prepare($query);                                 
-            $stmt->execute();               
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $query = "SELECT * FROM cart";
+            $result = mysqli_query($this->conn, $query);
+            $cartItems = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $cartItems[] = $row;
+            }
+            return $cartItems;
         } catch (Exception $e) {
             return [];
         }
     }
 }
 
-// Handle adding product to cart when user clicks "Add to Cart"
+
 if (isset($_GET['add_to_cart']) && isset($_GET['product_id']) && isset($_GET['quantity'])) {
-    $productId = $_GET['product_id']; // Product ID
-    $quantity = $_GET['quantity']; // Quantity of the product
+    $productId = $_GET['product_id'];
+    $quantity = $_GET['quantity']; 
 
     if ($conn) {
-        // Get product details from the products table
-        $query = "SELECT p.name, p.image, p.description, p.price FROM products p WHERE p.product_id = :product_id";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':product_id', $productId);
-        $stmt->execute();
+        $query = "SELECT p.name, p.image, p.description, p.price FROM products p WHERE p.product_id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $productId); // i for integer
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-        if ($stmt->rowCount() > 0) {
-            $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (mysqli_num_rows($result) > 0) {
+            $product = mysqli_fetch_assoc($result);
 
-            // Add or update product in the cart
             $cart = new Cart($conn);
             $cart->addToCart($productId, $quantity, $product['name'], $product['image'], $product['description'], $product['price']);
-            
-            // Redirect to shopping_cart page
+
             header("Location:../views/cart/shoping_cart.php");
-            exit(); // Ensure the script stops here after redirection
+            exit(); 
         } else {
             echo "Sản phẩm không tồn tại!";
         }
@@ -86,7 +90,6 @@ if (isset($_GET['add_to_cart']) && isset($_GET['product_id']) && isset($_GET['qu
     }
 }
 
-// Display cart
 $cart = new Cart($conn);
 $cartItems = $cart->getAllCartItems();
 ?>

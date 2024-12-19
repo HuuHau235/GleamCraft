@@ -40,7 +40,7 @@
                     <p>Confirm password</p>
                     <input type="password" name="confirm-password"  placeholder="Enter authentication password...">
                 </div>
-                <button class="register-btn">Register</button>
+               <a href="login.php"> <button class="register-btn">Register</button></a>
                 
                 <div class="or-container">
                     <span>OR</span>

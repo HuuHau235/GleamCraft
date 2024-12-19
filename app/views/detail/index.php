@@ -77,13 +77,14 @@
             <?php endif; ?>
         </div>
 
-        <form action="/Gleamcraft_MVC/public/product/detail/<?= htmlspecialchars($product['product_id']); ?>/add-review" method="POST">
+        <form action="/Gleamcraft_MVC/public/product/detail/<?= htmlspecialchars($product['product_id']); ?>" method="POST">
             <div class="mb-3">
                 <label for="comment" class="form-label">Your Review:</label>
                 <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit Review</button>
         </form>
+
 
         <div class="related-products my-5">
             <h3 class="text-center">Related Products</h3>
