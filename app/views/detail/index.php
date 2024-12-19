@@ -40,7 +40,7 @@
     <div class="container product-detail">
         <div class="row">
             <div class="col-md-6">
-                <img src="../../../assets/images/brands/<?= $product['image']; ?>" class="img-fluid product-image"
+                <img src="<?= $product['image']; ?>" class="img-fluid product-image"
                     style="width: 600px; height: 400px;" alt="<?= $product['name']; ?>">
             </div>
 
@@ -101,7 +101,7 @@
                     <?php foreach ($relatedProducts as $relatedProduct): ?>
                     <div class="col-md-3">
                         <div class="card mb-3">
-                            <img src="../../../assets/images/brands/<?= $relatedProduct['image']; ?>" class="card-img-top" alt="<?= $relatedProduct['name']; ?>">
+                            <img src="<?= $relatedProduct['image']; ?>" class="card-img-top" alt="<?= $relatedProduct['name']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $relatedProduct['name']; ?></h5>
                                 <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
