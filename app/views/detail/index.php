@@ -40,16 +40,14 @@
     <div class="container product-detail">
         <div class="row">
             <div class="col-md-5">
-                <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" class="img-fluid product-image" style="width: 500px; height: 500px;" alt="<?= $product['name']; ?>">
+                <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" class="img-fluid product-image" style="width: 500px; height: 400px;" alt="<?= $product['name']; ?>">
             </div>
-            <div class="col-md-5 product-info">
+            <div class="col-md-6 product-info">
                 <h1><strong><?= $product['name']; ?></strong></h1>
+                <h4><strong>Description:</strong> <?= $product['description']; ?></h2>
+                <h2><strong>Color:</strong> <?= $product['color']; ?></h2>
                 <h3><?= number_format($product['price'], 0, ',', '.'); ?> VND</h3>
-                <div class="gem-colors">
-                    <span>Blue</span>
-                    <span>Red</span>
-                    <span>White</span>
-                </div>
+                
                 <!-- Div chứa số lượng và nút Add to Cart -->
                 <div class="quantity-and-cart">
                     <div class="mb-3">
@@ -64,7 +62,7 @@
             </div>
         </div>
 
-       
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
