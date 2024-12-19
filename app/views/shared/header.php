@@ -20,7 +20,7 @@
                 <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li>
                 <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                 <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                <li class="nav-item"><a href="/products/" class="nav-link text-dark">Products</a></li>
+                <li class="nav-item"><a href="http://localhost/GleamCraft/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
                 <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
             </ul>
         </nav>

@@ -56,22 +56,26 @@
             </details>
         </div>
         <button type="submit" id="filterBtn">Select</button>
+        <div class="underline"></div>
+
     </form>
 
     <div class="products">
         <?php 
         global $products;   
         ?>
-    <?php if (!empty($products)): ?>
+        <?php if (!empty($products)): ?>
             <ul>
                 <?php foreach ($products as $product): ?>
                     <li>
-                        
-                        <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" width="100"><br>
-                        <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
-                        Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND</p>
-                        Type: <?php echo htmlspecialchars($product['type_name']); ?><br>
-                        Color: <?php echo htmlspecialchars($product['color']); ?>
+                        <!-- Liên kết đến trang chi tiết sản phẩm  -->
+                        <a href="http://localhost:3000/app/views/detail/index.php?id=<?php echo htmlspecialchars($product['product_id']); ?>">
+                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" ><br>
+                            <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
+                            Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND<br>
+                            Type: <?php echo htmlspecialchars($product['type_name']); ?><br>
+                            Color: <?php echo htmlspecialchars($product['color']); ?>
+                        </a>
                     </li>
                 <?php endforeach; ?>
             </ul>
