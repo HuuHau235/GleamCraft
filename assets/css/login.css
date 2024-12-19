@@ -29,19 +29,11 @@ body {
 .fa-eye {
     color: #6c757d;
 }
-.fa-eye:hover {
-    color: #007bff;
-}
+
 .login {
     background: linear-gradient(90deg, #FB724C 0%, #FE904B 50%, #EE5757 100%);
 }
 .login:hover {
-    transition: all 0.3s ease;
-    transform: scale(1.1);
-    color: white;
-    background-color: #3B5998;
-}
-.btn:hover {
     transition: all 0.3s ease;
     transform: scale(1.1);
     color: white;
@@ -57,27 +49,13 @@ body {
     height: 100%;
 }
 
-.fab,.fa-google {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    color: white;
-    background-color: #1877F2;
-    font-size: 1.2rem;
-    text-align: center;
-    display: inline-block;
-}
-span {
-    margin-right: 20px;
-}
 .form-container {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
-    margin-bottom: 30px;
+    margin-top: 50px;
 }
 .or-container {
     display: flex;

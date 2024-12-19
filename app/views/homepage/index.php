@@ -164,7 +164,9 @@
                 <div class="col-md-3 mb-4">
                     <div class="card" style="height: 450px;">
                     <a href="/Gleamcraft_MVC/public/product/detail/<?= $product['product_id'] ?>">
-                            <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" style="height: 300px;"></a>
+
+                            <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" style="height: 300px;">
+                        </a>
                         <div class="card-body text-center">
                             <h5 class="card-title"><?= $product['name'] ?></h5>
                             <p class="card-text"><?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
