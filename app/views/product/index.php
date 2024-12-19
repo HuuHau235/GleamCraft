@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/product.css">
+    <base href="http://localhost/GleamCraft/">
+    <link rel="stylesheet" href="assets/css/product.css">
     <title>Products</title>
 </head>
 <body>
 
 <div class="container">
-    <form class="filter" action="../../controllers/ProductController.php" method="POST">
+    <form class="filter" action="http://localhost/GleamCraft/app/controllers/ProductController.php" method="POST">
         <!-- Lọc theo giới tính -->
         <div class="gender">
             <h2>Gender</h2>
@@ -58,19 +59,22 @@
     </form>
 
     <div class="products">
-        <?php if (!empty($products)) : ?>
-            <?php foreach ($products as $product) : ?>
-                <div class="product">
-                    <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
-                    <h3><?php echo $product['name']; ?></h3>
-                    <p>Description: <?php echo $product['description']; ?></p>
-                    <p>Color: <?php echo ucfirst($product['color']); ?></p>
-                    <p>Gender: <?php echo $product['gender'] == 0 ? 'Female' : ($product['gender'] == 1 ? 'Male' : 'Both'); ?></p>
-                    <p>Type: <?php echo ucfirst($product['type_name']); ?></p>
-                    <p>Price: <?php echo number_format($product['price'], 2); ?> VND</p>
-                </div>
-            <?php endforeach; ?>
-        <?php else : ?>
+        <?php 
+        global $products;   
+        ?>
+    <?php if (!empty($products)): ?>
+            <ul>
+                <?php foreach ($products as $product): ?>
+                    <li>
+                        <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" width="100"><br>
+                        <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
+                        Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND</p>
+                        Type: <?php echo htmlspecialchars($product['type_name']); ?><br>
+                        Color: <?php echo htmlspecialchars($product['color']); ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
             <p>No products found.</p>
         <?php endif; ?>
     </div>
