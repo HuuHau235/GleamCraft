@@ -66,6 +66,7 @@
             <ul>
                 <?php foreach ($products as $product): ?>
                     <li>
+                        
                         <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" width="100"><br>
                         <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
                         Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND</p>
