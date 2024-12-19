@@ -217,29 +217,29 @@ VALUES
 
 
 ('Dây chuyền bạc nữ đính đá CZ cá tiên LILI_831944', '', 'red', 0, 'necklace', 817000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-phong-cach-co-trang-CZ-LILI_831944_2-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ dạng nhẫn đôi Fall In Love LILI_748855', '', 'white', 0, 'necklace', 782000, 'https://lili.vn/wp-content/uploads/2022/08/Day-chuyen-bac-nu-dinh-da-CZ-dang-nhan-doi-Fall-In-Love-LILI_748855_7-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính kim cương Moissanite tròn cách điệu LILI_413898', '', 'white', 0, 'necklace', 1250000, 'https://lili.vn/wp-content/uploads/2022/06/Mat-day-chuyen-bac-nu-dinh-kim-cuong-Moissanite-tron-cach-dieu-LILI_413898_6-400x400.jpg'),
-    ('Dây chuyền bạc nữ đẹp đính pha lê Aurora trái tim hoa lá LILI_866671', '', 'blue', 0, 'necklace', 728000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-trai-tim-hoa-la-dinh-pha-le-Aurora-LILI_866671_10-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính pha lê Swarovski trái tim đại dương LILI_295787', '', 'blue', 0, 'necklace', 785000, 'https://lili.vn/wp-content/uploads/2020/12/day-chuyen-bac-mat-pha-le-swaroski-trai-tim-dai-duong-LILI_295787-1-1-400x400.jpg'),
-    ('Dây chuyền bạc nữ 2 tầng đẹp và độc hình đôi bướm Hot Trend LILI_361718', '', 'white', 0, 'necklace', 855000, 'https://lili.vn/wp-content/uploads/2024/03/Day-chuyen-bac-nu-2-tang-dep-va-doc-hinh-doi-buom-Hot-Trend-LILI_361718_30-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ cỏ 4 lá LILI_426865', '', 'white', 0, 'necklace', 785000, 'https://lili.vn/wp-content/uploads/2022/03/Mat-day-chuyen-bac-nu-dinh-da-CZ-co-4-la-LILI_426865_1-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính kim cương Moissanite hình gạc nai LILI_055097', '', 'blue', 0, 'necklace', 1058000, 'https://lili.vn/wp-content/uploads/2022/11/Day-chuyen-bac-nu-dinh-kim-cuong-Moissanite-hinh-gac-nai-LILI_055097_5-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá Aurora mèo nhỏ và mặt trăng LILI_328547', '', 'red', 0, 'necklace', 806000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-meo-nho-va-mat-trang-dinh-da-Moonstone-LILI_328547_2-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ hình trái tim cách điệu đẹp Katalina LILI_352665', '', 'red', 0, 'necklace', 800000, 'https://lili.vn/wp-content/uploads/2021/12/Mat-day-chuyen-bac-nu-trai-tim-cach-dieu-dinh-da-CZ-LILI_352665_2-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ trái tim cỏ 4 lá đóng mở LILI_822972', '', 'blue', 0, 'necklace', 817000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-dinh-da-CZ-trai-tim-co-4-la-dong-mo-LILI_822972_20-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ hình thỏ ngắm trăng LILI_899188', '', 'white', 0, 'necklace', 648000, 'https://lili.vn/wp-content/uploads/2022/08/Day-chuyen-bac-nu-dinh-da-CZ-hinh-tho-ngam-trang-LILI_899188_3-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ cỏ 4 lá Veronica LILI_172818', '', 'blue', 0, 'necklace', 747000, 'https://lili.vn/wp-content/uploads/2022/08/Day-chuyen-bac-nu-dinh-da-CZ-co-4-la-Veronica-LILI_172818_1-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính pha lê Aurora mặt trăng cách điệu LILI_545817', '', 'red', 0, 'necklace', 787000, 'https://lili.vn/wp-content/uploads/2022/09/Day-chuyen-bac-nu-dinh-pha-le-Aurora-mat-trang-cach-dieu-LILI_545817_2-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ 2 trái tim ghép đôi LILI_763116', '', 'blue', 0, 'necklace', 722000, 'https://lili.vn/wp-content/uploads/2021/12/Mat-day-chuyen-bac-nu-2-trai-tim-ghep-doi-LILI_763116_1-400x400.jpg'),
-    ('Vòng cổ bạc nữ đính đá CZ hình ngôi sao băng Farah LILI_053917', '', 'white', 0, 'necklace', 701000, 'https://lili.vn/wp-content/uploads/2022/10/Vong-co-bac-nu-dinh-da-CZ-hinh-ngoi-sao-bang-Farah-LILI_053917_2-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ hình chú thiên nga Swan LILI_197559', '', 'white', 0, 'necklace', 782000, 'https://lili.vn/wp-content/uploads/2024/05/Day-chuyen-bac-nu-dinh-da-CZ-hinh-chu-thien-nga-LILI_197559_22-400x400.jpg'),
-    ('Vòng cổ bạc nữ đẹp và độc đính pha lê Swarovski hình trái tim LILI_972812', '', 'blue', 0, 'necklace', 1194000, 'https://lili.vn/wp-content/uploads/2021/01/Day-chuyen-bac-trai-tim-pha-le-Swarovski-LILI_972812-4-400x400.jpg'),
-    ('Dây chuyền bạc đính pha lê Aurora cao cấp, đá CZ nữ hoa lá LILI_955426', '', 'blue', 0, 'necklace', 806000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-hoa-la-dinh-pha-le-Aurora-da-CZ-LILI_955426_7-400x400.jpg'),
-    ('Dây chuyền bạc nữ mạ vàng 2 tầng đính đá CZ tròn Sunday LILI_531821', '', 'white', 0, 'necklace', 701000, 'https://lili.vn/wp-content/uploads/2022/10/Day-chuyen-bac-nu-ma-vang-2-tang-dinh-da-CZ-tron-Sunday-LILI_531821_1-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính kim cương tự nhiên cỏ 4 lá Lucky LILI_832459', '', 'white', 0, 'necklace', 1016000, 'https://lili.vn/wp-content/uploads/2022/04/Day-chuyen-bac-nu-dinh-kim-cuong-tu-nhieu-co-4-la-LILI_832459_2-400x400.jpg'),
-    ('Dây chuyền bạc nữ pha lê Aurora tròn lấp lánh LILI_974332', '', 'blue', 0, 'necklace', 757000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-tron-lap-lanh-pha-le-Aurora-LILI_974332_8-400x400.jpg'),
-    ('Dây chuyền bạc nữ đính đá CZ đá nhảy trái tim Grainne LILI_262454', '', 'blue', 0, 'necklace', 812000, 'https://lili.vn/wp-content/uploads/2022/08/Mat-day-chuyen-bac-nu-dinh-da-CZ-trai-tim-Grainne-LILI_262454_4-400x400.jpg'),
-    ('Dây chuyền bạc nữ mảnh nhỏ đính đá CZ hình trái tim cách điệu Nolan LILI_255281', '', 'blue', 0, 'necklace', 765000, 'https://lili.vn/wp-content/uploads/2022/09/Day-chuyen-bac-nu-dinh-da-CZ-hinh-trai-tim-cach-dieu-Nolan-LILI_255281_1-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ dạng nhẫn đôi Fall In Love LILI_748855', '', 'white', 0, 'necklace', 782000, 'https://lili.vn/wp-content/uploads/2022/08/Day-chuyen-bac-nu-dinh-da-CZ-dang-nhan-doi-Fall-In-Love-LILI_748855_7-400x400.jpg'),
+('Dây chuyền bạc nữ đính kim cương Moissanite tròn cách điệu LILI_413898', '', 'white', 0, 'necklace', 1250000, 'https://lili.vn/wp-content/uploads/2022/06/Mat-day-chuyen-bac-nu-dinh-kim-cuong-Moissanite-tron-cach-dieu-LILI_413898_6-400x400.jpg'),
+('Dây chuyền bạc nữ đẹp đính pha lê Aurora trái tim hoa lá LILI_866671', '', 'blue', 0, 'necklace', 728000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-trai-tim-hoa-la-dinh-pha-le-Aurora-LILI_866671_10-400x400.jpg'),
+('Dây chuyền bạc nữ đính pha lê Swarovski trái tim đại dương LILI_295787', '', 'blue', 0, 'necklace', 785000, 'https://lili.vn/wp-content/uploads/2020/12/day-chuyen-bac-mat-pha-le-swaroski-trai-tim-dai-duong-LILI_295787-1-1-400x400.jpg'),
+('Dây chuyền bạc nữ 2 tầng đẹp và độc hình đôi bướm Hot Trend LILI_361718', '', 'white', 0, 'necklace', 855000, 'https://lili.vn/wp-content/uploads/2024/03/Day-chuyen-bac-nu-2-tang-dep-va-doc-hinh-doi-buom-Hot-Trend-LILI_361718_30-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ cỏ 4 lá LILI_426865', '', 'white', 0, 'necklace', 785000, 'https://lili.vn/wp-content/uploads/2022/03/Mat-day-chuyen-bac-nu-dinh-da-CZ-co-4-la-LILI_426865_1-400x400.jpg'),
+('Dây chuyền bạc nữ đính kim cương Moissanite hình gạc nai LILI_055097', '', 'blue', 0, 'necklace', 1058000, 'https://lili.vn/wp-content/uploads/2022/11/Day-chuyen-bac-nu-dinh-kim-cuong-Moissanite-hinh-gac-nai-LILI_055097_5-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá Aurora mèo nhỏ và mặt trăng LILI_328547', '', 'red', 0, 'necklace', 806000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-meo-nho-va-mat-trang-dinh-da-Moonstone-LILI_328547_2-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ hình trái tim cách điệu đẹp Katalina LILI_352665', '', 'red', 0, 'necklace', 800000, 'https://lili.vn/wp-content/uploads/2021/12/Mat-day-chuyen-bac-nu-trai-tim-cach-dieu-dinh-da-CZ-LILI_352665_2-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ trái tim cỏ 4 lá đóng mở LILI_822972', '', 'blue', 0, 'necklace', 817000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-dinh-da-CZ-trai-tim-co-4-la-dong-mo-LILI_822972_20-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ hình thỏ ngắm trăng LILI_899188', '', 'white', 0, 'necklace', 648000, 'https://lili.vn/wp-content/uploads/2022/08/Day-chuyen-bac-nu-dinh-da-CZ-hinh-tho-ngam-trang-LILI_899188_3-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ cỏ 4 lá Veronica LILI_172818', '', 'blue', 0, 'necklace', 747000, 'https://lili.vn/wp-content/uploads/2022/08/Day-chuyen-bac-nu-dinh-da-CZ-co-4-la-Veronica-LILI_172818_1-400x400.jpg'),
+('Dây chuyền bạc nữ đính pha lê Aurora mặt trăng cách điệu LILI_545817', '', 'red', 0, 'necklace', 787000, 'https://lili.vn/wp-content/uploads/2022/09/Day-chuyen-bac-nu-dinh-pha-le-Aurora-mat-trang-cach-dieu-LILI_545817_2-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ 2 trái tim ghép đôi LILI_763116', '', 'blue', 0, 'necklace', 722000, 'https://lili.vn/wp-content/uploads/2021/12/Mat-day-chuyen-bac-nu-2-trai-tim-ghep-doi-LILI_763116_1-400x400.jpg'),
+('Vòng cổ bạc nữ đính đá CZ hình ngôi sao băng Farah LILI_053917', '', 'white', 0, 'necklace', 701000, 'https://lili.vn/wp-content/uploads/2022/10/Vong-co-bac-nu-dinh-da-CZ-hinh-ngoi-sao-bang-Farah-LILI_053917_2-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ hình chú thiên nga Swan LILI_197559', '', 'white', 0, 'necklace', 782000, 'https://lili.vn/wp-content/uploads/2024/05/Day-chuyen-bac-nu-dinh-da-CZ-hinh-chu-thien-nga-LILI_197559_22-400x400.jpg'),
+('Vòng cổ bạc nữ đẹp và độc đính pha lê Swarovski hình trái tim LILI_972812', '', 'blue', 0, 'necklace', 1194000, 'https://lili.vn/wp-content/uploads/2021/01/Day-chuyen-bac-trai-tim-pha-le-Swarovski-LILI_972812-4-400x400.jpg'),
+('Dây chuyền bạc đính pha lê Aurora cao cấp, đá CZ nữ hoa lá LILI_955426', '', 'blue', 0, 'necklace', 806000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-hoa-la-dinh-pha-le-Aurora-da-CZ-LILI_955426_7-400x400.jpg'),
+('Dây chuyền bạc nữ mạ vàng 2 tầng đính đá CZ tròn Sunday LILI_531821', '', 'white', 0, 'necklace', 701000, 'https://lili.vn/wp-content/uploads/2022/10/Day-chuyen-bac-nu-ma-vang-2-tang-dinh-da-CZ-tron-Sunday-LILI_531821_1-400x400.jpg'),
+('Dây chuyền bạc nữ đính kim cương tự nhiên cỏ 4 lá Lucky LILI_832459', '', 'white', 0, 'necklace', 1016000, 'https://lili.vn/wp-content/uploads/2022/04/Day-chuyen-bac-nu-dinh-kim-cuong-tu-nhieu-co-4-la-LILI_832459_2-400x400.jpg'),
+('Dây chuyền bạc nữ pha lê Aurora tròn lấp lánh LILI_974332', '', 'blue', 0, 'necklace', 757000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-tron-lap-lanh-pha-le-Aurora-LILI_974332_8-400x400.jpg'),
+('Dây chuyền bạc nữ đính đá CZ đá nhảy trái tim Grainne LILI_262454', '', 'blue', 0, 'necklace', 812000, 'https://lili.vn/wp-content/uploads/2022/08/Mat-day-chuyen-bac-nu-dinh-da-CZ-trai-tim-Grainne-LILI_262454_4-400x400.jpg'),
+('Dây chuyền bạc nữ mảnh nhỏ đính đá CZ hình trái tim cách điệu Nolan LILI_255281', '', 'blue', 0, 'necklace', 765000, 'https://lili.vn/wp-content/uploads/2022/09/Day-chuyen-bac-nu-dinh-da-CZ-hinh-trai-tim-cach-dieu-Nolan-LILI_255281_1-400x400.jpg'),
 
 
 ('Mặt dây chuyền bạc nam hình hoa văn Joziah LILI_080177', 'Mặt dây chuyền bạc nam hình hoa văn Joziah LILI_080177', 'blue', 1, 'pendant', 1858000.00, 'https://lili.vn/wp-content/uploads/2023/10/Mat-day-chuyen-bac-nam-hinh-hoa-van-Joziah-LILI_080177_5-400x400.jpg'),
@@ -252,20 +252,4 @@ VALUES
 ('Dây chuyền bạc nam cỡ nhỏ chuỗi vuông tròn thời trang Hip Hop LILI_345554', 'Dây chuyền bạc nam cỡ nhỏ chuỗi vuông tròn thời trang Hip Hop LILI_345554', 'blue', 1, 'necklace', 1391000.00, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nam-tong-hop-chuoi-vuong-tron-thoi-trang-Hip-Hop-LILI_345554_14-400x400.jpg'),
 ('Mặt dây chuyền bạc nam hình chiếc giày Augustine LILI_076892', 'Mặt dây chuyền bạc nam hình chiếc giày Augustine LILI_076892', 'red', 1, 'pendant', 2138000.00, 'https://lili.vn/wp-content/uploads/2023/09/Mat-day-chuyen-bac-nam-hinh-chiec-giay-Augustine-LILI_076892_1-400x400.jpg'),
 ('Mặt dây chuyền bạc nam đính đá CZ hình thánh giá Talon LILI_080417', 'Mặt dây chuyền bạc nam đính đá CZ hình thánh giá Talon LILI_080417', 'white', 1, 'pendant', 1821000.00, 'https://lili.vn/wp-content/uploads/2023/10/Mat-day-chuyen-bac-nam-dinh-da-CZ-hinh-thanh-gia-Talon-LILI_080417_2-400x400.jpg');
-
-
-
-
-
--- add table Cart
-CREATE TABLE cart (
-    cart_id INT PRIMARY KEY AUTO_INCREMENT,
-    product_id INT NOT NULL,
-    quantity INT NOT NULL,
-    product_name VARCHAR(255) DEFAULT NULL,
-    product_image VARCHAR(255) DEFAULT NULL,
-    product_description TEXT DEFAULT NULL,
-    product_price DECIMAL(10,2) DEFAULT NULL,
-    INDEX product_idx (product_id)
-);
 
