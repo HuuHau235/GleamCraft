@@ -36,15 +36,13 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header><br>
     <div class="container product-detail">
         <div class="row">
-            <div class="col-md-6">
-                <img src="../../../assets/images/brands/<?= $product['image']; ?>" class="img-fluid product-image"
-                    style="width: 600px; height: 400px;" alt="<?= $product['name']; ?>">
+            <div class="col-md-5">
+                <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" class="img-fluid product-image" style="width: 500px; height: 500px;" alt="<?= $product['name']; ?>">
             </div>
-
-            <div class="col-md-6 product-info">
+            <div class="col-md-5 product-info">
                 <h1><strong><?= $product['name']; ?></strong></h1>
                 <h3><?= number_format($product['price'], 0, ',', '.'); ?> VND</h3>
                 <div class="gem-colors">
@@ -52,69 +50,21 @@
                     <span>Red</span>
                     <span>White</span>
                 </div>
-                <div class="mb-3">
-                    <input type="number" id="quantity" class="form-control" value="1" min="1" style="width: 70px;">
-                </div>
-                <a
-                    href="../../../app/models/CartManager.php?add_to_cart=true&product_id=<?= $product['product_id']; ?>&quantity=1">
-                    <button class="add-to-cart-btn">
-                        Add to Cart
-                    </button>
-                </a>
-
-            </div>
-        </div>
-
-        <div class="comments-section">
-            <h3>All comments</h3>
-            <!-- Form thêm đánh giá -->
-            <form method="POST" action="/Gleamcraft_MVC/public/review/add">
-                <input type="hidden" name="product_id" value="<?= $product['product_id']; ?>">
-                <div class="mb-3">
-                    <label for="comment" class="form-label">Your Review:</label>
-                    <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Review</button>
-            </form>
-
-            <!-- Hiển thị các đánh giá -->
-            <div class="all-comments">
-                <?php if (!empty($reviews)): ?>
-                    <?php foreach ($reviews as $review): ?>
-                        <div class="comment">
-                            <div class="comment-content">
-                                <strong><?= $review['user_name']; ?></strong>
-                                <p><?= $review['comment']; ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p>No reviews yet.</p>
-                <?php endif; ?>
-            </div>
-        </div>
-
-        <div class="related-products my-5">
-            <h3 class="text-center">Related Products</h3>
-            <div class="row">
-                <?php if (!empty($relatedProducts)): ?>
-                    <?php foreach ($relatedProducts as $relatedProduct): ?>
-                    <div class="col-md-3">
-                        <div class="card mb-3">
-                            <img src="../../../assets/images/brands/<?= $relatedProduct['image']; ?>" class="card-img-top" alt="<?= $relatedProduct['name']; ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $relatedProduct['name']; ?></h5>
-                                <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
-                                <a href="/Gleamcraft_MVC/public/product/detail/<?= $relatedProduct['product_id']; ?>" class="btn btn-primary btn-sm">View</a>
-                            </div>
-                        </div>
+                <!-- Div chứa số lượng và nút Add to Cart -->
+                <div class="quantity-and-cart">
+                    <div class="mb-3">
+                        <input type="number" id="quantity" class="form-control" value="1" min="1" style="width: 70px;">
                     </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p>No related products found.</p>
-                <?php endif; ?>
+                    <a href="../../../app/models/CartManager.php?add_to_cart=true&product_id=<?= $product['product_id']; ?>&quantity=1">
+                        <button class="add-to-cart-btn">
+                            Add to Cart
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
+
+       
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
