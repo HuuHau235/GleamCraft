@@ -9,7 +9,7 @@
     <title>Products</title>
 </head>
 <body>
-
+<?php include('../shared/header.php'); ?>
 <div class="container">
     <form class="filter" action="http://localhost/GleamCraft/app/controllers/ProductController.php" method="POST">
         <!-- Lọc theo giới tính -->
@@ -41,7 +41,7 @@
         <div class="underline"></div>
 
         <!-- Lọc theo giá -->
-        <div class="price">
+        <div class="price_range">
             <details>
                 <summary>Price Range</summary>
                 <label><input type="radio" name="price_range" value="400-500"> 400.000vnd - 500.000vnd </label><br>
