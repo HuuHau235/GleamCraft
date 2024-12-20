@@ -1,0 +1,273 @@
+[33mcommit 872f8c1e7e33c4119e2248d39a94f048dfc13b68[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/login-logout/Thanh[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 7144b0f 86eaed9
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Fri Dec 20 14:48:18 2024 +0700
+
+    Merge pull request #49 from HuuHau235/thien
+    
+    thien/product/ Switch to mySQly and reset the router
+
+[33mcommit 86eaed931884f95dee42aa03a8ddd82b6a3ac787[m[33m ([m[1;31morigin/thien[m[33m)[m
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Fri Dec 20 14:12:58 2024 +0700
+
+    thien/product/ Switch to mySQly and reset the router
+
+[33mcommit 7144b0fd0c532b443385fc6de8c598431e8b76f3[m
+Merge: b1a9511 a1bc486
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Fri Dec 20 11:50:47 2024 +0700
+
+    Merge pull request #48 from HuuHau235/hau
+    
+    done review
+
+[33mcommit a1bc4860aeef98b4a79dfabe51b615da7c431be0[m[33m ([m[1;31morigin/hau[m[33m)[m
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Fri Dec 20 11:49:17 2024 +0700
+
+    done review
+
+[33mcommit b1a951128692e91fcf7d662765689a396e9cf086[m
+Merge: 59ce5d1 56cb668
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Fri Dec 20 10:28:52 2024 +0700
+
+    Merge pull request #47 from HuuHau235/thien
+    
+    thien/product/css product and add link detail
+
+[33mcommit 56cb6689893fe2f516477abcb4b7fbef19ad7d5d[m
+Merge: 5af3142 59ce5d1
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Fri Dec 20 01:24:26 2024 +0700
+
+    Merge branch 'main' of https://github.com/HuuHau235/GleamCraft into thien
+
+[33mcommit 5af314231f43f8748d4341bd252c4ddbf06f5d13[m
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Fri Dec 20 01:22:54 2024 +0700
+
+    thien/product/ css and add link detail
+
+[33mcommit 59ce5d1cd71fbf056907af020d2d8e524f1adbfa[m
+Merge: e3727e1 24d703a
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 22:32:29 2024 +0700
+
+    Merge pull request #46 from HuuHau235/hau
+    
+    Hau
+
+[33mcommit 24d703ac38b0f0ec93cad8bb5875a9f90009db01[m
+Merge: 6dff1ad e3727e1
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 22:31:45 2024 +0700
+
+    done display list product and reviews
+
+[33mcommit 6dff1ad3a00f72c98dfb77d641d250c00f7ba31a[m
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 22:05:05 2024 +0700
+
+    add form review
+
+[33mcommit e3727e126a740a1067038905991c9ee4c44f44f8[m
+Merge: b651257 4224f8c
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 22:03:09 2024 +0700
+
+    Merge pull request #45 from HuuHau235/feature/login-logout/Thanh
+    
+    Feature/login logout/thanh
+
+[33mcommit 4224f8c10371b6b198784626d817c9064e5677a8[m
+Merge: e66daf6 b651257
+Author: KimThanh1801 <hokimthanh1234@gmail.com>
+Date:   Thu Dec 19 21:36:37 2024 +0700
+
+     update database / fix login_data.php and UserModel.php
+
+[33mcommit b6512575612976ecc57be194c478128e12fc437c[m
+Merge: 5996785 3331980
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 17:14:11 2024 +0700
+
+    Merge pull request #44 from HuuHau235/hau
+    
+    display description and color
+
+[33mcommit 3331980fa53837b2639401ffa7c827247126dc32[m
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 17:13:15 2024 +0700
+
+    display description and color
+
+[33mcommit 5996785846a0bc39ba651b8804cc7c0cea8b54a2[m
+Merge: de3093c 2832da1
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 16:42:15 2024 +0700
+
+    Merge pull request #43 from HuuHau235/thien
+    
+    thien/product/product display
+
+[33mcommit 2832da1cd8a775fc9374d5d4b0e26f37ecdfb320[m
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Thu Dec 19 16:39:07 2024 +0700
+
+    thien/product/product display
+
+[33mcommit e66daf6f91ce89745234c6939e4e3675da1c6a0a[m
+Author: KimThanh1801 <hokimthanh1234@gmail.com>
+Date:   Thu Dec 19 15:46:23 2024 +0700
+
+    not done
+
+[33mcommit 92975505e759500bd45aafc53d669ff1bea26c5b[m
+Merge: fe1d342 5ed1c04
+Author: KimThanh1801 <hokimthanh1234@gmail.com>
+Date:   Thu Dec 19 15:45:06 2024 +0700
+
+    not done
+
+[33mcommit de3093c0afaf2cb750a1b352684c85039688026e[m
+Merge: 4edd115 3058b72
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 15:29:54 2024 +0700
+
+    Merge pull request #42 from HuuHau235/hau
+    
+    Hau
+
+[33mcommit 3058b72902da0877a1a79704ab7a0cf5510afee5[m
+Merge: 48503c9 4edd115
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Thu Dec 19 15:28:43 2024 +0700
+
+    display qualities and button add to cart
+
+[33mcommit 48503c90fb00737b5f2af99d76013ed290573c9a[m
+Merge: 99b95b3 5ed1c04
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 23:14:55 2024 +0700
+
+    update database
+
+[33mcommit 4edd115393c985322eaa3778244d0271b312e000[m
+Merge: 5ed1c04 cc29592
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 23:13:28 2024 +0700
+
+    Merge pull request #41 from HuuHau235/feature/login-logout/Thanh
+    
+    add models/CartManager.php
+
+[33mcommit fe1d342b637556e4c62ff0aa0624afce0d65e5a4[m
+Merge: cc29592 c3cc52a
+Author: KimThanh1801 <hokimthanh1234@gmail.com>
+Date:   Wed Dec 18 23:13:13 2024 +0700
+
+    not done DeleteCart
+
+[33mcommit 99b95b352f066487a7d1f2c935bd6b3ab7182f28[m
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 23:04:18 2024 +0700
+
+    add review
+
+[33mcommit 5ed1c04e5df448ce2f8de30bdb0c9e73c635e66e[m
+Merge: 77f8f53 1092436
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 23:01:56 2024 +0700
+
+    Merge pull request #40 from HuuHau235/thien
+    
+    update filter
+
+[33mcommit 1092436dc91a2a459bfb1827f3ec9af5defe96cf[m
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Wed Dec 18 23:00:07 2024 +0700
+
+    update filter
+
+[33mcommit 77f8f5387935ec0124fa50b64a727d58e7665dcf[m
+Merge: c3cc52a edff7ae
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 22:48:39 2024 +0700
+
+    Merge pull request #39 from HuuHau235/thien
+    
+    thien/db/ Delete the category table and insert data for product table
+
+[33mcommit edff7ae564e5bbc4631dc9b6674f4c16a0828c48[m
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Wed Dec 18 21:53:17 2024 +0700
+
+    thien/db/ Delete the category table and insert data for product table
+
+[33mcommit c3cc52ac5b06005eaa45eada7b1a8777c0d03f50[m
+Merge: c3c9804 db82198
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 20:37:09 2024 +0700
+
+    Merge pull request #38 from HuuHau235/hau
+    
+    Hau
+
+[33mcommit db821986244585ae821fb7a1646af10a9ad81455[m
+Merge: 9156380 c3c9804
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 20:35:25 2024 +0700
+
+    done display price
+
+[33mcommit 915638061769c6f478b53743c9258b7829fb0ef5[m
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 20:33:30 2024 +0700
+
+    display price
+
+[33mcommit cc29592826625ee7f049419fdab4e84ca8dd0367[m[33m ([m[1;32mfeature/fix[m[33m)[m
+Author: KimThanh1801 <hokimthanh1234@gmail.com>
+Date:   Wed Dec 18 20:05:27 2024 +0700
+
+    add models/CartManager.php
+
+[33mcommit c3c98042a4c319615d46b19d899a51b18152f5cc[m
+Merge: 554c67d 7bb2f5c
+Author: HuuHau235 <hhai98940@gmail.com>
+Date:   Wed Dec 18 19:56:57 2024 +0700
+
+    Merge pull request #37 from HuuHau235/feature/login-logout/Thanh
+    
+    Feature/login logout/thanh
+
+[33mcommit 7bb2f5cad189f015bc02ec429d5be2ed5c1bbc59[m
+Author: KimThanh1801 <hokimthanh1234@gmail.com>
+Date:   Wed Dec 18 19:49:06 2024 +0700
+
+    add table cart/database
+
+[33mcommit 86698e46014ce30c76620aa668327c0e55993346[m
+Merge: 2376270 554c67d
+Author: KimThanh1801 <hokimthanh1234@gmail.com>
+Date:   Wed Dec 18 15:16:34 2024 +0700
+
+    Update jewelry_store.sql
+
+[33mcommit 554c67d04abff2a95d57dccedb80b743e1750fcd[m[33m ([m[1;32mmain[m[33m)[m
+Merge: 8e2786a c2cfe46
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Wed Dec 18 14:45:19 2024 +0700
+
+    Merge pull request #36 from HuuHau235/thien
+    
+    thien/db/edit category and product tables
+
+[33mcommit c2cfe465e685bdabd64dfb6369e08d6ae10fab73[m
+Merge: 0ddaf7d 8e2786a
+Author: DucThien6425 <thien.ho26@student.passerellesnumeriques.org>
+Date:   Wed Dec 18 14:44:39 2024 +0700
+
+    thien/db/update

@@ -2,7 +2,8 @@
 session_start();
 require_once 'C:\xampp\htdocs\GleamCraft_MVC\config\db.php';
 require_once "../../models/CartManager.php";
-// require_once "../../models/UpdateCart.php";
+require_once "../../models/UpdateCart.php";
+
 if (!isset($_SESSION['user_id'])) {
     echo "Vui lòng đăng nhập!";
     exit();
@@ -52,6 +53,11 @@ $cartItems = $cartManager->getAllCartItems($user_id);
                                         <div class="card-body">
                                             <h5 class="card-title"><?= htmlspecialchars($item['product_name']); ?></h5>
                                         </div>
+
+                                        <div class="card-body">
+                                        <p class="card-text"><?= htmlspecialchars($item['product_description']); ?></p>
+                                        </div>
+
                                     </div>
                                     <div class="col-md-3 text-center">
                                         <div class="d-flex justify-content-center align-items-center">
@@ -87,7 +93,8 @@ $cartItems = $cartManager->getAllCartItems($user_id);
             </div>
         </div>
         <div class="button">
-            <a href="#"><button type="button" class="btn btn-dark payment">Thanh toán</button></a>
+            <a href="#"><button type="button" class="btn btn-dark payment">Payment</button></a>
+
         </div>
     </section>
 <?php

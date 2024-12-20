@@ -4,6 +4,9 @@ h5 {
 .cart{
 margin-top: 100px;
 }
+.card-title{
+    margin-left: 30px;;
+}
 .contain_cart {
     background-color: #F5F5F5;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
@@ -17,10 +20,6 @@ padding-top: 100px;
 }
 
 
-.card-text {
-    font-size: 30px;
-}
-
 .price {
     font-size: 30px;
 }
@@ -31,10 +30,13 @@ padding-top: 100px;
 }
 
 .card-text {
-    font-size: 24px;
+    font-size: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-top: 10px;
+    margin-left: 30px;
+    color: #c0c0c0;
 }
 
 .fa-trash {
