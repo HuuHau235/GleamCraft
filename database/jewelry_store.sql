@@ -27,7 +27,7 @@ CREATE TABLE Products (
     price DECIMAL(10, 2),
     image VARCHAR(255)
 );
--- add table Cart
+
 CREATE TABLE cart (
     cart_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id int not null,
@@ -39,7 +39,6 @@ CREATE TABLE cart (
     product_price DECIMAL(10,2) DEFAULT NULL,
     INDEX product_idx (product_id)
 );
-
 
 -- Table: Orders
 DROP TABLE IF EXISTS Orders;
