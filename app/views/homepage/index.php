@@ -8,56 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/header.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box; 
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            margin-top: 0;
-        }
-
-        .banner img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .banner-text {  
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: black;
-            padding: 10px 20px;
-            font-size: 4rem;
-            font-weight: bold;
-            border-radius: 5px;
-            text-align: center;
-            animation: moveUp 2s ease-out forwards;
-        }
-
-        @keyframes moveUp {
-            from {
-                bottom: -50px;
-                opacity: 0;
-            }
-            to {
-                bottom: 50px;
-                opacity: 1;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/banner.css">
 </head>
 <body class="body">
     <header class="bg-light border-bottom d-flex align-items-center">
@@ -71,7 +22,7 @@
                     <li class="nav-item"><a href="" class="nav-link text-dark">Home</a></li>
                     <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                     <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="../app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
                     <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
                 </ul>
             </nav>

@@ -23,7 +23,7 @@
                     <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
                     <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                     <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="http://localhost:8080/GleamCraft/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
                     <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
                 </ul>
             </nav>
@@ -40,27 +40,27 @@
     <div class="container product-detail">
         <div class="row">
             <div class="col-md-5">
-                <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" class="img-fluid product-image" style="width: 500px; height: 400px;" alt="<?= $product['name']; ?>">
+                <img src="<?= htmlspecialchars($product['image']); ?>" 
+                    alt="<?= htmlspecialchars($product['name']); ?>" 
+                    class="img-fluid product-image" 
+                    style="width: 500px; height: 400px;">
             </div>
             <div class="col-md-6 product-info">
-                <h1><strong><?= $product['name']; ?></strong></h1>
-                <h4><strong>Description:</strong> <?= $product['description']; ?></h2>
-                <h2><strong>Color:</strong> <?= $product['color']; ?></h2>
+                <h1><strong><?= htmlspecialchars($product['name']); ?></strong></h1>
+                <h4><strong>Description:</strong> <?= htmlspecialchars($product['description']); ?></h4>
+                <h2><strong>Color:</strong> <?= htmlspecialchars($product['color']); ?></h2>
                 <h3><?= number_format($product['price'], 0, ',', '.'); ?> VND</h3>
-                
-                <!-- Div chứa số lượng và nút Add to Cart -->
                 <div class="quantity-and-cart">
                     <div class="mb-3">
                         <input type="number" id="quantity" class="form-control" value="1" min="1" style="width: 70px;">
                     </div>
                     <a href="../../../app/models/CartManager.php?add_to_cart=true&product_id=<?= $product['product_id']; ?>&quantity=1">
-                        <button class="add-to-cart-btn">
-                            Add to Cart
-                        </button>
+                        <button class="add-to-cart-btn">Add to Cart</button>
                     </a>
                 </div>
             </div>
         </div>
+
 
         <div class="mt-4">
             <h3>Reviews</h3>
