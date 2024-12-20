@@ -253,7 +253,7 @@ VALUES
 ('Dây chuyền bạc nữ mảnh nhỏ đính đá CZ hình trái tim cách điệu Nolan LILI_255281', '', 'blue', 0, 'necklace', 765000, 'https://lili.vn/wp-content/uploads/2022/09/Day-chuyen-bac-nu-dinh-da-CZ-hinh-trai-tim-cach-dieu-Nolan-LILI_255281_1-400x400.jpg'),
 
 
-('Mặt dây chuyền bạc nam hình hoa văn Joziah LILI_080177', 'Mặt dây chuyền bạc nam hình hoa văn Joziah LILI_080177', 'blue', 1, 'pendant', 1858000.00, 'https://lili.vn/wp-content/uploads/2023/10/Mat-day-chuyen-bac-nam-hinh-hoa-van-Joziah-LILI_080177_5-400x400.jpg'),
+('Mặt dây chuyền bạc nam hình hoa văn Joziah LILI_080177', 'Mặt dây chuyền bạc nam hình hoa văn Joziah LILI_080177', 'blue', 1, 'necklace', 1858000.00, 'https://lili.vn/wp-content/uploads/2023/10/Mat-day-chuyen-bac-nam-hinh-hoa-van-Joziah-LILI_080177_5-400x400.jpg'),
 ('Dây chuyền bạc nam đính đá CZ hình chiếc nhẫn Alexis LILI_078869', 'Dây chuyền bạc nam đính đá CZ hình chiếc nhẫn Alexis LILI_078869', 'white', 1, 'necklace', 991000.00, 'https://lili.vn/wp-content/uploads/2023/10/Day-chuyen-bac-nam-dinh-da-CZ-hinh-chiec-nhan-Alexis-LILI_078869_1-400x400.jpg'),
 ('Dây chuyền bạc nam/nữ dạng cuban chuỗi Vance LILI_080856', 'Dây chuyền bạc nam/nữ dạng cuban chuỗi Vance LILI_080856', 'blue', 2, 'necklace', 4406000.00, 'https://lili.vn/wp-content/uploads/2023/10/Day-chuyen-bac-nam-nu-dang-cuban-chuoi-Vance-LILI_080856_8-400x400.jpg'),
 ('Dây chuyền bạc cuban đính kim cương Moissanite Vance LILI_081040', 'Dây chuyền bạc cuban đính kim cương Moissanite Vance LILI_081040', 'blue', 2, 'necklace', 10561000.00, 'https://lili.vn/wp-content/uploads/2023/10/Day-chuyen-bac-cuban-dinh-kim-cuong-Moissanite-Vance-LILI_081040_2-400x400.jpg'),
