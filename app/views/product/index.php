@@ -82,7 +82,8 @@
             <p>No products found.</p>
         <?php endif; ?>
     </div>
-
 </div>
+<!-- <?php include('../shared/footer.php'); ?> -->
+
 </body>
 </html>
