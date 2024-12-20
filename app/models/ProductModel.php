@@ -10,6 +10,7 @@ class ProductModel {
         $query = "SELECT * FROM Products";
         $conditions = [];
         $params = [];
+        $params_price = [];
 
         // Thêm điều kiện nếu có bộ lọc
         if (!empty($filters['gender'])) {
@@ -30,8 +31,8 @@ class ProductModel {
         if (!empty($filters['price_range'])) {
             [$min, $max] = explode('-', $filters['price_range']);
             $conditions[] = "price BETWEEN ? AND ?";
-            $params[] = $min;
-            $params[] = $max;
+            $params_price[] = $min;
+            $params_price[] = $max;
         }
 
         // Thêm điều kiện vào query
@@ -45,6 +46,11 @@ class ProductModel {
         // Gán giá trị tham số vào câu lệnh
         if (!empty($params)) {
             $stmt->bind_param(str_repeat('s', count($params)), ...$params); 
+        }
+        
+        // Gán tham số price với kiểu dữ liệu dd cho 2 giá trị min và max
+        if (!empty($params_price)) {
+            $stmt->bind_param('dd', $params_price[0], $params_price[1]);
         }
 
         

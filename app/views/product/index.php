@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <!-- <base href="http://localhost/GleamCraft/"> -->
-    <link rel="stylesheet" href="/assets/css/product.css">
+    <base href="http://localhost/GleamCraft/">
+    <link rel="stylesheet" href="assets/css/product.css">
     <title>Products</title>
 </head>
 <body>
-
+<?php include('../shared/header.php'); ?>
 <div class="container">
     <form class="filter" action="http://localhost/GleamCraft/app/controllers/ProductController.php" method="POST">
         <!-- Lọc theo giới tính -->
@@ -41,7 +41,7 @@
         <div class="underline"></div>
 
         <!-- Lọc theo giá -->
-        <div class="price">
+        <div class="price_range">
             <details>
                 <summary>Price Range</summary>
                 <label><input type="radio" name="price_range" value="400-500"> 400.000vnd - 500.000vnd </label><br>
@@ -82,7 +82,8 @@
             <p>No products found.</p>
         <?php endif; ?>
     </div>
-
 </div>
+<!-- <?php include('../shared/footer.php'); ?> -->
+
 </body>
 </html>
