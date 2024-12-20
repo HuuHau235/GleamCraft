@@ -4,14 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <base href="http://localhost/GleamCraft/">
-    <link rel="stylesheet" href="assets/css/product.css">
-    <title>Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <!-- <base href="http://localhost/GleamCraft/"> -->
+    <link rel="stylesheet" href="/GleamCraft/assets/css/product.css">
+        <title>Products</title>
+        <style>
+            body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #FFFFE9;
+
+}
+
+.container {
+    display: flex;
+    border-top: 1px solid black;
+    width: 100%;
+}
+.filter {
+    /* border-right: 2px solid black; */
+    width: 20%;
+    height: 100%;
+    padding: 15px;
+}
+h2 {
+    margin-top: 5px;
+}
+label {
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.underline {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin: 15px;
+}
+details summary {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.gem-colors label div {
+    display: inline-block;
+    width: 16px; 
+    height: 16px; 
+    margin-right: 5px; 
+}
+.gem-colors div.red { background-color: #f00; }
+.gem-colors div.white { background-color: white;}
+.gem-colors div.blue { background-color: #00f; }
+
+#filterBtn {
+    height: 45px;
+    width: 100%;
+    background-color: black;
+    border-radius: 10px;
+    border: none;
+    color: aliceblue;
+    font-size: 25px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+#filterBtn:hover {
+    transition: all 0.3s ease;
+    transform: scale(1.1);
+    color: aliceblue;
+    background-color: rgb(255, 0, 0);
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: space-between; 
+    padding: 20px 0;
+    list-style: none;
+    width: 80%;
+    border-left: 2px solid black;
+}
+
+.products ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    list-style: none;
+}
+
+.products li {
+    width: 320px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+    text-align: center; 
+    background-color: #fff; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.products li:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+}
+.products img {
+    width: 100%; 
+    height: auto;
+    border-bottom: 1px solid #ddd; 
+}
+
+.products a {
+    text-decoration: none; 
+    color: #333; 
+}
+
+.products strong {
+    font-weight: 600; 
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.products p, .products span {
+    font-size: 14px;
+    color: #555; 
+    margin: 5px 0;
+}
+
+        </style>
 </head>
 <body>
-<?php include('../shared/header.php'); ?>
+<header class="bg-light border-bottom d-flex align-items-center">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <img src="../../assets/images/brands/logo.jpg" alt="Logo">
+            </a>
+
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
+                    <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-icon position-relative">
+                <i class="bi bi-person"></i>
+                <div class="tooltip-box">
+                    <a href="../../app/views/user/login.php" class="d-block text-dark">Login</a>
+                    <a href="../../app/views/user/register.php" class="d-block text-dark">Register</a>
+                </div>
+            </div>
+        </div>
+    </header><br>
 <div class="container">
-    <form class="filter" action="http://localhost/GleamCraft/app/controllers/ProductController.php" method="POST">
+    <form class="filter" action="/GleamCraft_MVC/app/controllers/ProductController.php" method="POST">
         <!-- Lọc theo giới tính -->
         <div class="gender">
             <h2>Gender</h2>

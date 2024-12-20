@@ -108,7 +108,7 @@ VALUES
 ('Silver Men Bracelet Simple Cuban Link Saint Laurent Paris LILI_746785', 'Silver men bracelet simple Cuban link Saint Laurent Paris', 'Red', 1, 'bracelet', 3066000.00, 'https://lili.vn/wp-content/uploads/2022/01/Lac-tay-bac-nam-mat-xich-don-gian-ngau-Cuban-Saint-Laurent-Paris-LILI_746785_30-400x400.jpg'),
 ('Silver Women Bracelet CZ Rose Flower LILI_787759', 'Silver women bracelet CZ rose flower', 'Red', 0, 'bracelet', 684000.00, 'https://lili.vn/wp-content/uploads/2022/06/Lac-tay-bac-nu-dinh-da-CZ-hinh-bong-hoa-hong-LILI_787759_1-400x400.jpg'),
 ('Silver Couple Bracelet Gold Plated Love Sunshine LILI_349995', 'Silver couple bracelet gold plated Love Sunshine', 'Red', 2, 'bracelet', 2893000.00, 'https://lili.vn/wp-content/uploads/2021/08/Lac-tay-bac-doi-Love-Sunshine-LILI_349995_1-400x400.jpg'),
-('Silver Ta S999 Women Bracelet Four-leaf Clover Styled LILI_661577', 'Silver Ta S999 women bracelet four-leaf clover styled', 'Blue', 0, 'bracelet', 920000.00, 'https://lili.vn/wp-content/uploads/2021/11/Lac-tay-bac-nu-co-4-la-cach-dieu-LILI_661577_6-400x400.jpg');
+('Silver Ta S999 Women Bracelet Four-leaf Clover Styled LILI_661577', 'Silver Ta S999 women bracelet four-leaf clover styled', 'Blue', 0, 'bracelet', 920000.00, 'https://lili.vn/wp-content/uploads/2021/11/Lac-tay-bac-nu-co-4-la-cach-dieu-LILI_661577_6-400x400.jpg'),
 
 
 ('Silver Heart-Shaped Earrings for Women Raina LILI_132717', 'Silver Heart-Shaped Earrings for Women', 'White', 0, 'earring', 573000.00, 'https://lili.vn/wp-content/uploads/2024/06/Bong-tai-bac-nu-hinh-trai-tim-cach-dieu-Raina-LILI_132717_4-400x400.jpg'),
@@ -133,7 +133,7 @@ VALUES
 ('Silver Butterfly Fake Clip-On Earrings Nori LILI_132423', 'Silver Butterfly Fake Clip-On Earrings Nori', 'Blue', 0, 'earring', 652000.00, 'https://lili.vn/wp-content/uploads/2024/06/Bong-tai-bac-nu-gia-kep-vanh-tai-hinh-ho-diep-Nori-LILI_132423_1-400x400.jpg'),
 ('Silver Long Chain Link Earrings Lilyana LILI_132412', 'Silver Long Chain Link Earrings Lilyana', 'Red', 0, 'earring', 587000.00, 'https://lili.vn/wp-content/uploads/2024/06/Bong-tai-bac-nu-chuoi-xich-dai-Lilyana-LILI_132412_5-400x400.jpg'),
 ('Silver Round Cloud Pattern Earrings Chandler LILI_132401', 'Silver Round Cloud Pattern Earrings Chandler', 'Blue', 1, 'earring', 587000.00, 'https://lili.vn/wp-content/uploads/2024/06/Bong-tai-bac-nu-nam-tron-hinh-van-may-Chandler-LILI_132401_5-400x400.jpg'),
-('Silver Round Earrings Hadlee LILI_132385', 'Silver Round Earrings Hadlee', 'White', 1, 'earring', 537000.00, 'https://lili.vn/wp-content/uploads/2024/06/Bong-tai-bac-nu-nam-tron-Hadlee-LILI_132385_2-400x400.jpg')
+('Silver Round Earrings Hadlee LILI_132385', 'Silver Round Earrings Hadlee', 'White', 1, 'earring', 537000.00, 'https://lili.vn/wp-content/uploads/2024/06/Bong-tai-bac-nu-nam-tron-Hadlee-LILI_132385_2-400x400.jpg'),
 
 
 ('Silver ring for women with Moissanite diamond Aidan LILI_335168', 'Silver ring for women with Moissanite diamond Aidan LILI_335168', 'white', 0, 'ring', 1145000, 'https://lili.vn/wp-content/uploads/2022/07/Nhan-bac-nu-dinh-kim-cuong-Moissanite-Aidan-LILI_335168_4-400x400.jpg'),
@@ -158,7 +158,7 @@ VALUES
 ('Set of 2 silver rings for women with CZ stone two-layer Pandora crown LILI_825322', 'Set of 2 silver rings for women with CZ stone two-layer Pandora crown LILI_825322', 'red', 0, 'ring', 593000, 'https://lili.vn/wp-content/uploads/2021/11/Nhan-bac-nu-xep-chong-ma-vang-dinh-da-CZ-vuong-mien-pandora-LILI_825322_8-400x400.jpg'),
 ('Silver ring for women with Moissanite diamond Cleopatra LILI_053396', 'Silver ring for women with Moissanite diamond Cleopatra LILI_053396', 'white', 0, 'ring', 923000, 'https://lili.vn/wp-content/uploads/2022/10/Nhan-bac-nu-dang-manh-dinh-kim-cuong-Moissanite-Cleopatra-LILI_053396_4-400x400.jpg'),
 ('Silver ring for women with rotating CZ stone four-leaf clover Victory LILI_482977', 'Silver ring for women with rotating CZ stone four-leaf clover Victory LILI_482977', 'blue', 0, 'ring', 797000, 'https://lili.vn/wp-content/uploads/2022/06/Nhan-bac-nu-ma-vang-dang-xoay-dinh-da-CZ-co-4-la-Victory-LILI_482977_32-400x400.jpg'),
-('Silver ring for women with stylish wave design Calantha LILI_796141', 'Silver ring for women with stylish wave design Calantha LILI_796141', 'blue', 0, 'ring', 719000, 'https://lili.vn/wp-content/uploads/2022/08/Nhan-bac-nu-dang-duong-cach-dieu-Calantha-LILI_796141_5-400x400.jpg');
+('Silver ring for women with stylish wave design Calantha LILI_796141', 'Silver ring for women with stylish wave design Calantha LILI_796141', 'blue', 0, 'ring', 719000, 'https://lili.vn/wp-content/uploads/2022/08/Nhan-bac-nu-dang-duong-cach-dieu-Calantha-LILI_796141_5-400x400.jpg'),
 
 
 ('Men’s Silver Anchor Ring Winston LILI_077662', 'Men’s Silver Anchor Ring Winston', 'white', 1, 'ring', 1025000, 'https://lili.vn/wp-content/uploads/2023/09/Nhan-bac-nam-hinh-mo-neo-Winston-LILI_077662_1-400x400.jpg'),
@@ -172,7 +172,7 @@ VALUES
 ('Men’s Silver Star Ring Briggs LILI_077637', 'Men’s Silver Star Ring Briggs', 'blue', 1, 'ring', 1192000, 'https://lili.vn/wp-content/uploads/2023/09/Nhan-bac-nam-hinh-ngoi-sao-5-canh-Briggs-LILI_077637_4-400x400.jpg'),
 ('Men’s Silver Brantley Ring LILI_095029', 'Men’s Silver Brantley Ring', 'white', 1, 'ring', 670000, 'https://lili.vn/wp-content/uploads/2023/12/Nhan-bac-nam-Brantley-LILI_095029_2-400x400.jpg'),
 ('Unisex Silver Nike Logo Ring LILI_879138', 'Unisex Silver Nike Logo Ring', 'blue', 2, 'ring', 749000, 'https://lili.vn/wp-content/uploads/2021/11/Nhan-bac-nu-nam-hinh-Nike-LILI_879138_4-400x400.jpg'),
-('Men’s Silver Moissanite Diamond Ring Kenji LILI_079645', 'Men’s Silver Moissanite Diamond Ring Kenji', 'white', 1, 'ring', 1242000, 'https://lili.vn/wp-content/uploads/2023/10/Nhan-bac-nam-dinh-kim-cuong-Moissanite-Kenji-LILI_079645_3-400x400.jpg');
+('Men’s Silver Moissanite Diamond Ring Kenji LILI_079645', 'Men’s Silver Moissanite Diamond Ring Kenji', 'white', 1, 'ring', 1242000, 'https://lili.vn/wp-content/uploads/2023/10/Nhan-bac-nam-dinh-kim-cuong-Moissanite-Kenji-LILI_079645_3-400x400.jpg'),
 
 
 ('Silver bracelet for women, platinum-plated, with CZ four-leaf clover stones LILI_612672', 'Silver bracelet for women, platinum-plated, with CZ four-leaf clover stones', 'white', 0, 'bracelet', 816000, 'https://lili.vn/wp-content/uploads/2021/12/Lac-tay-bac-nu-ma-bach-kim-dinh-pha-le-co-bon-la-LILI_612672_34-400x400.jpg'),
@@ -198,7 +198,7 @@ VALUES
 ('Silver bracelet for women with CZ stones, infinity heart Forever Love LILI_877257', 'Silver bracelet for women with CZ stones, infinity heart Forever Love', 'blue', 0, 'bracelet', 695000, 'https://lili.vn/wp-content/uploads/2022/08/Lac-tay-bac-nu-dinh-da-CZ-trai-tim-vo-cuc-Forever-Love-LILI_877257_4-400x400.jpg'),
 ('Silver bracelet for women with CZ stones, eternal heart LILI_167424', 'Silver bracelet for women with CZ stones, eternal heart', 'blue', 0, 'bracelet', 986000, 'https://lili.vn/wp-content/uploads/2021/11/Lac-tay-bac-nu-dinh-da-CZ-trai-tim-vinh-cuu-LILI_167424_2-400x400.jpg'),
 ('Silver bracelet for women, platinum-plated, with Eye of the Muse crystal LILI_814348', 'Silver bracelet for women, platinum-plated, with Eye of the Muse crystal', 'blue', 0, 'bracelet', 1267000, 'https://lili.vn/wp-content/uploads/2020/12/Vong-tay-bac-ma-bach-kim-dinh-da-pha-le-Eye-of-the-muse-LILI_814348-01-400x400.jpg'),
-('Silver bracelet for women with CZ stones, fairy fish Ladonna LILI_132297', 'Silver bracelet for women with CZ stones, fairy fish Ladonna', 'blue', 0, 'bracelet', 713000, 'https://lili.vn/wp-content/uploads/2022/09/Lac-tay-bac-nu-dinh-da-CZ-hinh-ca-tien-Ladonna-LILI_132297_5-1-400x400.jpg');
+('Silver bracelet for women with CZ stones, fairy fish Ladonna LILI_132297', 'Silver bracelet for women with CZ stones, fairy fish Ladonna', 'blue', 0, 'bracelet', 713000, 'https://lili.vn/wp-content/uploads/2022/09/Lac-tay-bac-nu-dinh-da-CZ-hinh-ca-tien-Ladonna-LILI_132297_5-1-400x400.jpg'),
 
 
 ('Men Silver Bracelet Simple Link Cuban Saint Laurent Paris LILI_746785', 'Men Silver Bracelet Simple Link Cuban Saint Laurent Paris', 'white', 1, 'bracelet', 3066000.00, 'https://lili.vn/wp-content/uploads/2022/01/Lac-tay-bac-nam-mat-xich-don-gian-ngau-Cuban-Saint-Laurent-Paris-LILI_746785_30-400x400.jpg'),
@@ -224,7 +224,7 @@ VALUES
 ('Men Silver Chain Link Bracelet Phoenix LILI_752583', 'Men Silver Chain Link Bracelet Phoenix', 'red', 1, 'bracelet', 7353000.00, 'https://lili.vn/wp-content/uploads/2021/12/Lac-tay-bac-nam-chuoi-dan-nhau-ngau-Phoenix-LILI_752583_3-400x400.jpg'),
 ('Men Thai Silver Bracelet Holland LILI_069286', 'Men Thai Silver Bracelet Holland', 'red', 1, 'bracelet', 3588000.00, 'https://lili.vn/wp-content/uploads/2023/07/Lac-tay-bac-Thai-nam-than-chu-Holland-LILI_069286_7-400x400.jpg'),
 ('Men Large Cuban Silver Bracelet Damien LILI_078029', 'Men Large Cuban Silver Bracelet Damien', 'white', 1, 'bracelet', 4775000.00, 'https://lili.vn/wp-content/uploads/2023/09/Lac-tay-bac-nam-dang-cuban-co-lon-Damien-LILI_078029_3-400x400.jpg'),
-('Men Twisted Chain Silver Bracelet Lorenzo LILI_076323', 'Men Twisted Chain Silver Bracelet Lorenzo', 'blue', 1, 'bracelet', 3543000.00, 'https://lili.vn/wp-content/uploads/2023/09/Vong-tay-bac-nam-dang-chuoi-xoan-Lorenzo-LILI_076323_7-400x400.jpg');
+('Men Twisted Chain Silver Bracelet Lorenzo LILI_076323', 'Men Twisted Chain Silver Bracelet Lorenzo', 'blue', 1, 'bracelet', 3543000.00, 'https://lili.vn/wp-content/uploads/2023/09/Vong-tay-bac-nam-dang-chuoi-xoan-Lorenzo-LILI_076323_7-400x400.jpg'),
 
 
 ('Silver Necklace for Women with CZ Stones in Fish Shape LILI_831944', '', 'red', 0, 'necklace', 817000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-phong-cach-co-trang-CZ-LILI_831944_2-400x400.jpg'),
@@ -250,7 +250,7 @@ VALUES
 ('Silver Necklace for Women with Natural Diamonds in Four-Leaf Clover Lucky Shape LILI_832459', '', 'white', 0, 'necklace', 1016000, 'https://lili.vn/wp-content/uploads/2022/04/Day-chuyen-bac-nu-dinh-kim-cuong-tu-nhieu-co-4-la-LILI_832459_2-400x400.jpg'),
 ('Silver Necklace for Women with Sparkling Aurora Crystal Round Shape LILI_974332', '', 'blue', 0, 'necklace', 757000, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nu-tron-lap-lanh-pha-le-Aurora-LILI_974332_8-400x400.jpg'),
 ('Silver Necklace for Women with CZ Stones in Jumping Heart Shape Grainne LILI_262454', '', 'blue', 0, 'necklace', 812000, 'https://lili.vn/wp-content/uploads/2022/08/Mat-day-chuyen-bac-nu-dinh-da-CZ-trai-tim-Grainne-LILI_262454_4-400x400.jpg'),
-('Silver Necklace for Women with Small CZ Stones in Stylized Heart Shape Nolan LILI_255281', '', 'blue', 0, 'necklace', 765000, 'https://lili.vn/wp-content/uploads/2022/09/Day-chuyen-bac-nu-dinh-da-CZ-hinh-trai-tim-cach-dieu-Nolan-LILI_255281_1-400x400.jpg');
+('Silver Necklace for Women with Small CZ Stones in Stylized Heart Shape Nolan LILI_255281', '', 'blue', 0, 'necklace', 765000, 'https://lili.vn/wp-content/uploads/2022/09/Day-chuyen-bac-nu-dinh-da-CZ-hinh-trai-tim-cach-dieu-Nolan-LILI_255281_1-400x400.jpg'),
 
 
 ('Men Silver Pendant with Joziah Pattern LILI_080177', 'Men Silver Pendant with Joziah Pattern LILI_080177', 'blue', 1, 'necklace', 1858000.00, 'https://lili.vn/wp-content/uploads/2023/10/Mat-day-chuyen-bac-nam-hinh-hoa-van-Joziah-LILI_080177_5-400x400.jpg'),
