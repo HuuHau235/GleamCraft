@@ -9,37 +9,31 @@ class ProductController {
     }
 
     public function filterProducts() {
-        // Check if there's POST data
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $gender = $_POST['gender'] ?? null;
-            $type_name = $_POST['type_name'] ?? null;
-            $price_range = $_POST['price_range'] ?? null;
-            $color = $_POST['color'] ?? null;
+        // Khởi tạo bộ lọc mặc định nếu không có POST
+        $filters = [];
 
-            $filters = [
-                'gender' => $gender,
-                'type_name' => $type_name,
-                'price_range' => $price_range,
-                'color' => $color,
-            ];
-        } else {
-            $filters = []; // No filters
+        // Kiểm tra dữ liệu POST và gán vào bộ lọc
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $filters['gender'] = $_POST['gender'] ?? null;
+            $filters['type_name'] = $_POST['type_name'] ?? null;
+            $filters['price_range'] = $_POST['price_range'] ?? null;
+            $filters['color'] = $_POST['color'] ?? null;
         }
 
-        // Call model to get the product list
-        global $products;  
+        // Lọc sản phẩm từ Model
+        global $products; 
         $products = $this->productModel->getFilteredProducts($filters);
 
-        // Return data to the view
+        // Gửi dữ liệu đến View
         require_once '../views/product/index.php';
     }
 }
 
-// Instantiate the controller with a database connection
-require_once '../../config/db.php'; // Assuming a Database class exists
+// Khởi tạo controller với kết nối database
+require_once '../../config/db.php'; // Giả sử lớp Database đã được khai báo
 $db = new Database();
 $controller = new ProductController($db);
 
-// Call the filterProducts method
+// Gọi phương thức filterProducts
 $controller->filterProducts();
 ?>

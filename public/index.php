@@ -27,10 +27,7 @@ if ($processedUri === '' || $processedUri === '/') {
     $controller->index();
     exit;
 }
-if ($processedUri === '/product') {
-    require_once '../app/views/product/index.php';
-    exit;
-}
+
 // Route chi tiết sản phẩm
 if (preg_match('/^\/product\/detail\/(\d+)$/', $processedUri, $matches)) {
     $productId = $matches[1];
@@ -46,6 +43,20 @@ if (preg_match('/^\/product\/detail\/(\d+)$/', $processedUri, $matches)) {
     exit;
 }
 
+// Route lọc sản phẩm
+if (preg_match('/^\/product\/filter$/', $processedUri)) {
+    require_once '../controllers/ProductController.php';
+
+    // Khởi tạo kết nối Database
+    $productController = new ProductController($db);
+
+    // Kiểm tra phương thức POST để lọc sản phẩm
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Lọc sản phẩm
+        $productController->filterProducts();
+    } 
+    exit;
+}
 
 // Nếu không tìm thấy trang
 http_response_code(404);
