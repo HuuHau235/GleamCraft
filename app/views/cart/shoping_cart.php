@@ -53,9 +53,11 @@ $cartItems = $cartManager->getAllCartItems($user_id);
                                         <div class="card-body">
                                             <h5 class="card-title"><?= htmlspecialchars($item['product_name']); ?></h5>
                                         </div>
+
                                         <div class="card-body">
                                         <p class="card-text"><?= htmlspecialchars($item['product_description']); ?></p>
                                         </div>
+
                                     </div>
                                     <div class="col-md-3 text-center">
                                         <div class="d-flex justify-content-center align-items-center">
@@ -92,6 +94,7 @@ $cartItems = $cartManager->getAllCartItems($user_id);
         </div>
         <div class="button">
             <a href="#"><button type="button" class="btn btn-dark payment">Payment</button></a>
+
         </div>
     </section>
 <?php
