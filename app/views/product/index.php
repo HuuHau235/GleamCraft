@@ -163,7 +163,7 @@ details summary {
         </div>
     </header><br>
 <div class="container">
-    <form class="filter" action="http://localhost/GleamCraft/app/controllers/ProductController.php" method="POST">
+    <form class="filter" action="/GleamCraft_MVC/app/controllers/ProductController.php" method="POST">
         <!-- Lọc theo giới tính -->
         <div class="gender">
             <h2>Gender</h2>
@@ -193,7 +193,7 @@ details summary {
         <div class="underline"></div>
 
         <!-- Lọc theo giá -->
-        <div class="price">
+        <div class="price_range">
             <details>
                 <summary>Price Range</summary>
                 <label><input type="radio" name="price_range" value="400-500"> 400.000vnd - 500.000vnd </label><br>
@@ -234,7 +234,8 @@ details summary {
             <p>No products found.</p>
         <?php endif; ?>
     </div>
-
 </div>
+<!-- <?php include('../shared/footer.php'); ?> -->
+
 </body>
 </html>

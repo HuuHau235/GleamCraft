@@ -57,10 +57,7 @@ $cartItems = $cartManager->getAllCartItems($user_id);
     </header><br>
     <section class="cart-section">
         <div class="container">
-            <div class="title_cart d-flex align-items-center gap-2 mb-3">
-                <i class="fa-solid fa-angle-left"></i>
-                <h4 class="mb-0 title">Shopping Continue</h4>
-            </div>
+            
             <div class="cart">
                 <?php if (count($cartItems) > 0): ?>
                     <?php foreach ($cartItems as $item): ?>
