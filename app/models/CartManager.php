@@ -1,13 +1,12 @@
 <?php
 
-session_start(); 
+// session_start(); 
 
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "gleamcraft";
 
-// Kết nối đến cơ sở dữ liệu
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Kiểm tra kết nối
@@ -20,15 +19,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Lấy user_id từ bảng users bằng cách so sánh với thông tin đăng nhập
     $query = "SELECT user_id FROM users WHERE username = ? AND password = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if (mysqli_num_rows($result) > 0) {
-        $user = mysqli_fetch_assoc($result);
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['user_id']; // Lưu user_id vào session
     } else {
         echo "Tên đăng nhập hoặc mật khẩu không đúng!";
@@ -55,26 +53,28 @@ class Cart
     public function addToCart($product_id, $quantity, $product_name, $product_image, $product_description, $product_price, $user_id)
     {
         try {
-            // Kiểm tra xem sản phẩm đã có trong giỏ hàng của người dùng hay chưa
             $checkQuery = "SELECT * FROM cart WHERE product_id = ? AND user_id = ?";
-            $stmt = mysqli_prepare($this->conn, $checkQuery);
-            mysqli_stmt_bind_param($stmt, "ii", $product_id, $user_id);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
+            $stmt = $this->conn->prepare($checkQuery);
+            $stmt->bind_param("ii", $product_id, $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();// LẤY KẾT QUẢ 
 
-            if (mysqli_num_rows($result) > 0) {
-                // Nếu sản phẩm đã có, cập nhật số lượng
-                $updateQuery = "UPDATE cart SET quantity = quantity + ? WHERE product_id = ? AND user_id = ?";
-                $updateStmt = mysqli_prepare($this->conn, $updateQuery);
-                mysqli_stmt_bind_param($updateStmt, "iii", $quantity, $product_id, $user_id);
-                mysqli_stmt_execute($updateStmt);
-            } else {
-                // Nếu sản phẩm chưa có, thêm mới vào giỏ hàng
+            if ($result->num_rows > 0) {
+                $cartItem = $result->fetch_assoc(); // Lấy dòng đầu tiên
+                $newQuantity = $cartItem['quantity'] + $quantity;
+                $newTotalPrice = $newQuantity * $product_price;
+
+                $updateQuery = "UPDATE cart SET quantity = ?, product_price = ? WHERE product_id = ? AND user_id = ?";
+                $updateStmt = $this->conn->prepare($updateQuery);
+                $updateStmt->bind_param("idii", $newQuantity, $newTotalPrice, $product_id, $user_id);
+                $updateStmt->execute();
+            } else {// khi trong cart chưa có cột trong giỏ hàng thì thêm vago hàng moiws
+                $totalPrice = $quantity * $product_price;
                 $insertQuery = "INSERT INTO cart (product_id, quantity, product_name, product_image, product_description, product_price, user_id) 
                                 VALUES (?, ?, ?, ?, ?, ?, ?)";
-                $insertStmt = mysqli_prepare($this->conn, $insertQuery);
-                mysqli_stmt_bind_param($insertStmt, "iisssdi", $product_id, $quantity, $product_name, $product_image, $product_description, $product_price, $user_id);
-                mysqli_stmt_execute($insertStmt);
+                $insertStmt = $this->conn->prepare($insertQuery);
+                $insertStmt->bind_param("iisssdi", $product_id, $quantity, $product_name, $product_image, $product_description, $totalPrice, $user_id);
+                $insertStmt->execute();
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
@@ -85,15 +85,14 @@ class Cart
     public function getAllCartItems($user_id)
     {
         try {
-            // Lấy các sản phẩm chỉ của người dùng hiện tại
             $query = "SELECT * FROM cart WHERE user_id = ?";
-            $stmt = mysqli_prepare($this->conn, $query);
-            mysqli_stmt_bind_param($stmt, "i", $user_id);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
             $cartItems = [];
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $result->fetch_assoc()) {
                 $cartItems[] = $row;
             }
             return $cartItems;
@@ -103,23 +102,22 @@ class Cart
     }
 }
 
-// Nếu có sản phẩm muốn thêm vào giỏ hàng
+// Nếu có sản phẩm muốn thêm vào giỏ hàng và trả về một mảng để dễ gọi
 if (isset($_GET['add_to_cart']) && isset($_GET['product_id']) && isset($_GET['quantity'])) {
     $productId = $_GET['product_id'];
     $quantity = $_GET['quantity'];
 
     if ($conn) {
-        $query = "SELECT p.name, p.image, p.description, p.price FROM products p WHERE p.product_id = ?";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "i", $productId);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+        $query = "SELECT name, image, description, price FROM products WHERE product_id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $productId);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if (mysqli_num_rows($result) > 0) {
-            $product = mysqli_fetch_assoc($result);
+        if ($result->num_rows > 0) {// kiểm tra hàng trong db
+            $product = $result->fetch_assoc();
 
             $cart = new Cart($conn);
-            // Thêm sản phẩm vào giỏ hàng của người dùng
             $cart->addToCart($productId, $quantity, $product['name'], $product['image'], $product['description'], $product['price'], $user_id);
 
             // Chuyển hướng đến trang giỏ hàng
