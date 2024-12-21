@@ -33,9 +33,9 @@ body {
 .register-form {
     border-radius: 10px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-    margin: 50px 0;
+    margin-top: 80px ;
     width: 300px;
-    height: 650px;
+    height: 530px;
 }
 .register-form h1 {
     font-size: 30px;
@@ -107,58 +107,7 @@ body {
     border-bottom: 1px solid #000; 
     margin: 0 10px;
 }
-.or-container span {
-    font-size: 16px; 
-    font-weight: bold;
-}
-.register-method button {
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #3B5998;
-    background-color: #E3F1FE;
-    color: #207198;
-    padding: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.register-method button:hover {
-    transition: all 0.3s ease;
-    transform: scale(1.1);
-    color: white;
-    background-color: #3B5998;
-}
 
-.icon-container {
-    align-items: center;
-    justify-content: center;
-    gap: 0px;
-    height: 100%;
-}
-.fa-google {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    color: white;
-    background-color: #1877F2;
-    font-size: 1.2rem;
-    text-align: center;
-    display: inline-block;
-    margin-right:15px;
-}
-.fa-facebook-f{
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    color: white;
-    background-color: #1877F2;
-    font-size: 1.2rem;
-    text-align: center;
-    display: inline-block;
-    
-}
 
 
 

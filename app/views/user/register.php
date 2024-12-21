@@ -40,25 +40,7 @@
                     <p>Confirm password</p>
                     <input type="password" name="confirm-password"  placeholder="Enter authentication password...">
                 </div>
-               <a href="login.php"> <button class="register-btn">Register</button></a>
-                
-                <div class="or-container">
-                    <span>OR</span>
-                </div>
-                <div class="register-method">
-                    <button type="button" class="btn btn-outline-secondary w-100 my-1">
-                        <div class="icon-container">
-                            <span class="fab fa-facebook-f"></span>
-                            Continue with Facebook
-                        </div>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary w-100 my-1">
-                        <div class="icon-container">
-                            <span class="fab fa-google"></span>
-                            Continue with Google
-                        </div>
-                    </button>
-                </div>
+                <a href="login.php"> <button class="register-btn">Register</button></a>
             </div>
         </form>
     </div>
