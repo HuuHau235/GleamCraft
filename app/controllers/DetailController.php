@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Product;
-use App\Models\Review;
 
 class DetailController {
     private $db;
@@ -13,9 +12,8 @@ class DetailController {
     }
 
     public function show($id) {
-        // Tạo đối tượng Model
+        // Tạo đối tượng Product Model
         $productModel = new Product($this->db);
-        $reviewModel = new Review($this->db);
 
         // Lấy sản phẩm theo ID
         $product = $productModel->getProductById($id);
@@ -30,7 +28,7 @@ class DetailController {
         $relatedProducts = $productModel->getRelatedProducts();
 
         // Lấy danh sách đánh giá cho sản phẩm
-        $reviews = $reviewModel->getReviewsByProductId($id);
+        $reviews = $productModel->getReviewsByProductId($id);
 
         // Truyền dữ liệu sang view
         require_once '../app/views/detail/index.php';
@@ -55,9 +53,9 @@ class DetailController {
                 return;
             }
 
-            // Thêm đánh giá vào cơ sở dữ liệu
-            $reviewModel = new Review($this->db);
-            if ($reviewModel->addReview($id, $user_id, $comment)) {
+            // Sử dụng Product Model để thêm đánh giá
+            $productModel = new Product($this->db);
+            if ($productModel->addReview($id, $user_id, $comment)) {
                 // Chuyển hướng về trang chi tiết sản phẩm
                 header("Location: /Gleamcraft_MVC/public/product/detail/$id");
                 exit;
