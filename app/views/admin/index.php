@@ -143,25 +143,35 @@ require_once "../../models/Admin.php";
                         <thead class="table-light">
                             <tr>
                                 <th>Number</th>
-                                <th>Reviewer Name</th>
-                                <th>Product</th>
-                                <th>Rating</th>
+                                <th>Review ID</th>
+                                <th>Product ID</th>
+                                <th>User ID</th>
                                 <th>Comment</th>
+                                <th>Create At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>Product A</td>
-                                <td>5</td>
-                                <td>Great product!</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Del</button>
-                                </td>
-                            </tr>
+                            <?php if (!empty($reviews)): ?>
+                                <?php foreach ($reviews as $index => $review): ?>
+                                    <tr>
+                                        <td><?php echo $index + 1; ?></td>
+                                        <td><?php echo htmlspecialchars($review['review_id']); ?></td>
+                                        <td><?php echo htmlspecialchars($review['product_id']); ?></td>
+                                        <td><?php echo htmlspecialchars($review['user_id']); ?></td>
+                                        <td><?php echo htmlspecialchars($review['comment']); ?></td>
+                                        <td><?php echo htmlspecialchars($review['created_at']); ?></td>
+                                        <td>
+                                            <a href="/" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="/" class="btn btn-sm btn-danger" >Del</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="7" class="text-center">No reviews found.</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
