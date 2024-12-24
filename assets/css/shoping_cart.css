@@ -4,6 +4,9 @@ h5 {
 .cart{
 margin-top: 100px;
 }
+.cart-section {
+    min-height: 500px; 
+}
 .card-title{
     margin-left: 30px;;
 }
@@ -50,7 +53,7 @@ padding-top: 100px;
     align-items: center;
     text-align: center;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 .payment {
 padding: 15px 100px !important; 
