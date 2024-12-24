@@ -179,6 +179,7 @@ require_once "../../models/Admin.php";
                                     <tr>
                                         <td><?php echo $index + 1; ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_id']); ?></td>
+                                        <td><?php echo htmlspecialchars($payment['order_id']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
