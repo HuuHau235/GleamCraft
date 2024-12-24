@@ -9,24 +9,7 @@ require_once "../../models/Admin.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .sidebar {
-            height: 100vh;
-            background-color: #f8f9fa;
-            padding-top: 20px;
-        }
-
-        .sidebar button {
-            width: 90%;
-            margin: 10px auto;
-            border-radius: 5px;
-        }
-
-        .sidebar .active {
-            background-color: #f7c6c7;
-            color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="../../../assets/css/admin.css">
 </head>
 
 <body>
@@ -72,7 +55,7 @@ require_once "../../models/Admin.php";
                                     echo "<td>" . $row['role'] . "</td>";
                                     echo "<td>" . $row['created_at'] . "</td>";
                                     echo "<td>
-                                <button class='btn btn-sm btn-primary'>Edit</button>
+                                <button class='btn btn-sm btn-primary' onclick= OpenEditUser()>Edit</button>
                                 <button class='btn btn-sm btn-danger'>Del</button>
                               </td>";
                                     echo "</tr>";
@@ -208,19 +191,40 @@ require_once "../../models/Admin.php";
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        function showTab(tabId) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('d-none'));
-            // Remove active class from all sidebar buttons
-            document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('active'));
-            // Show selected tab and activate the corresponding button
-            document.getElementById(tabId).classList.remove('d-none');
-            document.querySelector(`.sidebar button[onclick="showTab('${tabId}')"]`).classList.add('active');
-        }
-    </script>
+        <!-- Create form edits for Users  -->
+        <div id="overlay" onclick="closeEditFormUser()"></div>
+        <div id="edit-form-user">
+            <h4>Edit User</h4>
+            <form action="" method="POST">
+                <div class="mb-3">
+                    <label for="" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Password</label>
+                    <input type="text" class="form-control" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Role</label>
+                    <input type="text" class="form-control" name="role" required>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditFormUser()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="../../../assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
