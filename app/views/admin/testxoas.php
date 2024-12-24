@@ -1,26 +1,3 @@
-<!-- Xử lí cập nhập lại user -->
-<?php
-require_once('../../../config/db.php');  
-require_once('../../models/Admin.php');
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $user_id = $_POST['user_id'] ?? null;
-    $name = $_POST['name'] ?? null;
-    $email = $_POST['email'] ?? null;
-    $password = $_POST['password'] ?? null;
-    $phone = $_POST['phone'] ?? null;
-    $role = $_POST['role'] ?? null;
-    if (!$user_id || !$name || !$email || !$password || !$phone || !$role) {
-        echo "All fields are required.";
-        exit;
-    }
-    $adminUser = new AdminUser($conn);
-    $message = $adminUser->EditUser($user_id, $name, $email, $password, $phone, $role);
-    echo $message;
-    exit;
-}
-?>
-<!-- Xử lí xóa user -->
 <?php
 require_once "../../../config/db.php";
 // Xử lý xóa người dùng
@@ -50,7 +27,7 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
         }
 
         // Chuyển hướng lại trang sau khi xóa
-        header("Location: ../admin/index copy.php");
+        header("Location: ./testxoas.php");
         exit;
     } else {
         echo "<script>alert('ID người dùng không hợp lệ.');</script>";
@@ -58,3 +35,44 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Người Dùng</title>
+</head>
+<body>
+
+<h1>Danh Sách Người Dùng</h1>
+
+<table border="1">
+    <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+
+    <?php
+    // Lấy danh sách người dùng từ cơ sở dữ liệu
+    $result = $conn->query("SELECT user_id, name, email FROM users");
+
+    // Hiển thị dữ liệu người dùng
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row['user_id'] . "</td>";
+        echo "<td>" . $row['name'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td><a href='?delete_user=true&user_id=" . $row['user_id'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa người dùng này?\");'>Xóa</a></td>";
+        echo "</tr>";
+    }
+
+    // Đóng kết nối
+    $conn->close();
+    ?>
+
+</table>
+
+</body>
+</html>
