@@ -4,7 +4,13 @@ $reviews = "SELECT * FROM reviews";
 $resultUser = $conn->query($reviews);
 $reviews = $resultUser->fetch_all(MYSQLI_ASSOC);
 ?>
-<!-- Quản lí User -->
+<?php
+// Truy vấn dữ liệu từ bảng Payments
+$sql = "SELECT * FROM Payments";
+$resultPayments = $conn->query($sql);
+$payments = $resultPayments->fetch_all(MYSQLI_ASSOC);
+?>
+<!-- Quản lí user -->
 <?php
 $sqlUser = "SELECT * FROM users";
 $resultUser = $conn->query($sqlUser);

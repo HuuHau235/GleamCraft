@@ -145,8 +145,7 @@ require_once "../../models/Admin.php";
                                         <td><?php echo htmlspecialchars($review['comment']); ?></td>
                                         <td><?php echo htmlspecialchars($review['created_at']); ?></td>
                                         <td>
-                                            <a href="/" class="btn btn-sm btn-primary">Edit</a>
-                                            <a href="/" class="btn btn-sm btn-danger">Del</a>
+                                        <a href="index.php?action=deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -161,30 +160,34 @@ require_once "../../models/Admin.php";
 
                 <!-- Payment Table -->
                 <div id="payment" class="tab-content d-none">
-                    <h3 class="mt-4">Payment Management</h3>
+                <h3 class="mt-4">Payment Management</h3>
                     <table class="table table-striped mt-3">
                         <thead class="table-light">
                             <tr>
                                 <th>Number</th>
-                                <th>Transaction ID</th>
-                                <th>User</th>
-                                <th>Amount</th>
+                                <th>Payment ID</th>
+                                <th>Order ID</th>
+                                <th>Payment Method</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Amount</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>TX123456</td>
-                                <td>Hồ Thị Kim Thanh</td>
-                                <td>$100</td>
-                                <td>Completed</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary">View</button>
-                                    <button class="btn btn-sm btn-danger">Del</button>
-                                </td>
-                            </tr>
+                            <?php if (!empty($payments)): ?>
+                                <?php foreach ($payments as $index => $payment): ?>
+                                    <tr>
+                                        <td><?php echo $index + 1; ?></td>
+                                        <td><?php echo htmlspecialchars($payment['payment_id']); ?></td>
+                                        <td><?php echo htmlspecialchars($payment['order_id']); ?></td>
+                                        <td><?php echo htmlspecialchars($payment['payment_method']); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="7">No payment records found.</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
