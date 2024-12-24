@@ -145,8 +145,7 @@ require_once "../../models/Admin.php";
                                         <td><?php echo htmlspecialchars($review['comment']); ?></td>
                                         <td><?php echo htmlspecialchars($review['created_at']); ?></td>
                                         <td>
-                                            <a href="/" class="btn btn-sm btn-primary">Edit</a>
-                                            <a href="/" class="btn btn-sm btn-danger">Del</a>
+                                        <a href="index.php?action=deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
