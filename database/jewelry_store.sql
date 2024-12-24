@@ -46,22 +46,28 @@ CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     total_price DECIMAL(10, 2),
-    status VARCHAR(50),
-    created_at DATETIME,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    customer_name VARCHAR(255), -- Tên người dùng từ form
+    customer_address VARCHAR(255), -- Địa chỉ người dùng từ form
+    customer_phone VARCHAR(15), -- Số điện thoại từ form
+    customer_note TEXT, -- Ghi chú từ form
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 -- Table: Order_Items
 DROP TABLE IF EXISTS Order_Items;
 CREATE TABLE Order_Items (
     order_item_id INT PRIMARY KEY AUTO_INCREMENT,
-    order_id INT,
-    product_id INT,
-    quantity INT,
-    price DECIMAL(10, 2),
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+    order_id INT NOT NULL,            -- Liên kết với bảng Orders
+    product_name VARCHAR(255) NOT NULL,  -- Tên sản phẩm từ bảng cart
+    product_image VARCHAR(255),       -- Hình ảnh sản phẩm từ bảng cart
+    product_description TEXT,         -- Mô tả sản phẩm từ bảng cart
+    quantity INT NOT NULL,            -- Số lượng từ bảng cart
+    price DECIMAL(10, 2) NOT NULL,    -- Giá tại thời điểm đặt hàng từ bảng cart
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE
 );
+
+
 
 -- Table: Reviews
 DROP TABLE IF EXISTS Reviews;
