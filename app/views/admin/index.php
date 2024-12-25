@@ -43,7 +43,7 @@ require_once('../../controllers/AdminController.php');
                         </thead>
                         <tbody>
                             <?php
-                            $sqlUser = "SELECT * FROM users";
+                            // $sqlUser = "SELECT * FROM users";
                             $resultUser = $conn->query($sqlUser);
                             if ($resultUser->num_rows > 0) {
                                 $number = 1;
@@ -147,7 +147,10 @@ require_once('../../controllers/AdminController.php');
                                         <td><?php echo htmlspecialchars($review['comment']); ?></td>
                                         <td><?php echo htmlspecialchars($review['created_at']); ?></td>
                                         <td>
-                                        <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>                                        </td>
+                                        <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
+
+
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -231,6 +234,7 @@ require_once('../../controllers/AdminController.php');
     </div>
 <script src="../../../assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 
 </html>
