@@ -185,6 +185,7 @@ require_once('../../controllers/AdminController.php');
                                         <td><?php echo htmlspecialchars($payment['payment_id']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['order_id']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_method']); ?></td>
+                                        <td><?php echo htmlspecialchars($payment['payment_status']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
