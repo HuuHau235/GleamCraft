@@ -1,4 +1,4 @@
-<!-- Xử lí cập nhập lại user -->
+<!-- Xử lý cập nhật lại user -->
 <?php
 require_once('../../../config/db.php');  
 require_once('../../models/Admin.php');
@@ -10,38 +10,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST['password'] ?? null;
     $phone = $_POST['phone'] ?? null;
     $role = $_POST['role'] ?? null;
+
     if (!$user_id || !$name || !$email || !$password || !$phone || !$role) {
         echo "All fields are required.";
         exit;
     }
+
+    // Tạo đối tượng AdminUser và gọi phương thức EditUser để cập nhật
     $adminUser = new AdminUser($conn);
     $message = $adminUser->EditUser($user_id, $name, $email, $password, $phone, $role);
     echo $message;
     exit;
 }
 ?>
-<!-- Xử lí xóa user -->
+<!-- Xử lý xóa user -->
 <?php
 require_once "../../../config/db.php";
-// Xử lý xóa người dùng
 if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
-
-    // Kiểm tra tính hợp lệ của user_id
-    if (is_numeric($user_id)) {
-        // Lệnh SQL để xóa người dùng
+    if (!empty($user_id)) {
+        $sqlCheckAdmin = "SELECT role FROM users WHERE user_id = ?";
+        $stmtCheck = $conn->prepare($sqlCheckAdmin);
+        if (!$stmtCheck) {
+            die("Error preparing the statement: " . $conn->error);
+        }
+        $stmtCheck->bind_param("i", $user_id);
+        $stmtCheck->execute();
+        $result = $stmtCheck->get_result();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            if ($user['role'] === 'admin') {
+                echo "<script>alert('Không thể xóa tài khoản admin.');</script>";
+                echo "<script>window.location.href = '../admin/index copy.php';</script>";
+                exit;
+            }
+        } else {
+            echo "<script>alert('Người dùng không tồn tại.');</script>";
+            exit;
+        }
         $sqlDeleteUser = "DELETE FROM users WHERE user_id = ?";
-
-        // Chuẩn bị câu lệnh SQL
         $stmt = $conn->prepare($sqlDeleteUser);
         if (!$stmt) {
             die("Error preparing the statement: " . $conn->error);
         }
-
-        // Liên kết tham số với câu lệnh SQL
         $stmt->bind_param("i", $user_id);
-
-        // Thực thi câu lệnh
         if ($stmt->execute()) {
             $stmt->close();
             echo "<script>alert('Đã xóa thành công');</script>";
@@ -49,12 +61,10 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
             echo "<script>alert('Xóa không thành công: " . $stmt->error . "');</script>";
         }
 
-        // Chuyển hướng lại trang sau khi xóa
-        header("Location: ../admin/index copy.php");
+        echo "<script>window.location.href = '../admin/index copy.php';</script>";
         exit;
     } else {
         echo "<script>alert('ID người dùng không hợp lệ.');</script>";
     }
 }
 ?>
-

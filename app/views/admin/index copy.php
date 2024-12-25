@@ -1,3 +1,4 @@
+
 <?php 
 require_once('../../controllers/AdminController.php');
 ?>
@@ -58,8 +59,7 @@ require_once('../../controllers/AdminController.php');
                                     echo "<td>" . $row['created_at'] . "</td>";
                                     echo "<td>
                                         <button class='btn btn-sm btn-primary' onclick=\"openEditForm('" . $row['user_id'] . "', '" . $row['name'] . "', '" . $row['email'] . "', '" . $row['password'] . "', '" . $row['phone'] . "', '" . $row['role'] . "')\">Edit</button>
-                                        <a href='?delete_user=true&user_id={$row['user_id']}' class='btn btn-sm btn-danger' onclick='return confirm('Are you sure you want to delete this user?');'>Del</a>
-
+                                        <a href='?delete_user=true&user_id={$row['user_id']}' class='btn btn-sm btn-danger' onclick=confirmDelete()>Del</a>
                                     </td>";
                                     echo "</tr>";
                                     $number++;
@@ -228,6 +228,11 @@ require_once('../../controllers/AdminController.php');
         </div>
     </div>
 <script src="../../../assets/js/admin.js"></script>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this user?");
+    }
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
