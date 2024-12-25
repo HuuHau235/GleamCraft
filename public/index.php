@@ -58,6 +58,9 @@ if (preg_match('/^\/product\/filter$/', $processedUri)) {
     exit;
 }
 
+
+
+
 // Nếu không tìm thấy trang
 http_response_code(404);
 echo "Page not found.";

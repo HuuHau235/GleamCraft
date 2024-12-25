@@ -44,15 +44,16 @@ CREATE TABLE cart (
 DROP TABLE IF EXISTS Orders;
 CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    total_price DECIMAL(10, 2),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    customer_name VARCHAR(255), -- Tên người dùng từ form
-    customer_address VARCHAR(255), -- Địa chỉ người dùng từ form
-    customer_phone VARCHAR(15), -- Số điện thoại từ form
-    customer_note TEXT, -- Ghi chú từ form
+    user_id INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL, -- Tổng số tiền của đơn hàng
+    customer_name VARCHAR(255),         -- Tên khách hàng
+    customer_address TEXT,              -- Địa chỉ giao hàng
+    customer_phone VARCHAR(15),         -- Số điện thoại
+    customer_note TEXT,                 -- Ghi chú khách hàng
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- Thời gian đặt hàng
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
+
 
 -- Table: Order_Items
 DROP TABLE IF EXISTS Order_Items;
@@ -78,7 +79,7 @@ CREATE TABLE Reviews (
     comment TEXT,
     created_at DATETIME,
     FOREIGN KEY (product_id) REFERENCES Products(product_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 -- Table: Payments
@@ -88,7 +89,6 @@ CREATE TABLE Payments (
     order_id INT,
     payment_method VARCHAR(50),
     payment_status VARCHAR(50),
-    amount DECIMAL(10, 2),
     payment_date DATETIME,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
@@ -269,4 +269,3 @@ VALUES
 ('Men Small Silver Necklace with Square and Round Fashion Hip Hop Chain LILI_345554', 'Men Small Silver Necklace with Square and Round Fashion Hip Hop Chain LILI_345554', 'blue', 1, 'necklace', 1391000.00, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nam-tong-hop-chuoi-vuong-tron-thoi-trang-Hip-Hop-LILI_345554_14-400x400.jpg'),
 ('Men Silver Pendant in Shoe Shape Augustine LILI_076892', 'Men Silver Pendant in Shoe Shape Augustine LILI_076892', 'red', 1, 'pendant', 2138000.00, 'https://lili.vn/wp-content/uploads/2023/09/Mat-day-chuyen-bac-nam-hinh-chiec-giay-Augustine-LILI_076892_1-400x400.jpg'),
 ('Men Silver Pendant with CZ Stones in Cross Shape Talon LILI_080417', 'Men Silver Pendant with CZ Stones in Cross Shape Talon LILI_080417', 'white', 1, 'pendant', 1821000.00, 'https://lili.vn/wp-content/uploads/2023/10/Mat-day-chuyen-bac-nam-dinh-da-CZ-hinh-thanh-gia-Talon-LILI_080417_2-400x400.jpg');
-

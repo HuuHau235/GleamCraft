@@ -30,7 +30,7 @@
                         <div class="mb-3 position-relative">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Enter your password">
+                                placeholder="Enter your password" >
                             <i class="fas fa-eye position-absolute" id="togglePassword"
                                 style="top: 38px; right: 10px; cursor: pointer;"></i>
                         </div>

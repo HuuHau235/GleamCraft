@@ -122,9 +122,25 @@ body {
 }
 
 /* Summary */
+.payment-method {
+display: flex;
+align-items: center; 
+padding-left: 42px;
+}
+
+.payment-method strong {
+font-size: 17px;
+width: 150px;
+}
+
+.payment-method input {
+width: 15px;
+margin-right: 5px;
+}
+
 .total-payment {
-    margin: 30px;
-    font-size: 20px;
+    margin: 20px 39px;
+    font-size: 25px;
 }
 
 .total {
@@ -142,6 +158,6 @@ body {
     border-radius: 5px;
     margin-top: 5px;
     width: 150px;
-    margin-left: 600px;
+    margin-left: 612px;
     
 }
