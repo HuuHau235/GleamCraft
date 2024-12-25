@@ -148,8 +148,6 @@ require_once('../../controllers/AdminController.php');
                                         <td><?php echo htmlspecialchars($review['created_at']); ?></td>
                                         <td>
                                         <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
-
-
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -186,6 +184,7 @@ require_once('../../controllers/AdminController.php');
                                         <td><?php echo htmlspecialchars($payment['order_id']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_method']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_status']); ?></td>
+                                        <td><?php echo htmlspecialchars($payment['payment_date']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
