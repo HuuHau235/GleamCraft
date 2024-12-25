@@ -1,5 +1,5 @@
-<?php include('../../../config/db.php');
-require_once "../../models/Admin.php";
+<?php 
+require_once('../../controllers/AdminController.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,21 +43,23 @@ require_once "../../models/Admin.php";
                         </thead>
                         <tbody>
                             <?php
+                            $sqlUser = "SELECT * FROM users";
+                            $resultUser = $conn->query($sqlUser);
                             if ($resultUser->num_rows > 0) {
                                 $number = 1;
                                 while ($row = $resultUser->fetch_assoc()) {
-                                    echo "<tr>";
+                                    echo "<tr data-user-id='" . $row['user_id'] . "'>";
                                     echo "<td>" . $number . "</td>";
                                     echo "<td>" . $row['name'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
-                                    echo "<td>" . $row['password'] . "</td>";
+                                    echo "<td>" . str_repeat('•', strlen($row['password'])) . "</td>";
                                     echo "<td>" . $row['phone'] . "</td>";
                                     echo "<td>" . $row['role'] . "</td>";
                                     echo "<td>" . $row['created_at'] . "</td>";
                                     echo "<td>
-                                <button class='btn btn-sm btn-primary' onclick= OpenEditUser()>Edit</button>
-                                <button class='btn btn-sm btn-danger'>Del</button>
-                              </td>";
+                                        <button class='btn btn-sm btn-primary' onclick=\"openEditForm('" . $row['user_id'] . "', '" . $row['name'] . "', '" . $row['email'] . "', '" . $row['password'] . "', '" . $row['phone'] . "', '" . $row['role'] . "')\">Edit</button>
+                                        <a href='?delete_user=true&user_id={$row['user_id']}' class='btn btn-sm btn-danger' onclick=confirmDelete()>Del</a>
+                                    </td>";
                                     echo "</tr>";
                                     $number++;
                                 }
@@ -196,28 +198,29 @@ require_once "../../models/Admin.php";
 
         <!-- Create form edits for Users  -->
         <div id="overlay" onclick="closeEditFormUser()"></div>
-        <div id="edit-form-user">
+        <div id="edit-form-user" style="display: none;">
             <h4>Edit User</h4>
-            <form action="" method="POST">
+            <form id="edit-user-form" action="'../../controllers/AdminController.php'">
+                <input type="hidden" name="user_id" id="edit-user-id">
                 <div class="mb-3">
-                    <label for="" class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" required>
+                    <label for="edit-name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="edit-name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="email" required>
+                    <label for="edit-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="edit-email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Password</label>
-                    <input type="text" class="form-control" name="password" required>
+                    <label for="edit-password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="edit-password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Phone</label>
-                    <input type="text" class="form-control" name="phone" required>
+                    <label for="edit-phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="edit-phone" required>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Role</label>
-                    <input type="text" class="form-control" name="role" required>
+                    <label for="edit-role" class="form-label">Role</label>
+                    <input type="text" class="form-control" name="role" id="edit-role" required>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success">Save Changes</button>
