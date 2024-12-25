@@ -51,7 +51,7 @@ CREATE TABLE Orders (
     customer_phone VARCHAR(15),         -- Số điện thoại
     customer_note TEXT,                 -- Ghi chú khách hàng
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- Thời gian đặt hàng
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 
@@ -79,7 +79,7 @@ CREATE TABLE Reviews (
     comment TEXT,
     created_at DATETIME,
     FOREIGN KEY (product_id) REFERENCES Products(product_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 
 -- Table: Payments

@@ -60,26 +60,88 @@ class AdminUser {
 ?>
 <!-- Xóa user -->
 <?php
-
-require_once "../../../config/db.php";
 class AdminUsers {
     private $conn;
+
     public function __construct($conn) {
         $this->conn = $conn;
     }
+
+    // Xóa dữ liệu trong bảng reviews
+    public function deleteReviews($user_id) {
+        $sql = "DELETE FROM reviews WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+    }
+
+    // Xóa dữ liệu trong bảng order_items
+    public function deleteOrderItems($user_id) {
+        $sql = "DELETE FROM order_items WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+    }
+
+    // Xóa dữ liệu trong bảng payments
+    public function deletePayments($user_id) {
+        $sql = "DELETE FROM payments WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+    }
+
+    // Xóa dữ liệu trong bảng cart
+    public function deleteCart($user_id) {
+        $sql = "DELETE FROM cart WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+    }
+
+    // Xóa dữ liệu trong bảng orders
+    public function deleteOrders($user_id) {
+        $sql = "DELETE FROM orders WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+    }
+
+    // Xóa người dùng
     public function deleteUser($user_id) {
-        $sqlDeleteUser = "DELETE FROM users WHERE user_id = ?";
-        $stmtDeleteUser = $this->conn->prepare($sqlDeleteUser);
-        $stmtDeleteUser->bind_param("i", $user_id);
-        if ($stmtDeleteUser->execute()) {
-            if ($stmtDeleteUser->affected_rows > 0) {
-                return "User deleted successfully!";
+        // Tạm thời vô hiệu hóa kiểm tra khóa ngoại
+        $this->conn->query("SET FOREIGN_KEY_CHECKS = 0");
+
+        // Xóa dữ liệu liên quan từ các bảng khác trước khi xóa người dùng
+        $this->deleteReviews($user_id);
+        $this->deleteCart($user_id);
+        $this->deleteOrderItems($user_id);
+        $this->deletePayments($user_id);
+        $this->deleteOrders($user_id); // Đảm bảo xóa orders sau khi đã xóa các item liên quan
+
+        // Xóa người dùng
+        $sql = "DELETE FROM users WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+
+        // Kiểm tra việc xóa người dùng
+        if ($stmt->execute()) {
+            if ($stmt->affected_rows > 0) {
+                $message = "User deleted successfully!";
             } else {
-                return "User not found or already deleted.";
+                $message = "User not found or already deleted.";
             }
         } else {
-            return "Error deleting user: " . $stmtDeleteUser->error;
+            $message = "Error deleting user: " . $stmt->error;
         }
+
+        // Bật lại kiểm tra khóa ngoại
+        $this->conn->query("SET FOREIGN_KEY_CHECKS = 1");
+
+        return $message;
     }
 }
+
+
 ?>
+
