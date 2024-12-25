@@ -54,7 +54,32 @@ class AdminUser {
         } else {
             return "Error updating user: " . $stmt->error;
         }
-        // $stmt->close();
+        $stmt->close();
+    }
+}
+?>
+<!-- Xóa user -->
+<?php
+
+require_once "../../../config/db.php";
+class AdminUsers {
+    private $conn;
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+    public function deleteUser($user_id) {
+        $sqlDeleteUser = "DELETE FROM users WHERE user_id = ?";
+        $stmtDeleteUser = $this->conn->prepare($sqlDeleteUser);
+        $stmtDeleteUser->bind_param("i", $user_id);
+        if ($stmtDeleteUser->execute()) {
+            if ($stmtDeleteUser->affected_rows > 0) {
+                return "User deleted successfully!";
+            } else {
+                return "User not found or already deleted.";
+            }
+        } else {
+            return "Error deleting user: " . $stmtDeleteUser->error;
+        }
     }
 }
 ?>
