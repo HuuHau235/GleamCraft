@@ -60,6 +60,7 @@ class AdminUser {
 ?>
 <!-- Xóa user -->
 <?php
+
 require_once "../../../config/db.php";
 class AdminUsers {
     private $conn;
