@@ -1,6 +1,6 @@
 <!-- Xử lý cập nhật lại user -->
 <?php
-require_once('../../../config/db.php');  
+require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -22,7 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo $message;
     exit;
 }
-
+?>
+<?php
+require_once('../../../config/db.php');
+require_once('../../models/Admin.php');
 if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
     if (!empty($user_id)) {
