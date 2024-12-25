@@ -67,5 +67,15 @@
             </form>
         </div>
     </div>
+    <!-- <div class="success-page">
+        <div class="content">
+        <div class="icon">
+            <img src="../../../assets/images/image_prev_ui.png" alt="Success Icon">
+        </div>
+        <h1>PAYMENT SUCCESSFUL</h1>
+        <p>You have placed your order successfully!</p>
+        <button class="home-btn" onclick="window.location.href='#'">GO TO HOMEPAGE</button>
+        </div>
+    </div> -->
 </body>
 </html>

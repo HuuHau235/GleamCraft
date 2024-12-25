@@ -108,7 +108,7 @@ require_once('../../controllers/AdminController.php');
                                             <button class='btn btn-sm btn-primary'>Edit</button>
                                             <button class='btn btn-sm btn-danger'>Del</button>
                                         </td>";
-                                    echo "</tr>";
+                                    echo "</tr>";   
                                     $number++;
                                 }
                             } else {
