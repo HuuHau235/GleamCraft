@@ -10,40 +10,23 @@
 </head>
 <body>
     <div class="underline1"></div>
-    <!-- Order and Payment Details -->
     <div class="g-grid">
         <div class="g-grid-col1">
             <h3>Order</h3>
             <div class="underline2"></div>
-            <div class="order-item">
-                <img src="../../../assets/images/brands/logo.jpg" alt="...">
-                <div class="order-details">
-                    <p class="pname">Product name</p>
-                    <p class="color">Product color</p>
-                    <p class="price">Price: <span>product price</span></p>
-                    <p class="qty">Quantity: <span>2</span></p>
-                </div>
-            </div>
             
-            <div class="order-item">
-                <img src="../../../assets/images/brands/logo.jpg" alt="...">
-                <div class="order-details">
-                    <p class="pname">Product name</p>
-                    <p class="color">Color: <span>Product color</span></p>
-                    <p class="price">Price: <span>product price</span></p>
-                    <p class="qty">Quantity: <span>2</span></p>
+            <?php foreach ($cartItems as $item): ?>
+                <div class="order-item">
+                    <img src="<?php echo $item['product_image']; ?>" alt="Product Image">
+                    <div class="order-details">
+                        <p class="pname"><?php echo $item['product_name']; ?></p>
+                        <p class="color">Color: <span><?php echo $item['color']; ?></span></p>
+                        <p class="price">Price: <span><?php echo number_format($item['product_price'], 2); ?> VND</span></p>
+                        <p class="qty">Quantity: <span><?php echo $item['quantity']; ?></span></p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="order-item">
-                <img src="../../../assets/images/brands/logo.jpg" alt="...">
-                <div class="order-details">
-                    <p class="pname">Product name</p>
-                    <p class="color">Color: <span>Product color</span></p>
-                    <p class="price">Price: <span>product price</span></p>
-                    <p class="qty">Quantity: <span>2</span></p>
-                </div>
-            </div>
+            <?php endforeach; ?>
+            
             <div class="underline4"></div>
         </div>
 
@@ -52,22 +35,36 @@
             <p>Complete your purchase by providing your payment details:</p>
             <div class="underline3"></div>
 
-            <div class="infor">
-                <label for="name">Name:</label>
-                <input type="text" id="name" placeholder="Enter your name">
+            <form method="POST" action="process_payment.php">
+                <div class="infor">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name">
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" placeholder="Enter your address">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address">
 
-                <label for="phone">Phone:</label>
-                <input type="text" id="phone" placeholder="Enter your phone">
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone">
 
-                <label for="note">Note:</label>
-                <input type="text" id="note" placeholder="Enter any message">
+                    <label for="note">Note:</label>
+                    <input type="text" id="note" name="note" placeholder="Enter any message">
+                </div>
+                
+                <div class="payment-method">
+                    <strong>Payment method: </strong>
+                    <label>
+                        <input type="radio" name="payment" value="cod" required>
+                        Cash on Delivery
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="credit-card" required>
+                        Credit Card
+                    </label>
+                </div>
 
-                <div class="total-payment">Total payment: <span class="total" >product total VND</span></div>
-                <button class="order-button">Order</button>
-            </div>
+                <div class="total-payment">Total payment: <span class="total" ><?php echo number_format($total_price, 2); ?> VND</span></div>
+                <button type="submit" class="order-button">Order</button>
+            </form>
         </div>
     </div>
 </body>
