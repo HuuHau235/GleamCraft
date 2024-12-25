@@ -44,15 +44,16 @@ CREATE TABLE cart (
 DROP TABLE IF EXISTS Orders;
 CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    total_price DECIMAL(10, 2),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    customer_name VARCHAR(255), -- Tên người dùng từ form
-    customer_address VARCHAR(255), -- Địa chỉ người dùng từ form
-    customer_phone VARCHAR(15), -- Số điện thoại từ form
-    customer_note TEXT, -- Ghi chú từ form
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+    user_id INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL, -- Tổng số tiền của đơn hàng
+    customer_name VARCHAR(255),         -- Tên khách hàng
+    customer_address TEXT,              -- Địa chỉ giao hàng
+    customer_phone VARCHAR(15),         -- Số điện thoại
+    customer_note TEXT,                 -- Ghi chú khách hàng
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- Thời gian đặt hàng
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
+
 
 -- Table: Order_Items
 DROP TABLE IF EXISTS Order_Items;
@@ -88,7 +89,6 @@ CREATE TABLE Payments (
     order_id INT,
     payment_method VARCHAR(50),
     payment_status VARCHAR(50),
-    amount DECIMAL(10, 2),
     payment_date DATETIME,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
