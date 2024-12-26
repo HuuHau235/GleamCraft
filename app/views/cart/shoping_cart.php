@@ -115,7 +115,7 @@ $cartItems = $cartManager->getAllCartItems($user_id);
             </div>
         </div>
         <div class="button">
-            <a href="#"><button type="button" class="btn btn-dark payment">Payment</button></a>
+            <a href="http://localhost:8080/Gleamcraft_MVC/app/views/payment/"><button type="button" class="btn btn-dark payment">Payment</button></a>
 
         </div>
     </section>

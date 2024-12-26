@@ -63,6 +63,15 @@ class AdminUsers {
         $this->conn = $conn;
     }
 
+    // Xóa dữ liệu trong bảng reviews
+    public function deleteReviews($user_id) {
+        $sql = "DELETE FROM reviews WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+    }
+
+
     // Xóa dữ liệu trong bảng order_items
     public function deleteOrderItems($user_id) {
         $sql = "DELETE FROM order_items WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
@@ -193,4 +202,6 @@ class AdminReviews {
         return $result;
     }
 }
+
+?>
 

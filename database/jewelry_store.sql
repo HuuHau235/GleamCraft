@@ -87,11 +87,12 @@ DROP TABLE IF EXISTS Payments;
 CREATE TABLE Payments (
     payment_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
-    payment_method VARCHAR(50),
-    payment_status VARCHAR(50),
-    payment_date DATETIME,
+    payment_method VARCHAR(50),        -- Phương thức thanh toán (ví dụ: tiền mặt, thẻ...)
+    payment_date DATETIME,             -- Thời gian thanh toán
+    total_amount DECIMAL(10, 2) NOT NULL,  -- Tổng giá trị thanh toán
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
+
 
 -- Insert data into the Products table for homepage
 -- INSERT INTO products (name, image, price) VALUES
