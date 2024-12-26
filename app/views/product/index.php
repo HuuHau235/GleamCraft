@@ -220,7 +220,7 @@
             <ul>
                 <?php foreach ($products as $product): ?>
                     <li>
-                        <a href="http://localhost:8080/Gleamcraft_MVC/public/product/detail/<?php echo htmlspecialchars($product['product_id']); ?>">
+                        <a href="http://localhost/Gleamcraft_MVC/public/product/detail/<?php echo htmlspecialchars($product['product_id']); ?>">
                             <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" ><br>
                             <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
                             Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND<br>

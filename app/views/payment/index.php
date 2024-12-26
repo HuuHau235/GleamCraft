@@ -1,3 +1,11 @@
+<?php
+require_once('../../controllers/PaymentController.php');
+$obj = new PaymentController();
+$products = $obj -> index();
+$total_price = $obj -> getTotal();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +23,20 @@
             <h3>Order</h3>
             <div class="underline2"></div>
             
-            <?php foreach ($cartItems as $item): ?>
-                <div class="order-item">
-                    <img src="<?php echo $item['product_image']; ?>" alt="Product Image">
-                    <div class="order-details">
-                        <p class="pname"><?php echo $item['product_name']; ?></p>
-                        <p class="color">Color: <span><?php echo $item['color']; ?></span></p>
-                        <p class="price">Price: <span><?php echo number_format($item['product_price'], 2); ?> VND</span></p>
-                        <p class="qty">Quantity: <span><?php echo $item['quantity']; ?></span></p>
+            <?php if (empty($products)): ?>
+                <p>Your cart is empty. Please add items to your cart.</p>
+            <?php else: ?>
+                <?php foreach ($products as $item): ?>
+                    <div class="order-item">
+                        <img src="<?php echo htmlspecialchars($item['product_image']); ?>" alt="Product Image">
+                        <div class="order-details">
+                            <p class="pname"><?php echo htmlspecialchars($item['product_name']); ?></p>
+                            <p class="price">Price: <span><?php echo number_format($item['product_price'], 2); ?> VND</span></p>
+                            <p class="qty">Quantity: <span><?php echo htmlspecialchars($item['quantity']); ?></span></p>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
             
             <div class="underline4"></div>
         </div>
@@ -35,7 +46,7 @@
             <p>Complete your purchase by providing your payment details:</p>
             <div class="underline3"></div>
 
-            <form method="POST" action="process_payment.php">
+            <form method="POST" action="../../controllers/UserController.php">
                 <div class="infor">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name">
@@ -56,10 +67,6 @@
                         <input type="radio" name="payment" value="cod" required>
                         Cash on Delivery
                     </label>
-                    <label>
-                        <input type="radio" name="payment" value="credit-card" required>
-                        Credit Card
-                    </label>
                 </div>
 
                 <div class="total-payment">Total payment: <span class="total" ><?php echo number_format($total_price, 2); ?> VND</span></div>
@@ -67,5 +74,15 @@
             </form>
         </div>
     </div>
+    <!-- <div class="success-page">
+        <div class="content">
+        <div class="icon">
+            <img src="../../../assets/images/image_prev_ui.png" alt="Success Icon">
+        </div>
+        <h1>PAYMENT SUCCESSFUL</h1>
+        <p>You have placed your order successfully!</p>
+        <button class="home-btn" onclick="window.location.href='#'">GO TO HOMEPAGE</button>
+        </div>
+    </div> -->
 </body>
 </html>
