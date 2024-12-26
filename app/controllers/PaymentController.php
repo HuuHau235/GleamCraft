@@ -1,6 +1,6 @@
 <?php
+session_start();
 require_once __DIR__ . '/../models/PaymentModel.php';
-
 
 class PaymentController {
     public function index() {
@@ -36,7 +36,7 @@ class PaymentController {
 
             if (empty($name) || empty($address) || empty($phone)) {
                 $_SESSION['error'] = "Vui lòng điền đầy đủ thông tin!";
-                header('Location: ./views/payment/index.php');
+                header('Location: ../views/payment/index.php');
                 exit;
             }
 
@@ -58,4 +58,22 @@ class PaymentController {
         }
     }
 }
+if (isset($_GET['action'])) {
+    $controller = new PaymentController();
+    if ($_GET['action'] == 'process') {
+        $controller->processPayment();
+    }
+}
+// $controller = new PaymentController();
+
+//     // Kiểm tra phương thức HTTP
+//     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+//         // Hiển thị trang thanh toán
+//         $controller->index();
+//     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//         // Xử lý thanh toán
+//         $controller->processPayment();
+//     }
+//     exit;
+
 ?>

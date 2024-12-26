@@ -4,7 +4,6 @@ $obj = new PaymentController();
 $products = $obj -> index();
 $total_price = $obj -> getTotal();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,16 +45,16 @@ $total_price = $obj -> getTotal();
             <p>Complete your purchase by providing your payment details:</p>
             <div class="underline3"></div>
 
-            <form method="POST" action="../../controllers/UserController.php">
+            <form method="POST" action="../../controllers/PaymentController.php?action=process">
                 <div class="infor">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name">
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" placeholder="Enter your address">
+                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
                     <label for="phone">Phone:</label>
-                    <input type="text" id="phone" name="phone" placeholder="Enter your phone">
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone" required>
 
                     <label for="note">Note:</label>
                     <input type="text" id="note" name="note" placeholder="Enter any message">
@@ -69,7 +68,7 @@ $total_price = $obj -> getTotal();
                     </label>
                 </div>
 
-                <div class="total-payment">Total payment: <span class="total" ><?php echo number_format($total_price, 2); ?> VND</span></div>
+                <div class="total-payment">Total payment: <span class="total"><?php echo number_format($total_price, 2); ?> VND</span></div>
                 <button type="submit" class="order-button">Order</button>
             </form>
         </div>
