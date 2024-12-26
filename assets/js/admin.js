@@ -68,9 +68,8 @@ function str_repeat(character, length) {
 // Xử lí form product
 
 function openEditFormProduct(product_id, name, description, color, gender, type_name, price, image) {
-    console.log('Edit button clicked');  
     document.getElementById('edit-product-id').value = product_id;
-    document.getElementById('edit-name').value = name;
+    document.getElementById('editt-name').value = name;
     document.getElementById('edit-description').value = description;
     document.getElementById('edit-color').value = color;
     document.getElementById('edit-gender').value = gender;
@@ -80,7 +79,7 @@ function openEditFormProduct(product_id, name, description, color, gender, type_
     document.getElementById('edit-product-form').style.display = 'block';
 }
 
+// Đóng form chỉnh sửa sản phẩm
 function closeEditFormProduct() {
     document.getElementById('edit-product-form').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';  
 }

@@ -75,7 +75,7 @@ require_once('../../controllers/AdminController.php');
                 </div>
 
                 <!-- Product Table -->
-                <div id="product" class="tab-content">
+                <div id="product" class="tab-content d-none">
                     <h3 class="mt-4">Product Management</h3>
                     <table class="table table-striped mt-3">
                         <thead class="table-light">
@@ -101,8 +101,8 @@ require_once('../../controllers/AdminController.php');
                                 while ($row = $resultProduct->fetch_assoc()) {
                                     echo "<tr data-product_id='" . $row['product_id'] . "'>";
                                     echo "<td>$number</td>";
-                                    echo "<td>{$row['name']}</td>";
-                                    echo "<td>{$row['description']}</td>";
+                                    echo "<td style='width: 350px'>{$row['name']}</td>";
+                                    echo "<td style='width: 350px'>{$row['description']}</td>";
                                     echo "<td>{$row['color']}</td>";
                                     echo "<td>{$row['gender']}</td>";
                                     echo "<td>{$row['type_name']}</td>";
@@ -114,8 +114,7 @@ require_once('../../controllers/AdminController.php');
                                                 '{$row['color']}', '{$row['gender']}', '{$row['type_name']}',
                                                 '{$row['price']}', '{$row['image']}'
                                             )\">Edit</button>
-                                        
-                                        <a href='?delete_product=true&product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=confirmDelete()>Del</a>
+                                                                                    <a href='?delete_product=true&product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=confirmDelete()>Del</a>
 
                                           </td>";
                                     echo "</tr>";
@@ -209,7 +208,7 @@ require_once('../../controllers/AdminController.php');
         <div id="edit-form-user" style="display: none;">
             <h4>Edit User</h4>
             <form id="edit-user-form" action="'../../controllers/AdminController.php'">
-                <input type="hidden" name="user_id" id="edit-user-id">
+                <input type="hidden" name="user_id" id="edit-user-id" value="update_user">
                 <i class="fas fa-times close-icon" onclick="closeEditFormUser()"></i>
 
                 <div class="mb-3">
@@ -239,43 +238,42 @@ require_once('../../controllers/AdminController.php');
             </form>
         </div>
     </div>
-    <!-- Edit Product Form -->
     <div id="overlay" onclick="closeEditFormProduct()"></div>
-        <form id="edit-product-form" style="display:none;">
-            <input type="hidden" id="edit-product-id">
+        <form id="edit-product-form" action="" method="POST" style="display:none;">
+            <input type="hidden" id="edit-product-id" name="product_id" value="update_product">
 
             <div class="mb-3">
-                <label for="edit-name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="edit-name" required>
+                <label for="editt-name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="editt-name" name="name">
             </div>
             <div class="mb-3">
                 <label for="edit-description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="edit-description" required>
+                <input type="text" class="form-control" id="edit-description" name="description">
             </div>
             <div class="mb-3">
                 <label for="edit-color" class="form-label">Color</label>
-                <input type="text" class="form-control" id="edit-color" required>
+                <input type="text" class="form-control" id="edit-color" name="color">
             </div>
             <div class="mb-3">
                 <label for="edit-gender" class="form-label">Gender</label>
-                <input type="text" class="form-control" id="edit-gender" required>
+                <input type="text" class="form-control" id="edit-gender" name="gender">
             </div>
             <div class="mb-3">
                 <label for="edit-type-name" class="form-label">Type Name</label>
-                <input type="text" class="form-control" id="edit-type-name" required>
+                <input type="text" class="form-control" id="edit-type-name" name="type_name">
             </div>
             <div class="mb-3">
                 <label for="edit-price" class="form-label">Price</label>
-                <input type="text" class="form-control" id="edit-price" required>
+                <input type="text" class="form-control" id="edit-price" name="price">
             </div>
             <div class="mb-3">
                 <label for="edit-image" class="form-label">Image</label>
-                <input type="text" class="form-control" id="edit-image" required>
+                <input type="text" class="form-control" id="edit-image" name="image">
             </div>
             <button type="submit" class="btn btn-success">Save Changes</button>
             <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
-
-    </form>
+        </form>
+    </div>
     <script src="../../../assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
