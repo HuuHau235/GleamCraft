@@ -1,3 +1,11 @@
+<?php
+require_once('../../controllers/PaymentController.php');
+$obj = new PaymentController();
+$products = $obj -> index();
+$total_price = $obj -> getTotal();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,15 +23,14 @@
             <h3>Order</h3>
             <div class="underline2"></div>
             
-            <?php if (empty($cartItems)): ?>
+            <?php if (empty($products)): ?>
                 <p>Your cart is empty. Please add items to your cart.</p>
             <?php else: ?>
-                <?php foreach ($cartItems as $item): ?>
+                <?php foreach ($products as $item): ?>
                     <div class="order-item">
                         <img src="<?php echo htmlspecialchars($item['product_image']); ?>" alt="Product Image">
                         <div class="order-details">
                             <p class="pname"><?php echo htmlspecialchars($item['product_name']); ?></p>
-                            <p class="color">Color: <span><?php echo htmlspecialchars($item['color']); ?></span></p>
                             <p class="price">Price: <span><?php echo number_format($item['product_price'], 2); ?> VND</span></p>
                             <p class="qty">Quantity: <span><?php echo htmlspecialchars($item['quantity']); ?></span></p>
                         </div>

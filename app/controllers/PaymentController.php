@@ -1,25 +1,26 @@
 <?php
-require_once '../models/PaymentModel.php';
+require_once __DIR__ . '/../models/PaymentModel.php';
+
 
 class PaymentController {
     public function index() {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: ../views/user/login.php');
-            exit;
-        }
+
 
         $paymentModel = new PaymentModel();
         $products = $paymentModel->getCartItems($_SESSION['user_id']);
         $total = $paymentModel->getTotal($_SESSION['user_id']);
-
-        if (empty($products)) {
-            $_SESSION['error'] = "Giỏ hàng của bạn đang trống.";
-            header('Location: ../views/cart/shoping_cart.php');
-            exit;
-        }
-
-        require_once '../views/payment/index.php';
+        return $products;
     }
+
+    public function getTotal() {
+
+        $paymentModel = new PaymentModel();
+        $products = $paymentModel->getCartItems($_SESSION['user_id']);
+        $total = $paymentModel->getTotal($_SESSION['user_id']);
+        return $total;
+    }
+
+    
 
     public function processPayment() {
         if (!isset($_SESSION['user_id'])) {

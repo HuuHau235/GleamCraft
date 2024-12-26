@@ -15,7 +15,7 @@ require_once('../../controllers/AdminController.php');
     <link rel="stylesheet" href="../../../assets/css/admin.css">
 </head>
 
-<body>
+
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
@@ -75,14 +75,14 @@ require_once('../../controllers/AdminController.php');
                 </div>
 
                 <!-- Product Table -->
-                <div id="product" class="tab-content d-none">
+                <div id="product" class="tab-content">
                     <h3 class="mt-4">Product Management</h3>
                     <table class="table table-striped mt-3">
                         <thead class="table-light">
                             <tr>
                                 <th>Number</th>
-                                <th style="width:300px;">Product Name</th>
-                                <th style="width:200px;">Description</th>
+                                <th>Product Name</th>
+                                <th>Description</th>
                                 <th>Color</th>
                                 <th>Gender</th>
                                 <th>Type Name</th>
@@ -93,38 +93,38 @@ require_once('../../controllers/AdminController.php');
                         </thead>
                         <tbody>
                             <?php
+                            // Truy vấn sản phẩm từ cơ sở dữ liệu
+                            $sqlProduct = "SELECT * FROM products";
+                            $resultProduct = $conn->query($sqlProduct);
                             if ($resultProduct->num_rows > 0) {
                                 $number = 1;
                                 while ($row = $resultProduct->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>" . $number . "</td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>" . $row['name'] . "</td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>" . $row['description'] . "</td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>" . $row['color'] . "</td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>" . $row['gender'] . "</td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>" . $row['type_name'] . "</td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>" . $row['price'] . "</td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>
-                                        <img src='" . $row['image'] . "' alt='" . $row['name'] . "' style='width: 100px; height: auto; display: block; margin: 0 auto;'>
-                                         </td>";
-                                    echo "<td style='text-align: center; vertical-align: middle;'>
-                                    <button class='btn btn-primary btn-sm' onclick=\"openEditFormProduct(
-                                                    '{$row['product_id']}', '{$row['name']}', '{$row['description']}',
-                                                    '{$row['color']}', '{$row['gender']}', '{$row['type_name']}',
-                                                    '{$row['price']}', '{$row['image']}'
-                                                )\">Edit</button>
+                                    echo "<tr data-product_id='" . $row['product_id'] . "'>";
+                                    echo "<td>$number</td>";
+                                    echo "<td>{$row['name']}</td>";
+                                    echo "<td>{$row['description']}</td>";
+                                    echo "<td>{$row['color']}</td>";
+                                    echo "<td>{$row['gender']}</td>";
+                                    echo "<td>{$row['type_name']}</td>";
+                                    echo "<td>{$row['price']}</td>";
+                                    echo "<td><img src='{$row['image']}' alt='{$row['name']}' style='width: 100px;'></td>";
+                                    echo "<td>
+                                            <button class='btn btn-primary btn-sm' onclick=\"openEditFormProduct(
+                                                '{$row['product_id']}', '{$row['name']}', '{$row['description']}',
+                                                '{$row['color']}', '{$row['gender']}', '{$row['type_name']}',
+                                                '{$row['price']}', '{$row['image']}'
+                                            )\">Edit</button>
+                                        
+                                        <a href='?delete_product=true&product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=confirmDelete()>Del</a>
 
-                                            <button class='btn btn-sm btn-danger'>Del</button>
-                                        </td>";
-                                    echo "</tr>";   
+                                          </td>";
+                                    echo "</tr>";
                                     $number++;
                                 }
                             } else {
-                                echo "<tr><td colspan='8' style='text-align: center; vertical-align: middle;'>No products found</td></tr>";
+                                echo "<tr><td colspan='9'>No products found</td></tr>";
                             }
                             ?>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -150,13 +150,12 @@ require_once('../../controllers/AdminController.php');
                                     <tr>
                                         <td><?php echo $index + 1; ?></td>
                                         <td><?php echo htmlspecialchars($review['review_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($review['product_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($review['user_id']); ?></td>
+                                        <td><?php echo isset($review['product_id']) ? htmlspecialchars($review['product_id']) : 'N/A'; ?></td>
+                                        <td><?php echo isset($review['user_id']) ? htmlspecialchars($review['user_id']) : 'N/A'; ?></td>
                                         <td><?php echo htmlspecialchars($review['comment']); ?></td>
                                         <td><?php echo htmlspecialchars($review['created_at']); ?></td>
                                         <td>
-                                            <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>"
-                                                class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -166,6 +165,7 @@ require_once('../../controllers/AdminController.php');
                                 </tr>
                             <?php endif; ?>
                         </tbody>
+
                     </table>
                 </div>
 
@@ -239,47 +239,43 @@ require_once('../../controllers/AdminController.php');
             </form>
         </div>
     </div>
-    <!-- Create form edits for products  -->
+    <!-- Edit Product Form -->
     <div id="overlay" onclick="closeEditFormProduct()"></div>
-    <form id="edit-product-form" style="display:none;">
-        <input type="hidden" id="edit-product-id">
+        <form id="edit-product-form" style="display:none;">
+            <input type="hidden" id="edit-product-id">
 
-        <i class="fas fa-times close-icon" onclick="closeEditFormProduct()"></i>
-
-        <div class="mb-3">
-            <label for="edit-name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="edit-name" required>
-        </div>
-        <div class="mb-3">
-            <label for="edit-description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="edit-description" required>
-        </div>
-        <div class="mb-3">
-            <label for="edit-color" class="form-label">Color</label>
-            <input type="text" class="form-control" id="edit-color" required>
-        </div>
-        <div class="mb-3">
-            <label for="edit-gender" class="form-label">Gender</label>
-            <input type="text" class="form-control" id="edit-gender" required>
-        </div>
-        <div class="mb-3">
-            <label for="edit-type-name" class="form-label">Type Name</label>
-            <input type="text" class="form-control" id="edit-type-name" required>
-        </div>
-        <div class="mb-3">
-            <label for="edit-price" class="form-label">Price</label>
-            <input type="text" class="form-control" id="edit-price" required>
-        </div>
-        <div class="mb-3">
-            <label for="edit-image" class="form-label">Image</label>
-            <input type="text" class="form-control" id="edit-image" required>
-        </div>
-        <div>
+            <div class="mb-3">
+                <label for="edit-name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="edit-name" required>
+            </div>
+            <div class="mb-3">
+                <label for="edit-description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="edit-description" required>
+            </div>
+            <div class="mb-3">
+                <label for="edit-color" class="form-label">Color</label>
+                <input type="text" class="form-control" id="edit-color" required>
+            </div>
+            <div class="mb-3">
+                <label for="edit-gender" class="form-label">Gender</label>
+                <input type="text" class="form-control" id="edit-gender" required>
+            </div>
+            <div class="mb-3">
+                <label for="edit-type-name" class="form-label">Type Name</label>
+                <input type="text" class="form-control" id="edit-type-name" required>
+            </div>
+            <div class="mb-3">
+                <label for="edit-price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="edit-price" required>
+            </div>
+            <div class="mb-3">
+                <label for="edit-image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="edit-image" required>
+            </div>
             <button type="submit" class="btn btn-success">Save Changes</button>
             <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
-        </div>
-    </form>
 
+    </form>
     <script src="../../../assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
