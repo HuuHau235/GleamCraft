@@ -72,29 +72,27 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
 
+$adminReviews = new AdminReviews($conn);
+
+// Lấy tất cả các reviews
+$reviews = $adminReviews->getAllReviews();
+
 if (isset($_GET['deleteReview']) && isset($_GET['review_id'])) {
-    $review_id = $_GET['review_id'];
+    $review_id = (int) $_GET['review_id']; // Chuyển đổi sang số nguyên
 
-    if (!empty($review_id)) {
-        $admin = new AdminUsers($conn);
-
-        // Kiểm tra xem review có tồn tại không
-        if ($admin->reviewExists($review_id)) {
-            // Xóa review
-            if ($admin->deleteReviewById($review_id)) {
-                echo "<script>alert('Review deleted successfully');</script>";
-            } else {
-                echo "<script>alert('Delete failed due to system error.');</script>";
-            }
+    if ($adminReviews->reviewExists($review_id)) { // Đổi $reviewModel thành $adminReviews
+        $deleted = $adminReviews->deleteReviewById($review_id); // Đổi $reviewModel thành $adminReviews
+        if ($deleted) {
+            echo "<script>alert('Review deleted successfully');</script>";
         } else {
-            echo "<script>alert('Review does not exist.');</script>";
+            echo "<script>alert('Failed to delete review');</script>";
         }
     } else {
-        echo "<script>alert('Invalid review ID.');</script>";
+        echo "<script>alert('Review does not exist');</script>";
     }
 
-    // Điều hướng về trang admin
-    echo "<script>window.location.href = '../admin/index.php';</script>";
+    // Điều hướng lại trang
+    echo "<script>window.location.href = 'index.php';</script>";
     exit;
 }
 ?>

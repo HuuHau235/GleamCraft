@@ -1,9 +1,5 @@
  <!-- Quản lí review -->
- <?php
-$reviews = "SELECT * FROM reviews";
-$resultUser = $conn->query($reviews);
-$reviews = $resultUser->fetch_all(MYSQLI_ASSOC);
-?>
+
 <?php
 // Truy vấn dữ liệu từ bảng Payments
 $sql = "SELECT * FROM Payments";
@@ -65,33 +61,6 @@ class AdminUsers {
 
     public function __construct($conn) {
         $this->conn = $conn;
-    }
-
-    public function reviewExists($review_id) {
-        $sql = "SELECT 1 FROM reviews WHERE review_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        if (!$stmt) {
-            die("Error preparing the statement: " . $this->conn->error);
-        }
-        $stmt->bind_param("i", $review_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $exists = $result->num_rows > 0;
-        $stmt->close();
-        return $exists;
-    }
-
-    // Xóa dữ liệu trong bảng reviews dựa trên review_id
-    public function deleteReviewById($review_id) {
-        $sql = "DELETE FROM reviews WHERE review_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        if (!$stmt) {
-            die("Error preparing the statement: " . $this->conn->error);
-        }
-        $stmt->bind_param("i", $review_id);
-        $result = $stmt->execute();
-        $stmt->close();
-        return $result;
     }
 
     // Xóa dữ liệu trong bảng order_items
@@ -163,4 +132,65 @@ class AdminUsers {
 
 
 ?>
+<?php
+class AdminReviews {
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function getAllReviews() {
+        $sql = "SELECT r.review_id, r.product_id, r.user_id, r.comment, r.created_at, 
+               u.name AS reviewer_name, 
+               p.name AS product_name
+        FROM Reviews r
+        JOIN Users u ON r.user_id = u.user_id
+        JOIN Products p ON r.product_id = p.product_id
+        ORDER BY r.created_at DESC";
+
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $reviews = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $reviews[] = $row;
+            }
+        }
+    
+        return $reviews;
+    }
+    
+    public function reviewExists($review_id) {
+        $sql = "SELECT 1 FROM reviews WHERE review_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error preparing the statement: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $review_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $exists = $result->num_rows > 0;
+        $stmt->close();
+        return $exists;
+    }
+
+    public function deleteReviewById($review_id) {
+        $sql = "DELETE FROM Reviews WHERE review_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error preparing the statement: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $review_id);
+        $result = $stmt->execute();
+        if (!$result) {
+            die("Error executing query: " . $stmt->error);
+        }
+        $stmt->close();
+        return $result;
+    }
+}
 
