@@ -58,7 +58,23 @@ if (preg_match('/^\/product\/filter$/', $processedUri)) {
     exit;
 }
 
+// Route Payment
+if (preg_match('/^\/payment$/', $processedUri)) {
+    require_once '../controllers/PaymentController.php';
 
+    // Khởi tạo Controller
+    $controller = new PaymentController();
+
+    // Kiểm tra phương thức HTTP
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        // Hiển thị trang thanh toán
+        $controller->index();
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Xử lý thanh toán
+        $controller->processPayment();
+    }
+    exit;
+}
 
 
 // Nếu không tìm thấy trang
