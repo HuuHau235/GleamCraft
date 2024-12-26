@@ -177,9 +177,9 @@ require_once('../../controllers/AdminController.php');
                                 <th>Number</th>
                                 <th>Payment ID</th>
                                 <th>Order ID</th>
-                                <th>Payment Method</th>
                                 <th>Total Amount</th>
                                 <th>Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -189,7 +189,6 @@ require_once('../../controllers/AdminController.php');
                                         <td><?php echo $index + 1; ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_id']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['order_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($payment['payment_method']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['total_amount']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_date']); ?></td>
                                         <td>

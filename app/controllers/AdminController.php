@@ -43,7 +43,7 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
     }
 }
 ?>
-
+<!-- Delete review -->
 <?php
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
@@ -113,6 +113,7 @@ if (isset($_GET['delete_product']) && isset($_GET['product_id'])) {
     }
 }
 ?>
+<!-- Delete payment -->
 <?php
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
