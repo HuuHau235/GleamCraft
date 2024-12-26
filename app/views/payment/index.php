@@ -56,10 +56,6 @@
                         <input type="radio" name="payment" value="cod" required>
                         Cash on Delivery
                     </label>
-                    <label>
-                        <input type="radio" name="payment" value="credit-card" required>
-                        Credit Card
-                    </label>
                 </div>
 
                 <div class="total-payment">Total payment: <span class="total" ><?php echo number_format($total_price, 2); ?> VND</span></div>
@@ -68,7 +64,7 @@
         </div>
     </div>
     <!-- <div class="success-page">
-        <div class="content">
+        <div class="content">+
         <div class="icon">
             <img src="../../../assets/images/image_prev_ui.png" alt="Success Icon">
         </div>
