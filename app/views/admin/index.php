@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('../../controllers/AdminController.php');
 ?>
 <!DOCTYPE html>
@@ -9,6 +9,9 @@ require_once('../../controllers/AdminController.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../../assets/css/admin.css">
 </head>
 
@@ -105,7 +108,12 @@ require_once('../../controllers/AdminController.php');
                                         <img src='" . $row['image'] . "' alt='" . $row['name'] . "' style='width: 100px; height: auto; display: block; margin: 0 auto;'>
                                          </td>";
                                     echo "<td style='text-align: center; vertical-align: middle;'>
-                                            <button class='btn btn-sm btn-primary'>Edit</button>
+                                    <button class='btn btn-primary btn-sm' onclick=\"openEditFormProduct(
+                                                    '{$row['product_id']}', '{$row['name']}', '{$row['description']}',
+                                                    '{$row['color']}', '{$row['gender']}', '{$row['type_name']}',
+                                                    '{$row['price']}', '{$row['image']}'
+                                                )\">Edit</button>
+
                                             <button class='btn btn-sm btn-danger'>Del</button>
                                         </td>";
                                     echo "</tr>";
@@ -147,7 +155,8 @@ require_once('../../controllers/AdminController.php');
                                         <td><?php echo htmlspecialchars($review['comment']); ?></td>
                                         <td><?php echo htmlspecialchars($review['created_at']); ?></td>
                                         <td>
-                                        <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>"
+                                                class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -162,7 +171,7 @@ require_once('../../controllers/AdminController.php');
 
                 <!-- Payment Table -->
                 <div id="payment" class="tab-content d-none">
-                <h3 class="mt-4">Payment Management</h3>
+                    <h3 class="mt-4">Payment Management</h3>
                     <table class="table table-striped mt-3">
                         <thead class="table-light">
                             <tr>
@@ -170,8 +179,6 @@ require_once('../../controllers/AdminController.php');
                                 <th>Payment ID</th>
                                 <th>Order ID</th>
                                 <th>Payment Method</th>
-                                <th>Status</th>
-                                <th>Amount</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
@@ -183,7 +190,6 @@ require_once('../../controllers/AdminController.php');
                                         <td><?php echo htmlspecialchars($payment['payment_id']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['order_id']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_method']); ?></td>
-                                        <td><?php echo htmlspecialchars($payment['payment_status']); ?></td>
                                         <td><?php echo htmlspecialchars($payment['payment_date']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -204,6 +210,8 @@ require_once('../../controllers/AdminController.php');
             <h4>Edit User</h4>
             <form id="edit-user-form" action="'../../controllers/AdminController.php'">
                 <input type="hidden" name="user_id" id="edit-user-id">
+                <i class="fas fa-times close-icon" onclick="closeEditFormUser()"></i>
+
                 <div class="mb-3">
                     <label for="edit-name" class="form-label">Name</label>
                     <input type="text" class="form-control" name="name" id="edit-name" required>
@@ -231,9 +239,50 @@ require_once('../../controllers/AdminController.php');
             </form>
         </div>
     </div>
-<script src="../../../assets/js/admin.js"></script>
+    <!-- Create form edits for products  -->
+    <div id="overlay" onclick="closeEditFormProduct()"></div>
+    <form id="edit-product-form" style="display:none;">
+        <input type="hidden" id="edit-product-id">
+
+        <i class="fas fa-times close-icon" onclick="closeEditFormProduct()"></i>
+
+        <div class="mb-3">
+            <label for="edit-name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="edit-name" required>
+        </div>
+        <div class="mb-3">
+            <label for="edit-description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="edit-description" required>
+        </div>
+        <div class="mb-3">
+            <label for="edit-color" class="form-label">Color</label>
+            <input type="text" class="form-control" id="edit-color" required>
+        </div>
+        <div class="mb-3">
+            <label for="edit-gender" class="form-label">Gender</label>
+            <input type="text" class="form-control" id="edit-gender" required>
+        </div>
+        <div class="mb-3">
+            <label for="edit-type-name" class="form-label">Type Name</label>
+            <input type="text" class="form-control" id="edit-type-name" required>
+        </div>
+        <div class="mb-3">
+            <label for="edit-price" class="form-label">Price</label>
+            <input type="text" class="form-control" id="edit-price" required>
+        </div>
+        <div class="mb-3">
+            <label for="edit-image" class="form-label">Image</label>
+            <input type="text" class="form-control" id="edit-image" required>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">Save Changes</button>
+            <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
+        </div>
+    </form>
+
+    <script src="../../../assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
 </body>
 
 </html>
