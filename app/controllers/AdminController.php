@@ -68,4 +68,33 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
     }
 }
 ?>
+<?php
+require_once('../../../config/db.php');
+require_once('../../models/Admin.php');
 
+if (isset($_GET['deleteReview']) && isset($_GET['review_id'])) {
+    $review_id = $_GET['review_id'];
+
+    if (!empty($review_id)) {
+        $admin = new AdminUsers($conn);
+
+        // Kiểm tra xem review có tồn tại không
+        if ($admin->reviewExists($review_id)) {
+            // Xóa review
+            if ($admin->deleteReviewById($review_id)) {
+                echo "<script>alert('Review deleted successfully');</script>";
+            } else {
+                echo "<script>alert('Delete failed due to system error.');</script>";
+            }
+        } else {
+            echo "<script>alert('Review does not exist.');</script>";
+        }
+    } else {
+        echo "<script>alert('Invalid review ID.');</script>";
+    }
+
+    // Điều hướng về trang admin
+    echo "<script>window.location.href = '../admin/index.php';</script>";
+    exit;
+}
+?>
