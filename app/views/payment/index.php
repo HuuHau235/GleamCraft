@@ -3,7 +3,6 @@ require_once('../../controllers/PaymentController.php');
 $obj = new PaymentController();
 $products = $obj -> index();
 $total_price = $obj -> getTotal();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +12,37 @@ $total_price = $obj -> getTotal();
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/payment.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+
     <title>Payment</title>
 </head>
 <body>
+<header class="bg-light border-bottom d-flex align-items-center">
+    <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+        <a href="/" class="navbar-brand d-flex align-items-center">
+            <img src="../../../assets/images/brands/logo.jpg" alt="Logo">
+        </a>
+
+        <nav>
+            <ul class="nav">
+                <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
+                <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
+                <li class="nav-item"><a href="http://localhost/GleamCraft/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-icon position-relative">
+            <i class="bi bi-person"></i>
+            <div class="tooltip-box">
+                <a href="../app/views/user/login.php" class="d-block text-dark">Login</a>
+                <a href="../app/views/user/register.php" class="d-block text-dark">Register</a>
+            </div>
+        </div>
+    </div>
+</header>
+
     <div class="underline1"></div>
     <div class="g-grid">
         <div class="g-grid-col1">
@@ -69,19 +96,12 @@ $total_price = $obj -> getTotal();
                 </div>
 
                 <div class="total-payment">Total payment: <span class="total"><?php echo number_format($total_price, 2); ?> VND</span></div>
-                <button type="submit" class="order-button">Order</button>
+                <button type="submit" class="order-button" onclick="window.location.href='http://localhost/Gleamcraft_MVC/public/'" >Order</button>
             </form>
         </div>
     </div>
-    <!-- <div class="success-page">
-        <div class="content">
-        <div class="icon">
-            <img src="../../../assets/images/image_prev_ui.png" alt="Success Icon">
-        </div>
-        <h1>PAYMENT SUCCESSFUL</h1>
-        <p>You have placed your order successfully!</p>
-        <button class="home-btn" onclick="window.location.href='#'">GO TO HOMEPAGE</button>
-        </div>
-    </div> -->
+    <?php
+    require_once "../shared/footer.php";
+    ?>
 </body>
 </html>
