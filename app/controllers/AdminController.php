@@ -1,28 +1,3 @@
-<!-- Xử lý cập nhật lại user -->
-<?php
-require_once('../../../config/db.php');
-require_once('../../models/Admin.php');
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $user_id = $_POST['user_id'] ?? null;
-    $name = $_POST['name'] ?? null;
-    $email = $_POST['email'] ?? null;
-    $password = $_POST['password'] ?? null;
-    $phone = $_POST['phone'] ?? null;
-    $role = $_POST['role'] ?? null;
-
-    if (!$user_id || !$name || !$email || !$password || !$phone || !$role) {
-        echo "All fields are required.";
-        exit;
-    }
-
-    // Tạo đối tượng AdminUser và gọi phương thức EditUser để cập nhật
-    $adminUser = new AdminUser($conn);
-    $message = $adminUser->EditUser($user_id, $name, $email, $password, $phone, $role);
-    echo $message;
-    exit;
-}
-?>
 <?php
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
@@ -68,6 +43,7 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
     }
 }
 ?>
+
 <?php
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
@@ -97,6 +73,201 @@ if (isset($_GET['deleteReview']) && isset($_GET['review_id'])) {
 ?>
 
 <!-- Xóa product -->
+<?php
+require_once('../../../config/db.php');
+require_once('../../models/Admin.php');
+
+if (isset($_GET['delete_product']) && isset($_GET['product_id'])) {
+    $product_id = $_GET['product_id'];
+    if (!empty($product_id)) {
+        $sqlCheckReview = "SELECT * FROM products WHERE product_id = ?";
+        $stmtCheck = $conn->prepare($sqlCheckReview);
+        if (!$stmtCheck) {
+            die("Error preparing the statement: " . $conn->error);
+        }
+        $stmtCheck->bind_param("i", $product_id);
+        $stmtCheck->execute();
+        $result = $stmtCheck->get_result();
+
+        if ($result->num_rows > 0) {
+            $sqlDeleteReview = "DELETE FROM products WHERE product_id = ?";
+            $stmtDelete = $conn->prepare($sqlDeleteReview);
+            if (!$stmtDelete) {
+                die("Error preparing the statement: " . $conn->error);
+            }
+            $stmtDelete->bind_param("i", $product_id);
+            if ($stmtDelete->execute()) {
+                $stmtDelete->close();
+                echo "<script>alert('Đã xóa đánh giá thành công');</script>";
+            } else {
+                echo "<script>alert('Xóa không thành công: " . $stmtDelete->error . "');</script>";
+            }
+        } else {
+            echo "<script>alert('Đánh giá không tồn tại.');</script>";
+        }
+
+        echo "<script>window.location.href = '../admin/index.php';</script>";
+        exit;
+    } else {
+        echo "<script>alert('ID đánh giá không hợp lệ.');</script>";
+    }
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// db.php - Tệp cấu hình kết nối cơ sở dữ liệu
+require_once('../../../config/db.php');
+
+// Kiểm tra kết nối cơ sở dữ liệu
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Xử lý cập nhật sản phẩm khi nhận dữ liệu từ form
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Nhận dữ liệu từ form, có thể là null nếu không có giá trị
+    $product_id = $_POST['product_id'] ?? null;
+    $name = $_POST['name'] ?? null;
+    $description = $_POST['description'] ?? null;
+    $color = $_POST['color'] ?? null;
+    $gender = $_POST['gender'] ?? null;
+    $type_name = $_POST['type_name'] ?? null;
+    $price = $_POST['price'] ?? null;
+    $image = $_POST['image'] ?? null;
+
+    // Cập nhật các trường đã điền
+    $sqlUpdate = "UPDATE products SET 
+        name = ?, 
+        description = ?, 
+        color = ?, 
+        gender = ?, 
+        type_name = ?, 
+        price = ?, 
+        image = ? 
+        WHERE product_id = ?";
+
+    if ($stmt = $conn->prepare($sqlUpdate)) {
+        $stmt->bind_param("sssssssi", $name, $description, $color, $gender, $type_name, $price, $image, $product_id);
+
+        if ($stmt->execute()) {
+            header("Location: " . $_SERVER['PHP_SELF']); // Redirect back to the current page
+            exit;
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    $conn->close();
+    exit;
+}
+?>
+<!-- Xóa product -->
+<?php
+require_once('../../../config/db.php');
+require_once('../../models/Admin.php');
+
+if (isset($_GET['delete_product']) && isset($_GET['product_id'])) {
+    $product_id = $_GET['product_id'];
+    if (!empty($product_id)) {
+        $sqlCheckReview = "SELECT * FROM products WHERE product_id = ?";
+        $stmtCheck = $conn->prepare($sqlCheckReview);
+        if (!$stmtCheck) {
+            die("Error preparing the statement: " . $conn->error);
+        }
+        $stmtCheck->bind_param("i", $product_id);
+        $stmtCheck->execute();
+        $result = $stmtCheck->get_result();
+
+        if ($result->num_rows > 0) {
+            $sqlDeleteReview = "DELETE FROM products WHERE product_id = ?";
+            $stmtDelete = $conn->prepare($sqlDeleteReview);
+            if (!$stmtDelete) {
+                die("Error preparing the statement: " . $conn->error);
+            }
+            $stmtDelete->bind_param("i", $product_id);
+            if ($stmtDelete->execute()) {
+                $stmtDelete->close();
+                echo "<script>alert('Đã xóa đánh giá thành công');</script>";
+            } else {
+                echo "<script>alert('Xóa không thành công: " . $stmtDelete->error . "');</script>";
+            }
+        } else {
+            echo "<script>alert('Đánh giá không tồn tại.');</script>";
+        }
+
+        echo "<script>window.location.href = '../admin/index.php';</script>";
+        exit;
+    } else {
+        echo "<script>alert('ID đánh giá không hợp lệ.');</script>";
+    }
+}
+?>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $action = $_POST['action'] ?? null;
+
+    // Xử lý cập nhật user
+    if ($action === "update_user") {
+        $user_id = $_POST['user_id'] ?? null;
+        $name = $_POST['name'] ?? null;
+        $email = $_POST['email'] ?? null;
+        $password = $_POST['password'] ?? null;
+        $phone = $_POST['phone'] ?? null;
+        $role = $_POST['role'] ?? null;
+
+        if (!$user_id || !$name || !$email || !$password || !$phone || !$role) {
+            echo "All fields are required for user update.";
+        } else {
+            // Logic cập nhật user
+            echo "User updated successfully!";
+        }
+    }
+
+    // Xử lý cập nhật sản phẩm
+    elseif ($action === "update_product") {
+        $product_id = $_POST['product_id'] ?? null;
+        $name = $_POST['name'] ?? null;
+        $description = $_POST['description'] ?? null;
+        $color = $_POST['color'] ?? null;
+        $gender = $_POST['gender'] ?? null;
+        $type_name = $_POST['type_name'] ?? null;
+        $price = $_POST['price'] ?? null;
+        $image = $_POST['image'] ?? null;
+
+        if (!$product_id || !$name || !$description || !$color || !$gender || !$type_name || !$price || !$image) {
+            echo "All fields are required for product update.";
+        } else {
+            // Logic cập nhật sản phẩm
+            echo "Product updated successfully!";
+        }
+    }
+
+    // Nếu không khớp action
+    else {
+        echo "Invalid action.";
+    }
+}
+?>
+
+
+<!-- Thực hiện xóa product -->
 <?php
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');

@@ -78,7 +78,7 @@ CREATE TABLE Reviews (
     user_id INT,
     comment TEXT,
     created_at DATETIME,
-    FOREIGN KEY (product_id) REFERENCES Products(product_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 

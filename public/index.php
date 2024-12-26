@@ -16,7 +16,7 @@ if ($db->connect_error) {
 
 // Lấy URL từ request
 $requestUri = $_SERVER['REQUEST_URI'];
-$basePath = '/Gleamcraft_MVC/public'; // Thư mục chứa ứng dụng của bạn
+$basePath = '/public'; // Thư mục chứa ứng dụng của bạn
 
 // Xử lý URI
 $processedUri = str_replace($basePath, '', $requestUri);

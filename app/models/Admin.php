@@ -1,20 +1,12 @@
- <!-- Quản lí review -->
-
 <?php
 // Truy vấn dữ liệu từ bảng Payments
 $sql = "SELECT * FROM Payments";
 $resultPayments = $conn->query($sql);
 $payments = $resultPayments->fetch_all(MYSQLI_ASSOC);
 ?>
-
 <?php
 $sqlUser = "SELECT * FROM users";
 $resultUser = $conn->query($sqlUser);
-?>
-<!-- Quản lí Products -->
-<?php
-$sqlProducts ="SELECT * FROM Products";
-$resultProduct = $conn ->query(($sqlProducts));
 ?>
 <?php
 class AdminUser {
@@ -54,7 +46,7 @@ class AdminUser {
     }
 }
 ?>
-<!-- Xóa user -->
+<!---------------- Xóa user------------ -->
 <?php
 class AdminUsers {
     private $conn;
@@ -138,9 +130,8 @@ class AdminUsers {
         return $message;
     }
 }
-
-
 ?>
+<!-- -----------------Xử lí xóa review------------------>
 <?php
 class AdminReviews {
     private $conn;
@@ -205,3 +196,41 @@ class AdminReviews {
 
 ?>
 
+<!-- Xóa user -->
+<?php
+// models/UserModel.php
+require_once('../../../config/db.php'); // Kết nối cơ sở dữ liệu
+
+class UserModel {
+
+    // Kiểm tra xem người dùng có phải là admin không
+    public function isAdmin($user_id) {
+        global $conn;
+        $sqlCheckAdmin = "SELECT role FROM users WHERE user_id = ?";
+        $stmtCheck = $conn->prepare($sqlCheckAdmin);
+        if (!$stmtCheck) {
+            die("Error preparing the statement: " . $conn->error);
+        }
+        $stmtCheck->bind_param("i", $user_id);
+        $stmtCheck->execute();
+        $result = $stmtCheck->get_result();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            return $user['role'] === 'admin'; // Trả về true nếu là admin
+        }
+        return false; // Người dùng không tồn tại
+    }
+
+    // Xóa người dùng
+    public function deleteUser($user_id) {
+        global $conn;
+        $sqlDeleteUser = "DELETE FROM users WHERE user_id = ?";
+        $stmt = $conn->prepare($sqlDeleteUser);
+        if (!$stmt) {
+            die("Error preparing the statement: " . $conn->error);
+        }
+        $stmt->bind_param("i", $user_id);
+        return $stmt->execute(); // Trả về true nếu xóa thành công
+    }
+}
+?>
