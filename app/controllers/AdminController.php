@@ -71,7 +71,6 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
 <?php
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
-
 $adminReviews = new AdminReviews($conn);
 
 // Lấy tất cả các reviews
@@ -94,5 +93,47 @@ if (isset($_GET['deleteReview']) && isset($_GET['review_id'])) {
     // Điều hướng lại trang
     echo "<script>window.location.href = 'index.php';</script>";
     exit;
+}
+?>
+
+<!-- Xóa product -->
+<?php
+require_once('../../../config/db.php');
+require_once('../../models/Admin.php');
+
+if (isset($_GET['delete_product']) && isset($_GET['product_id'])) {
+    $product_id = $_GET['product_id'];
+    if (!empty($product_id)) {
+        $sqlCheckReview = "SELECT * FROM products WHERE product_id = ?";
+        $stmtCheck = $conn->prepare($sqlCheckReview);
+        if (!$stmtCheck) {
+            die("Error preparing the statement: " . $conn->error);
+        }
+        $stmtCheck->bind_param("i", $product_id);
+        $stmtCheck->execute();
+        $result = $stmtCheck->get_result();
+
+        if ($result->num_rows > 0) {
+            $sqlDeleteReview = "DELETE FROM products WHERE product_id = ?";
+            $stmtDelete = $conn->prepare($sqlDeleteReview);
+            if (!$stmtDelete) {
+                die("Error preparing the statement: " . $conn->error);
+            }
+            $stmtDelete->bind_param("i", $product_id);
+            if ($stmtDelete->execute()) {
+                $stmtDelete->close();
+                echo "<script>alert('Đã xóa đánh giá thành công');</script>";
+            } else {
+                echo "<script>alert('Xóa không thành công: " . $stmtDelete->error . "');</script>";
+            }
+        } else {
+            echo "<script>alert('Đánh giá không tồn tại.');</script>";
+        }
+
+        echo "<script>window.location.href = '../admin/index.php';</script>";
+        exit;
+    } else {
+        echo "<script>alert('ID đánh giá không hợp lệ.');</script>";
+    }
 }
 ?>
