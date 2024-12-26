@@ -69,3 +69,30 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
 }
 ?>
 
+<!-- Xử lý cập nhật lại product -->
+<?php
+require_once('../../../config/db.php');
+require_once('../../models/Admin.php');
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $product_id = $_POST['product_id'] ?? null;
+    $name = $_POST['name'] ?? null;
+    $description = $_POST['description'] ?? null;
+    $color = $_POST['color'] ?? null;
+    $gender = $_POST['gender'] ?? null;
+    $type_name = $_POST['type_name'] ?? null;
+    $price = $_POST['price'] ?? null;
+    $image = $_POST['image'] ?? null;
+
+    if (!$product_id || !$name || !$description || !$color || !$gender || !$type_name || !$price || !$image ) {
+        echo "All fields are required.";
+        exit;
+    }
+
+    // Tạo đối tượng AdminUser và gọi phương thức EditUser để cập nhật
+    $adminUser = new AdminUser($conn);
+    $message = $adminUser->EditProduct(!$product_id || !$name || !$description || !$color || !$gender || !$type_name || !$price || !$image );
+    echo $message;
+    exit;
+}
+?>
