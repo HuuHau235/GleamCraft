@@ -20,7 +20,15 @@ class AuthController
             if ($loginResult['success']) {
                 $user = $loginResult['user'];
                 $this->auth->setUserSession($user);
-                header("Location: ../../public/");
+
+                // Kiểm tra vai trò người dùng
+                if ($user['role'] === 'admin') {
+                    // Chuyển hướng đến trang quản trị admin
+                    header("Location: ../views/admin/index.php");
+                } else {
+                    // Chuyển hướng đến trang chính cho user
+                    header("Location: ../../public/");
+                }
                 exit();
             } else {
                 $errorMessage = '';
@@ -53,6 +61,7 @@ if (isset($_POST['login'])) {
     $controller->processLogin($email, $password);
 }
 ?>
+
 <!-- XỬ LÍ ĐĂNG KÍ -->
 <?php
 session_start();
