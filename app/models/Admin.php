@@ -196,6 +196,65 @@ class AdminReviews {
 
 ?>
 
+<?php
+class AdminPayments {
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function getAllPayments() {
+        $sql = "SELECT p.payment_id, p.order_id, p.payment_method, p.payment_date, p.total_amount
+                FROM Payments p
+                JOIN Orders o ON p.order_id = o.order_id
+                ORDER BY p.payment_date DESC";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $payments = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $payments[] = $row;
+            }
+        }
+
+        return $payments;
+    }
+
+    public function paymentExists($payment_id) {
+        $sql = "SELECT 1 FROM Payments WHERE payment_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error preparing the statement: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $payment_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $exists = $result->num_rows > 0;
+        $stmt->close();
+        return $exists;
+    }
+
+    public function deletePaymentById($payment_id) {
+        $sql = "DELETE FROM Payments WHERE payment_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error preparing the statement: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $payment_id);
+        $result = $stmt->execute();
+        if (!$result) {
+            die("Error executing query: " . $stmt->error);
+        }
+        $stmt->close();
+        return $result;
+    }
+}
+?>
+
 <!-- Xóa user -->
 <?php
 // models/UserModel.php

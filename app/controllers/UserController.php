@@ -27,7 +27,7 @@ class AuthController
                     header("Location: ../views/admin/index.php");
                 } else {
                     // Chuyển hướng đến trang chính cho user
-                    header("Location: ../../public/index.php");
+                    header("Location: ../../public/");
                 }
                 exit();
             } else {

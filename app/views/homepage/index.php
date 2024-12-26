@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/images/brands/logo.jpg" type="image/x-icon">
-    <title>Document</title>
+    <title>GleamCraft</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/index.css">
@@ -63,6 +63,7 @@
                 <img src="../assets/images/brands/body_img5.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
             <div class="col-md-6">
+                <h2 class="h2 highlight-text">Benefits of wearing jewelry</h2>
                 <p>Build your confidence and enhance your beauty</p>
                 <p>Bring health and luck</p>
                 <p>Symbol of love and connection</p>
@@ -75,7 +76,7 @@
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h2 class="h2">Adorn yourself with timeless elegance</h2>
+                <h2 class="h2 highlight-text">Adorn yourself with timeless elegance</h2>
                 <p>               
                     Celebrate your style with exquisitely crafted jewelry necklaces that reflect your beauty and personality. 
                     Each design is a blend of artistry and sophistication, giving you a lasting impression.
@@ -93,7 +94,7 @@
                 <img src="../assets/images/brands/body_img7.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
             <div class="col-md-6">
-                <h2 class="h2">Shine bright in just three simple steps</h2>
+                <h2 class="h2 highlight-text">Shine bright in just three simple steps</h2>
                 <h4>Choose your style</h4>
                 <p>            
                     Explore our diverse collection of earrings to find the style that suits your style. Choose a design that reflects your personality and elegance.
