@@ -150,13 +150,12 @@ require_once('../../controllers/AdminController.php');
                                     <tr>
                                         <td><?php echo $index + 1; ?></td>
                                         <td><?php echo htmlspecialchars($review['review_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($review['product_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($review['user_id']); ?></td>
+                                        <td><?php echo isset($review['product_id']) ? htmlspecialchars($review['product_id']) : 'N/A'; ?></td>
+                                        <td><?php echo isset($review['user_id']) ? htmlspecialchars($review['user_id']) : 'N/A'; ?></td>
                                         <td><?php echo htmlspecialchars($review['comment']); ?></td>
                                         <td><?php echo htmlspecialchars($review['created_at']); ?></td>
                                         <td>
-                                            <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>"
-                                                class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -166,6 +165,7 @@ require_once('../../controllers/AdminController.php');
                                 </tr>
                             <?php endif; ?>
                         </tbody>
+
                     </table>
                 </div>
 
