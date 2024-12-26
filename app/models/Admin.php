@@ -67,12 +67,31 @@ class AdminUsers {
         $this->conn = $conn;
     }
 
-    // Xóa dữ liệu trong bảng reviews
-    public function deleteReviews($user_id) {
-        $sql = "DELETE FROM reviews WHERE user_id = ?";
+    public function reviewExists($review_id) {
+        $sql = "SELECT 1 FROM reviews WHERE review_id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
+        if (!$stmt) {
+            die("Error preparing the statement: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $review_id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $exists = $result->num_rows > 0;
+        $stmt->close();
+        return $exists;
+    }
+
+    // Xóa dữ liệu trong bảng reviews dựa trên review_id
+    public function deleteReviewById($review_id) {
+        $sql = "DELETE FROM reviews WHERE review_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error preparing the statement: " . $this->conn->error);
+        }
+        $stmt->bind_param("i", $review_id);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
     }
 
     // Xóa dữ liệu trong bảng order_items
