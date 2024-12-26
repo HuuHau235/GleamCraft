@@ -9,14 +9,6 @@ function showTab(tabId) {
     document.querySelector(`.sidebar button[onclick="showTab('${tabId}')"]`).classList.add('active');
 }
 
-//  Xử lí form User
-// function OpenEditUser() {
-//     document.getElementById('edit-form-user').style.display = 'block';
-// }
-// function closeEditFormUser() {
-//     document.getElementById('overlay').style.display = 'none';
-//     document.getElementById('edit-form-user').style.display = 'none';
-// }
 function openEditForm(user_id, name, email, password, phone, role) {
     document.getElementById('edit-user-id').value = user_id;
     document.getElementById('edit-name').value = name;
@@ -71,4 +63,24 @@ document.getElementById('edit-user-form').addEventListener('submit', function(ev
 // Hàm để lặp dấu • cho mật khẩu
 function str_repeat(character, length) {
     return new Array(length + 1).join(character);
+}
+
+// Xử lí form product
+
+function openEditFormProduct(product_id, name, description, color, gender, type_name, price, image) {
+    console.log('Edit button clicked');  
+    document.getElementById('edit-product-id').value = product_id;
+    document.getElementById('edit-name').value = name;
+    document.getElementById('edit-description').value = description;
+    document.getElementById('edit-color').value = color;
+    document.getElementById('edit-gender').value = gender;
+    document.getElementById('edit-type-name').value = type_name;
+    document.getElementById('edit-price').value = price;
+    document.getElementById('edit-image').value = image;
+    document.getElementById('edit-product-form').style.display = 'block';
+}
+
+function closeEditFormProduct() {
+    document.getElementById('edit-product-form').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';  
 }
