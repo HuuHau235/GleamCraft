@@ -269,4 +269,3 @@ VALUES
 ('Men Small Silver Necklace with Square and Round Fashion Hip Hop Chain LILI_345554', 'Men Small Silver Necklace with Square and Round Fashion Hip Hop Chain LILI_345554', 'blue', 1, 'necklace', 1391000.00, 'https://lili.vn/wp-content/uploads/2021/12/Day-chuyen-bac-nam-tong-hop-chuoi-vuong-tron-thoi-trang-Hip-Hop-LILI_345554_14-400x400.jpg'),
 ('Men Silver Pendant in Shoe Shape Augustine LILI_076892', 'Men Silver Pendant in Shoe Shape Augustine LILI_076892', 'red', 1, 'pendant', 2138000.00, 'https://lili.vn/wp-content/uploads/2023/09/Mat-day-chuyen-bac-nam-hinh-chiec-giay-Augustine-LILI_076892_1-400x400.jpg'),
 ('Men Silver Pendant with CZ Stones in Cross Shape Talon LILI_080417', 'Men Silver Pendant with CZ Stones in Cross Shape Talon LILI_080417', 'white', 1, 'pendant', 1821000.00, 'https://lili.vn/wp-content/uploads/2023/10/Mat-day-chuyen-bac-nam-dinh-da-CZ-hinh-thanh-gia-Talon-LILI_080417_2-400x400.jpg');
-
