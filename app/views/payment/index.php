@@ -100,6 +100,7 @@ $total_price = $obj -> getTotal();
             </form>
         </div>
     </div>
+
     <?php
     require_once "../shared/footer.php";
     ?>

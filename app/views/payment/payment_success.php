@@ -15,7 +15,7 @@
         </div>
         <h1>PAYMENT SUCCESSFUL</h1>
         <p>You have placed your order successfully!</p>
-        <button class="home-btn" onclick="window.location.href='http://localhost/Gleamcraft_MVC/public/'">GO TO HOMEPAGE</button>
+        <button class="home-btn" onclick="window.location.href='http://localhost:8080/Gleamcraft_MVC/public/'">GO TO HOMEPAGE</button>
         </div>
     </div>
 </body>

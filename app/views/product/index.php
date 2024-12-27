@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="icon" href="../assets/images/brands/logo.jpg" type="image/x-icon">
+    <link rel="icon" href="../../assets/images/brands/logo.jpg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/header.css">
     <!-- <base href="http://localhost/GleamCraft/"> -->
     <!-- <link rel="stylesheet" href="/GleamCraft/assets/css/product.css"> -->
-    <title>Products</title>
+    <title>GleamCraft</title>
     <style>
     body {
         font-family: 'Source Sans Pro', sans-serif;
@@ -220,7 +220,7 @@
             <ul>
                 <?php foreach ($products as $product): ?>
                     <li>
-                        <a href="http://localhost/Gleamcraft_MVC/public/product/detail/<?php echo htmlspecialchars($product['product_id']); ?>">
+                        <a href="http://localhost:8080/Gleamcraft_MVC/public/product/detail/<?php echo htmlspecialchars($product['product_id']); ?>">
                             <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" ><br>
                             <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
                             Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND<br>

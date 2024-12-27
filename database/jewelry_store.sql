@@ -15,6 +15,8 @@ CREATE TABLE Users (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP 
 );
 
+Insert into Users(name, email, password, phone, role) values('admin', 'hhai98940@gmail.com', '123', '0123456789', 'admin');
+
 -- Table: Products
 DROP TABLE IF EXISTS Products;
 CREATE TABLE Products (

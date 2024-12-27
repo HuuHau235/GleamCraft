@@ -43,7 +43,7 @@ if (isset($_GET['delete_user']) && isset($_GET['user_id'])) {
     }
 }
 ?>
-
+<!-- Delete review -->
 <?php
 require_once('../../../config/db.php');
 require_once('../../models/Admin.php');
@@ -113,7 +113,36 @@ if (isset($_GET['delete_product']) && isset($_GET['product_id'])) {
     }
 }
 ?>
+<!-- Delete payment -->
+<?php
+require_once('../../../config/db.php');
+require_once('../../models/Admin.php');
 
+$adminPayments = new AdminPayments($conn);
+
+// Lấy tất cả các payments
+$payments = $adminPayments->getAllPayments();
+
+if (isset($_GET['deletePayment']) && isset($_GET['payment_id'])) {
+    $payment_id = (int) $_GET['payment_id'];
+
+    if ($adminPayments->paymentExists($payment_id)) {
+        $deleted = $adminPayments->deletePaymentById($payment_id);
+        if ($deleted) {
+            echo "<script>alert('Payment deleted successfully');</script>";
+        } else {
+            echo "<script>alert('Failed to delete payment');</script>";
+        }
+    } else {
+        echo "<script>alert('Payment does not exist');</script>";
+    }
+
+    // Điều hướng lại trang
+    echo "<script>window.location.href = 'index.php';</script>";
+    exit;
+}
+
+?>
 
 
 
