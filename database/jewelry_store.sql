@@ -92,7 +92,7 @@ CREATE TABLE Payments (
     payment_method VARCHAR(50),        -- Phương thức thanh toán (ví dụ: tiền mặt, thẻ...)
     payment_date DATETIME,             -- Thời gian thanh toán
     total_amount DECIMAL(10, 2) NOT NULL,  -- Tổng giá trị thanh toán
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE
 );
 
 

@@ -64,16 +64,5 @@ if (isset($_GET['action'])) {
         $controller->processPayment();
     }
 }
-// $controller = new PaymentController();
-
-//     // Kiểm tra phương thức HTTP
-//     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//         // Hiển thị trang thanh toán
-//         $controller->index();
-//     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//         // Xử lý thanh toán
-//         $controller->processPayment();
-//     }
-//     exit;
 
 ?>
