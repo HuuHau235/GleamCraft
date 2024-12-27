@@ -96,10 +96,21 @@ $total_price = $obj -> getTotal();
                 </div>
 
                 <div class="total-payment">Total payment: <span class="total"><?php echo number_format($total_price, 2); ?> VND</span></div>
-                <button type="submit" class="order-button" onclick="window.location.href='http://localhost/Gleamcraft_MVC/public/'" >Order</button>
+                <button type="submit" class="order-button" >Order</button>
             </form>
         </div>
     </div>
+    <script>
+    document.getElementById('payment-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Ngăn chặn form gửi đi ngay lập tức
+        
+        // Hiển thị thông báo thanh toán thành công
+        alert('Payment successful! Redirecting to the homepage...');
+        
+        // Chuyển hướng người dùng về trang chính
+        window.location.href = 'http://localhost/Gleamcraft_MVC/public/';
+    });
+</script>
     <?php
     require_once "../shared/footer.php";
     ?>
