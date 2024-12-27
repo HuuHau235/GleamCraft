@@ -24,13 +24,13 @@ $total_price = $obj -> getTotal();
         </a>
 
         <nav>
-            <ul class="nav">
-                <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li>
-                <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
-                <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                <li class="nav-item"><a href="http://localhost/GleamCraft/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
-                <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
-            </ul>
+        <ul class="nav">
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
+                    <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
+                </ul>
         </nav>
 
         <div class="user-icon position-relative">
@@ -96,7 +96,7 @@ $total_price = $obj -> getTotal();
                 </div>
 
                 <div class="total-payment">Total payment: <span class="total"><?php echo number_format($total_price, 2); ?> VND</span></div>
-                <button type="submit" class="order-button" onclick="window.location.href='http://localhost/Gleamcraft_MVC/public/'" >Order</button>
+                <button type="submit" class="order-button" onclick="window.location.href='http://localhost:8080/app/views/payment/payment_success.php'" >Order</button>
             </form>
         </div>
     </div>
