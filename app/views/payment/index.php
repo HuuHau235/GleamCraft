@@ -101,14 +101,16 @@ $total_price = $obj -> getTotal();
         </div>
     </div>
     <script>
-    document.getElementById('order-button').addEventListener('submit', function (event) {
         event.preventDefault(); // Ngăn chặn form gửi đi ngay lập tức
         
         // Hiển thị thông báo thanh toán thành công
         alert('Payment successful! Redirecting to the homepage...');
         
         // Chuyển hướng người dùng về trang chính
+
         window.location.href = 'http://localhost:8080/Gleamcraft_MVC/public/';
+        window.location.href = 'http://localhost/Gleamcraft_MVC/public/';
+
     });
 </script>
     <?php
