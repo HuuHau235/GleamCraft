@@ -1,3 +1,7 @@
+<?php
+    require_once('C:\xampp\htdocs\GleamCraft_MVC\app\controllers\ProductController.php');
+    $products = $data['productHomepage']; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,22 +115,25 @@
         </div>
     </div>
     <div class="container mt-5">
-        <h2 class="mb-4">Diamond products</h2>
+        <h2 class="mb-4">Diamond Products</h2>
         <div class="row">
-            <?php foreach ($products as $product): ?>
-                <div class="col-md-3 mb-4">
-                    <div class="card" style="height: 450px;">
-                    <a href="/Gleamcraft_MVC/public/product/detail/<?= $product['product_id'] ?>">
-
-                            <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= $product['name'] ?>" style="height: 300px;">
-                        </a>
-                        <div class="card-body text-center">
-                            <h5 class="card-title"><?= $product['name'] ?></h5>
-                            <p class="card-text"><?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
+            <?php if (isset($data['productHomepage']) && is_array($data['productHomepage'])): ?>
+                <?php foreach ($data['productHomepage'] as $product): ?>
+                    <div class="col-md-3 mb-4">
+                        <div class="card" style="height: 450px;">
+                        <a href="/Gleamcraft_MVC/public/product/detail/<?= $product['product_id']; ?>">
+                           <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= htmlspecialchars($product['name']) ?>" style="height: 300px; object-fit: cover;">
+                            </a>
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
+                                <p class="card-text"><?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No diamond products available.</p>
+            <?php endif; ?>
         </div>
     </div>
     <footer class="bg-dark text-light py-5">
