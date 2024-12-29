@@ -1,45 +1,31 @@
 <?php
-require_once '../models/ProductModel.php';
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
 
-class ProductController {
-    private $productModel;
+class ProductController extends Controller {
+    public function index() {
+        $product = $this->model('Products');  // Kiểm tra nếu cần thay đổi tên class
+        $products = $product->getAllProduct();  
 
-    public function __construct($db) {
-        $this->productModel = new ProductModel($db->connect());
-    }
-
-    public function filterProducts() {
-        // Check if there's POST data
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $gender = $_POST['gender'] ?? null;
-            $type_name = $_POST['type_name'] ?? null;
-            $price_range = $_POST['price_range'] ?? null;
-            $color = $_POST['color'] ?? null;
-
-            $filters = [
-                'gender' => $gender,
-                'type_name' => $type_name,
-                'price_range' => $price_range,
-                'color' => $color,
-            ];
-        } else {
-            $filters = []; // No filters
+        if (!$products) {
+            die("No products found.");
         }
 
-        // Call model to get the product list
-        global $products;  
-        $products = $this->productModel->getFilteredProducts($filters);
-
-        // Return data to the view
-        require_once '../views/product/index.php';
+        $this->view("homepage", ["products" => $products]);  // Hiển thị trang chủ với các sản phẩm
     }
+
+    public function detail($id) {
+        $product = $this->model('Products');  // Lấy model Products
+        $productDetail = $product->getProductById($id);  // Lấy sản phẩm theo ID
+
+        if ($productDetail) {
+            $this->view('detail/index', ['product' => $productDetail]);  // Trả về view chi tiết sản phẩm
+        } else {
+            echo "Product not found.";
+        }
+    }
+    
 }
 
-// Instantiate the controller with a database connection
-require_once '../../config/db.php'; // Assuming a Database class exists
-$db = new Database();
-$controller = new ProductController($db);
 
-// Call the filterProducts method
-$controller->filterProducts();
 ?>

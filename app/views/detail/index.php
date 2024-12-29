@@ -39,28 +39,36 @@
         </div>
     </header><br>
     <div class="container product-detail">
-        <div class="row">
-            <div class="col-md-5">
-                <img src="<?= htmlspecialchars($product['image']); ?>" 
-                    alt="<?= htmlspecialchars($product['name']); ?>" 
-                    class="img-fluid product-image" 
-                    style="width: 500px; height: 400px;">
-            </div>
-            <div class="col-md-6 product-info">
-                <h1><strong><?= htmlspecialchars($product['name']); ?></strong></h1>
-                <h4><strong>Description:</strong> <?= htmlspecialchars($product['description']); ?></h4>
-                <h2><strong>Color:</strong> <?= htmlspecialchars($product['color']); ?></h2>
-                <h3><?= number_format($product['price'], 0, ',', '.'); ?> VND</h3>
-                <div class="quantity-and-cart">
-                    <div class="mb-3">
-                        <input type="number" id="quantity" class="form-control" value="1" min="1" style="width: 70px;">
-                    </div>
-                    <a href="../../../app/models/CartManager.php?add_to_cart=true&product_id=<?= $product['product_id']; ?>&quantity=1">
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </a>
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <!-- Hiển thị hình ảnh sản phẩm -->
+            <img src="<?= htmlspecialchars($data['product']['image']); ?>" 
+                 alt="<?= htmlspecialchars($data['product']['name']); ?>" 
+                 class="img-fluid product-image" 
+                 style="width: 500px; height: 400px;">
+        </div>
+        <div class="col-md-6 product-info">
+            <!-- Hiển thị thông tin sản phẩm -->
+            <h1><strong><?= htmlspecialchars($data['product']['name']); ?></strong></h1>
+            <h4><strong>Description:</strong> <?= htmlspecialchars($data['product']['description']); ?></h4>
+            <h2><strong>Color:</strong> <?= htmlspecialchars($data['product']['color']); ?></h2>
+            <h3><?= number_format($data['product']['price'], 0, ',', '.'); ?> VND</h3>
+            
+            <!-- Thêm sản phẩm vào giỏ hàng -->
+            <div class="quantity-and-cart">
+                <div class="mb-3">
+                    <label for="quantity"><strong>Quantity:</strong></label>
+                    <input type="number" id="quantity" class="form-control" value="1" min="1" style="width: 70px;">
                 </div>
+                <a href="/GleamCraft_MVC/public/cart/add/<?= htmlspecialchars($data['product']['product_id']); ?>?quantity=1">
+                    <button class="btn btn-primary">Add to Cart</button>
+                </a>
             </div>
         </div>
+    </div>
+</div>
+
 
 
         <div class="mt-4">
