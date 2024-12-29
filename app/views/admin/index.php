@@ -1,5 +1,9 @@
 <?php
-require_once('../../controllers/AdminController.php');
+$users = $data['users'];
+$products = $data['products'];
+$reviews = $data['reviews'];
+$payment = $data['payment'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +19,7 @@ require_once('../../controllers/AdminController.php');
     <link rel="stylesheet" href="../../../assets/css/admin.css">
 </head>
 
-
+<body>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
@@ -46,13 +50,10 @@ require_once('../../controllers/AdminController.php');
                         </thead>
                         <tbody>
                             <?php
-                            // $sqlUser = "SELECT * FROM users";
-                            $resultUser = $conn->query($sqlUser);
-                            if ($resultUser->num_rows > 0) {
-                                $number = 1;
-                                while ($row = $resultUser->fetch_assoc()) {
+                            if ($users) {
+                                foreach ($users as $number => $row) {
                                     echo "<tr data-user-id='" . $row['user_id'] . "'>";
-                                    echo "<td>" . $number . "</td>";
+                                    echo "<td>" . $number + 1 . "</td>";
                                     echo "<td>" . $row['name'] . "</td>";
                                     echo "<td>" . $row['email'] . "</td>";
                                     echo "<td>" . str_repeat('•', strlen($row['password'])) . "</td>";
@@ -60,11 +61,12 @@ require_once('../../controllers/AdminController.php');
                                     echo "<td>" . $row['role'] . "</td>";
                                     echo "<td>" . $row['created_at'] . "</td>";
                                     echo "<td>
-                                        <button class='btn btn-sm btn-primary' onclick=\"openEditForm('" . $row['user_id'] . "', '" . $row['name'] . "', '" . $row['email'] . "', '" . $row['password'] . "', '" . $row['phone'] . "', '" . $row['role'] . "')\">Edit</button>
-                                        <a href='?delete_user=true&user_id={$row['user_id']}' class='btn btn-sm btn-danger' onclick=confirmDelete()>Del</a>
+                                        <button class='btn btn-sm btn-primary' onclick=\"openEditFormUser('" . $row['user_id'] . "', '" . $row['name'] . "', '" . $row['email'] . "', '" . $row['password'] . "', '" . $row['phone'] . "', '" . $row['role'] . "')\">Edit</button>
+                                        <a href='/Gleamcraft_MVC/public/Admin1/delete?user_id={$row['user_id']}' onclick='confirmDelete()' class='btn btn-sm btn-danger'>Del</a>
+                                        
+
                                     </td>";
                                     echo "</tr>";
-                                    $number++;
                                 }
                             } else {
                                 echo "<tr><td colspan='8'>No users found</td></tr>";
@@ -93,32 +95,28 @@ require_once('../../controllers/AdminController.php');
                         </thead>
                         <tbody>
                             <?php
-                            // Truy vấn sản phẩm từ cơ sở dữ liệu
-                            $sqlProduct = "SELECT * FROM products";
-                            $resultProduct = $conn->query($sqlProduct);
-                            if ($resultProduct->num_rows > 0) {
-                                $number = 1;
-                                while ($row = $resultProduct->fetch_assoc()) {
-                                    echo "<tr data-product_id='" . $row['product_id'] . "'>";
-                                    echo "<td>$number</td>";
-                                    echo "<td style='width: 350px'>{$row['name']}</td>";
-                                    echo "<td style='width: 350px'>{$row['description']}</td>";
-                                    echo "<td>{$row['color']}</td>";
-                                    echo "<td>{$row['gender']}</td>";
-                                    echo "<td>{$row['type_name']}</td>";
-                                    echo "<td>{$row['price']}</td>";
-                                    echo "<td><img src='{$row['image']}' alt='{$row['name']}' style='width: 100px;'></td>";
-                                    echo "<td>
+                            if ($products) {
+                                foreach ($products as $number => $row) { {
+                                        echo "<tr data-product_id='" . $row['product_id'] . "'>";
+                                        echo "<td>" . $number + 1 . "</td>";
+                                        echo "<td style='width: 350px'>{$row['name']}</td>";
+                                        echo "<td style='width: 350px'>{$row['description']}</td>";
+                                        echo "<td>{$row['color']}</td>";
+                                        echo "<td>{$row['gender']}</td>";
+                                        echo "<td>{$row['type_name']}</td>";
+                                        echo "<td>{$row['price']}</td>";
+                                        echo "<td><img src='{$row['image']}' alt='{$row['name']}' style='width: 100px;'></td>";
+                                        echo "<td>
                                             <button class='btn btn-primary btn-sm' onclick=\"openEditFormProduct(
                                                 '{$row['product_id']}', '{$row['name']}', '{$row['description']}',
                                                 '{$row['color']}', '{$row['gender']}', '{$row['type_name']}',
                                                 '{$row['price']}', '{$row['image']}'
                                             )\">Edit</button>
-                                                                                    <a href='?delete_product=true&product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=confirmDelete()>Del</a>
+                                            <a href='/Gleamcraft_MVC/public/Admin1/delete?product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
 
                                           </td>";
-                                    echo "</tr>";
-                                    $number++;
+                                        echo "</tr>";
+                                    }
                                 }
                             } else {
                                 echo "<tr><td colspan='9'>No products found</td></tr>";
@@ -144,27 +142,28 @@ require_once('../../controllers/AdminController.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($reviews)): ?>
-                                <?php foreach ($reviews as $index => $review): ?>
-                                    <tr>
-                                        <td><?php echo $index + 1; ?></td>
-                                        <td><?php echo htmlspecialchars($review['review_id']); ?></td>
-                                        <td><?php echo isset($review['product_id']) ? htmlspecialchars($review['product_id']) : 'N/A'; ?></td>
-                                        <td><?php echo isset($review['user_id']) ? htmlspecialchars($review['user_id']) : 'N/A'; ?></td>
-                                        <td><?php echo htmlspecialchars($review['comment']); ?></td>
-                                        <td><?php echo htmlspecialchars($review['created_at']); ?></td>
-                                        <td>
-                                        <a href="?deleteReview&review_id=<?php echo htmlspecialchars($review['review_id']); ?>" class="btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="7" class="text-center">No reviews found.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
+                            <?php
+                            if ($reviews) {
+                                foreach ($reviews as $index => $row) {
+                                    echo "<tr data-review_id='" . htmlspecialchars($row['review_id']) . "'>";
+                                    echo "<td>" . ($index + 1) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['review_id']) . "</td>";
+                                    echo "<td>" . (isset($row['product_id']) ? htmlspecialchars($row['product_id']) : 'N/A') . "</td>";
+                                    echo "<td>" . (isset($row['user_id']) ? htmlspecialchars($row['user_id']) : 'N/A') . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['comment']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+                                    echo "<td>
+                                   <a href='/Gleamcraft_MVC/public/Admin1/delete?review_id={$row['review_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
+              
+                                      </td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='7' class='text-center'>No reviews found.</td></tr>";
+                            }
+                            ?>
 
+                        </tbody>
                     </table>
                 </div>
 
@@ -183,104 +182,111 @@ require_once('../../controllers/AdminController.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($payments)): ?>
-                                <?php foreach ($payments as $index => $payment): ?>
-                                    <tr>
-                                        <td><?php echo $index + 1; ?></td>
-                                        <td><?php echo htmlspecialchars($payment['payment_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($payment['order_id']); ?></td>
-                                        <td><?php echo htmlspecialchars($payment['total_amount']); ?></td>
-                                        <td><?php echo htmlspecialchars($payment['payment_date']); ?></td>
-                                        <td>
-                                            <a href="?deletePayment&payment_id=<?php echo htmlspecialchars($payment['payment_id']); ?>"class="btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="7" class="text-center">No payment records found.</td>
-                                </tr>
-                            <?php endif; ?>
+                            <?php
+                            if ($payment) {
+                                foreach ($payment as $index => $row) {
+                                    echo "<tr>";
+                                    echo "<td>" . ($index + 1) . "</td>"; // Hiển thị số thứ tự
+                                    echo "<td>" . htmlspecialchars($row['payment_id']) . "</td>"; // Hiển thị payment_id
+                                    echo "<td>" . htmlspecialchars($row['order_id']) . "</td>"; // Hiển thị order_id
+                                    echo "<td>" . htmlspecialchars($row['total_amount']) . "</td>"; // Hiển thị total_amount
+                                    echo "<td>" . htmlspecialchars($row['payment_date']) . "</td>"; // Hiển thị payment_date
+                                    echo "<td>
+                                    <a href='/Gleamcraft_MVC/public/Admin1/delete?payment_id={$row['payment_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
+
+                  </td>"; // Nút xóa
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='6' class='text-center'>No payments found.</td></tr>"; // Nếu không có dữ liệu
+                            }
+                            ?>
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
-        <!-- Create form edits for Users  -->
-        <div id="overlay" onclick="closeEditFormUser()"></div>
-        <div id="edit-form-user" style="display: none;">
-            <h4>Edit User</h4>
-            <form id="edit-user-form" action="'../../controllers/AdminController.php'">
-                <input type="hidden" name="user_id" id="edit-user-id" value="update_user">
-                <i class="fas fa-times close-icon" onclick="closeEditFormUser()"></i>
-
-                <div class="mb-3">
-                    <label for="edit-name" class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" id="edit-name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="edit-email" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" id="edit-email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="edit-password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="edit-password" required>
-                </div>
-                <div class="mb-3">
-                    <label for="edit-phone" class="form-label">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="edit-phone" required>
-                </div>
-                <div class="mb-3">
-                    <label for="edit-role" class="form-label">Role</label>
-                    <input type="text" class="form-control" name="role" id="edit-role" required>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-success">Save Changes</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeEditFormUser()">Cancel</button>
-                </div>
-            </form>
-        </div>
     </div>
-    <div id="overlay" onclick="closeEditFormProduct()"></div>
-        <form id="edit-product-form" action="" method="POST" style="display:none;">
-            <input type="hidden" id="edit-product-id" name="product_id" value="update_product">
+
+    <!-- Create form edits for Users  -->
+    <div id="overlay" onclick="closeEditFormUser()"></div>
+    <div id="edit-form-user" style="display: none;">
+        <h4>Edit User</h4>
+        <form id="edit-user-form" action="" method="POST">
+            <input type="hidden" name="user_id" id="edit-user-id" value="update_user">
+            <i class="fas fa-times close-icon" onclick="closeEditFormUser()"></i>
 
             <div class="mb-3">
-                <label for="editt-name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="editt-name" name="name">
+                <label for="edit-name" class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" id="edit-name" required>
             </div>
             <div class="mb-3">
-                <label for="edit-description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="edit-description" name="description">
+                <label for="edit-email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="edit-email" required>
             </div>
             <div class="mb-3">
-                <label for="edit-color" class="form-label">Color</label>
-                <input type="text" class="form-control" id="edit-color" name="color">
+                <label for="edit-password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="edit-password" required>
             </div>
             <div class="mb-3">
-                <label for="edit-gender" class="form-label">Gender</label>
-                <input type="text" class="form-control" id="edit-gender" name="gender">
+                <label for="edit-phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" name="phone" id="edit-phone" required>
             </div>
             <div class="mb-3">
-                <label for="edit-type-name" class="form-label">Type Name</label>
-                <input type="text" class="form-control" id="edit-type-name" name="type_name">
+                <label for="edit-role" class="form-label">Role</label>
+                <input type="text" class="form-control" name="role" id="edit-role" required>
             </div>
-            <div class="mb-3">
-                <label for="edit-price" class="form-label">Price</label>
-                <input type="text" class="form-control" id="edit-price" name="price">
+            <div>
+                <!-- <a href="/Gleamcraft_MVC/public/Admin1/edit?user_id={$row['user_id']}'"></a> -->
+                <button type="submit" class="btn btn-success" name="update_user">Save Changes</button>
+
+
+                <button type="button" class="btn btn-secondary" onclick="closeEditFormUser()">Cancel</button>
             </div>
-            <div class="mb-3">
-                <label for="edit-image" class="form-label">Image</label>
-                <input type="text" class="form-control" id="edit-image" name="image">
-            </div>
-            <button type="submit" class="btn btn-success">Save Changes</button>
-            <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
         </form>
     </div>
-    <script src="../../../assets/js/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
 
+    <div id="overlay" onclick="closeEditFormProduct()"></div>
+    <div id="editt-product-form" style="display: none;">
+    <h4>Edit Products</h4>
+
+    <form id="edit-product-form"  action="" method="POST">
+        <input type="hidden" id="edit-product-id" name="product_id">
+        <div class="mb-3">
+            <label for="editt-name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="editt-name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="edit-description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="edit-description" name="description">
+        </div>
+        <div class="mb-3">
+            <label for="edit-color" class="form-label">Color</label>
+            <input type="text" class="form-control" id="edit-color" name="color">
+        </div>
+        <div class="mb-3">
+            <label for="edit-gender" class="form-label">Gender</label>
+            <input type="text" class="form-control" id="edit-gender" name="gender">
+        </div>
+        <div class="mb-3">
+            <label for="edit-type-name" class="form-label">Type Name</label>
+            <input type="text" class="form-control" id="edit-type-name" name="type_name">
+        </div>
+        <div class="mb-3">
+            <label for="edit-price" class="form-label">Price</label>
+            <input type="text" class="form-control" id="edit-price" name="price">
+        </div>
+        <div class="mb-3">
+            <label for="edit-image" class="form-label">Image</label>
+            <input type="text" class="form-control" id="edit-image" name="image">
+        </div>
+        <button type="submit" class="btn btn-success" name="update_product">Save Changes</button>
+        <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
+    </form>
+    <script src="../../../assets/js/admin.js"></script>
 </body>
 
 </html>

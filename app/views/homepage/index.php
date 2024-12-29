@@ -7,19 +7,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../assets/images/brands/logo.jpg" type="image/x-icon">
+    <link rel="icon" href="/assets/images/brands/logo.jpg" type="image/x-icon">
     <title>GleamCraft</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/header.css">
-    <link rel="stylesheet" href="../assets/css/banner.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/banner.css">
 </head>
 <body class="body">
     <header class="bg-light border-bottom d-flex align-items-center">
         <div class="container-fluid d-flex justify-content-between align-items-center px-4">
             <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="../assets/images/brands/logo.jpg" alt="Logo">
+                <img src="/assets/images/brands/logo.jpg" alt="Logo">
             </a>
 
             <nav>
@@ -42,7 +42,7 @@
         </div>
     </header>
     <div class="banner">
-        <img src="../assets/images/brands/Day-chuyen-1.jpg" alt="Banner Image">
+        <img src="/assets/images/brands/Day-chuyen-1.jpg" alt="Banner Image">
         <div class="banner-text">Welcome to GleamCraft </div>
     </div> <br> 
 
@@ -56,7 +56,7 @@
                 </p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/body_img1.jpg" alt="" style="width: 600px; height: 500px;">
+                <img src="/assets/images/brands/body_img1.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/body_img5.jpg" alt="" style="width: 600px; height: 500px;">
+                <img src="/assets/images/brands/body_img5.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
             <div class="col-md-6">
                 <h2 class="h2 highlight-text">Benefits of wearing jewelry</h2>
@@ -87,7 +87,7 @@
                 </p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/body_img6.jpg" alt="" style="width: 600px; height: 500px;">
+                <img src="/assets/images/brands/body_img6.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6 text-center">
-                <img src="../assets/images/brands/body_img7.jpg" alt="" style="width: 600px; height: 500px;">
+                <img src="/assets/images/brands/body_img7.jpg" alt="" style="width: 600px; height: 500px;">
             </div>
             <div class="col-md-6">
                 <h2 class="h2 highlight-text">Shine bright in just three simple steps</h2>
@@ -174,6 +174,6 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/js/homepage.js"></script>
+    <script src="/assets/js/homepage.js"></script>
 </body>
 </html>
