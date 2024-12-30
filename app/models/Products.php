@@ -1,6 +1,5 @@
 <?php
 require_once 'C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php';  // Bao gồm lớp Db
-
 class Products extends Database
 {
     // Phương thức thực thi truy vấn chung
@@ -18,7 +17,6 @@ class Products extends Database
         }
     }
 
-    // Lấy sản phẩm trang chủ
     public function getProductHomepage()
     {
         $sql = "SELECT * FROM products ORDER BY product_id DESC LIMIT 8";
@@ -74,36 +72,24 @@ class Products extends Database
     {
         return $this->deleteRecord('reviews', 'review_id', $review_id);
     }
+    public function updateProducts($product_id, $name, $description, $color, $type_name, $gender, $price, $image)
+    {
+        $conn = $this->getConnection();
 
-    public function updateProduct($product_id, $name, $description, $color, $gender, $type_name, $price, $image)
-{
-    // Ensure the connection is established
-    if (!$this->conn) {
-        throw new Exception("Database connection not established.");
+        $sql = "UPDATE products SET name = ?, description = ?, color = ?, type_name = ?, gender = ?, price = ?, image = ? WHERE product_id = ?";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sssssdss', $name, $description, $color, $type_name, $gender, $price, $image, $product_id);
+
+        $result = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+
+        return $result;
     }
 
-    // Prepare the SQL statement to update the product
-    $sql = "UPDATE products SET name = ?, description = ?, color = ?, gender = ?, type_name = ?, price = ?, image = ? WHERE product_id = ?";
-    $stmt = $this->conn->prepare($sql);
 
-    if (!$stmt) {
-        throw new Exception("Failed to prepare the query.");
-    }
 
-    // Bind the parameters and execute the query
-    $stmt->bind_param("sssssisi", $name, $description, $color, $gender, $type_name, $price, $image, $product_id);
-    
-    if (!$stmt->execute()) {
-        throw new Exception("Failed to execute the update query.");
-    }
-
-    // Check if any row was updated
-    if ($stmt->affected_rows === 1) {
-        return true; // Update successful
-    }
-
-    return false; // No rows updated (product not found)
-}
 
 }
 ?>

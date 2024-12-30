@@ -1,6 +1,8 @@
 <?php  
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php');
-class User1Model extends Database{
+
+class User1Model extends Database {
+
     public function getUserList() {
         $sql = "SELECT * FROM users";
         $stmt = $this->conn->prepare($sql);
@@ -12,7 +14,7 @@ class User1Model extends Database{
             return null; 
         }
     }
-    
+
     public function deleteUser($user_id) {
         // Kiểm tra nếu user_id hợp lệ (chẳng hạn là một số dương)
         if (!is_numeric($user_id) || $user_id <= 0) {
@@ -42,9 +44,8 @@ class User1Model extends Database{
             throw new Exception("Failed to prepare query.");
         }
     }
-    
-    public function getUserById($id)
-    {
+
+    public function getUserById($id) {
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -52,23 +53,35 @@ class User1Model extends Database{
         return $result->fetch_assoc();
     }
 
-    public function updateUser($id, $name, $email, $password, $phone, $role)
-{
-    $sql = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, role = ? WHERE user_id = ?";
-    $stmt = $this->conn->prepare($sql);
+    public function updateUser($id, $name, $email, $password, $phone, $role) {
+        $sql = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, role = ? WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssssi", $name, $email, $password, $phone, $role, $id);
 
-    $stmt->bind_param("sssssi", $name, $email,$password, $phone, $role, $id);
+        if ($stmt->execute()) {
+            return true; 
+        } else {
+            return false; 
+        }
+    }
 
-    if ($stmt->execute()) {
-        return true; 
-    } else {
-        return false; 
+    public function login($email, $password) {
+        // Truy vấn cơ sở dữ liệu kiểm tra email và mật khẩu
+        $query = "SELECT * FROM users WHERE email = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Nếu tìm thấy người dùng với email
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            // Kiểm tra mật khẩu
+            if (password_verify($password, $user['password'])) {
+                return $user; // Trả về thông tin người dùng nếu đăng nhập thành công
+            }
+        }
+        return null; // Nếu không tìm thấy người dùng hoặc mật khẩu sai
     }
 }
-
-
-
-
-}
-
 ?>

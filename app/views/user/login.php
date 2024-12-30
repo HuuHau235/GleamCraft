@@ -23,14 +23,21 @@
                     <div class="form-container">
                         <h3 class="mb-4">Login</h3>
                         <p>Don't have an account? <a href="./register.php" style="color: #FE8B4B;">Create Now</a></p>
+                        <!-- <div class="mb-3">
+                            <label for="user_id" class="form-label">User ID</label>
+                            <input type="text" class="form-control" id="user_id" name="user_id"
+                                placeholder="Enter your User ID">
+                        </div> -->
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Enter your email">
                         </div>
                         <div class="mb-3 position-relative">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Enter your password" >
+                                placeholder="Enter your password">
                             <i class="fas fa-eye position-absolute" id="togglePassword"
                                 style="top: 38px; right: 10px; cursor: pointer;"></i>
                         </div>
