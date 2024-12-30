@@ -17,6 +17,7 @@ $payment = $data['payment'];
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../../assets/css/admin.css">
+
 </head>
 
 <body>
@@ -107,11 +108,7 @@ $payment = $data['payment'];
                                         echo "<td>{$row['price']}</td>";
                                         echo "<td><img src='{$row['image']}' alt='{$row['name']}' style='width: 100px;'></td>";
                                         echo "<td>
-                                            <button class='btn btn-primary btn-sm' onclick=\"openEditFormProduct(
-                                                '{$row['product_id']}', '{$row['name']}', '{$row['description']}',
-                                                '{$row['color']}', '{$row['gender']}', '{$row['type_name']}',
-                                                '{$row['price']}', '{$row['image']}'
-                                            )\">Edit</button>
+                                        <button class='btn btn-sm btn-primary' onclick=\"openEditFormProduct('" . $row['product_id'] . "', '" . $row['name'] . "', '" . $row['description'] . "', '" . $row['color'] . "', '" . $row['gender'] . "', '" . $row['type_name'] . "', '" . $row['price'] . "', '" . $row['image'] . "')\">Edit</button>
                                             <a href='/Gleamcraft_MVC/public/Admin1/delete?product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
 
                                           </td>";
@@ -241,20 +238,20 @@ $payment = $data['payment'];
             <div>
                 <!-- <a href="/Gleamcraft_MVC/public/Admin1/edit?user_id={$row['user_id']}'"></a> -->
                 <button type="submit" class="btn btn-success" name="update_user">Save Changes</button>
-
-
                 <button type="button" class="btn btn-secondary" onclick="closeEditFormUser()">Cancel</button>
             </div>
         </form>
     </div>
-    </div>
 
+
+    
     <div id="overlay" onclick="closeEditFormProduct()"></div>
-    <div id="editt-product-form" style="display: none;">
-    <h4>Edit Products</h4>
-
-    <form id="edit-product-form"  action="" method="POST">
+    <div id="edit-form-product" style="display: none;">
+        <h4>Edit Products</h4>
+    <form id="edit-product-form" method="POST" action="" >
         <input type="hidden" id="edit-product-id" name="product_id">
+        <i class="fas fa-times close-icon" onclick="closeEditFormProduct()"></i>
+
         <div class="mb-3">
             <label for="editt-name" class="form-label">Name</label>
             <input type="text" class="form-control" id="editt-name" name="name">
@@ -286,6 +283,7 @@ $payment = $data['payment'];
         <button type="submit" class="btn btn-success" name="update_product">Save Changes</button>
         <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
     </form>
+    </div>
     <script src="../../../assets/js/admin.js"></script>
 </body>
 
