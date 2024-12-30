@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'C:\xampp\htdocs\GleamCraft_MVC\config\db.php';
+require_once '../../../config/db.php';
 require_once "../../models/CartManager.php";
 
 if (!isset($_SESSION['user_id'])) {

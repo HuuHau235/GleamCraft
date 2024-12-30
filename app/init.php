@@ -8,6 +8,6 @@ spl_autoload_register(function ($class) {
     if (file_exists($filePath)) {
         require_once $filePath;
     } else {
-        die("File not found: $filePath");
+        die("File not found111: $filePath");
     }
 });
