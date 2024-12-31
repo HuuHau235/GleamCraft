@@ -6,41 +6,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/register.css">
+    <title>Register</title>
 </head>
 <body>
-    <div class = "container">
-        <div class = "image">
-            <img src="../../../assets/images/anh_login_logout.png" alt="">
+    <div class="container">
+        <div class="image">
+            <img src="../../../assets/images/anh_login_logout.png" alt="Registration Image">
         </div>
 
-        <form class="register-form" action="../../controllers/UserController.php" method="POST">
+        <form class="register-form" action="/app/controllers/UserController.php?register" method="POST">
             <h1>Create Your Account</h1>
-            <div class = "cta">
-                <p>Already have an account?</p>
-                <p class="login"><a href="login.php">Login</a></p>
-            </div>
-            <div class = "information">
-                <div class = "first-name">
+            <div class="information">
+                <div class="first-name">
                     <p>First Name</p>
-                    <input type="text" name="username" placeholder="Enter your name...">
+                    <input type="text" name="username" placeholder="Enter your name..." required>
                 </div>
-                <div class = "phonenumber">
+                <div class="phonenumber">
                     <p>Phone</p>
-                    <input type="text" name="phonenumber" placeholder="Enter phone number...">
+                    <input type="text" name="phone" placeholder="Enter phone number..." required>
                 </div>
-                <div class = "email">
+                <div class="email">
                     <p>Email</p>
-                    <input type="text" name="email" placeholder="Enter email...">
+                    <input type="email" name="email" placeholder="Enter email..." required>
                 </div>
                 <div class="password">
                     <p>Password</p>
-                    <input type="password" name="password" placeholder="Enter password...">
+                    <input type="password" name="password" placeholder="Enter password..." required>
                 </div>
-                <div class = "confirm-password">
+                <div class="confirm-password">
                     <p>Confirm password</p>
-                    <input type="password" name="confirm-password"  placeholder="Enter authentication password...">
+                    <input type="password" name="confirmpassword" placeholder="Enter confirm password..." required>
                 </div>
-                <a href="./login.php"> <button class="register-btn">Register</button></a>
+                <button class="register-btn" type="submit">Register</button>
             </div>
         </form>
     </div>

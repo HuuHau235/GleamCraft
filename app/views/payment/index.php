@@ -111,7 +111,7 @@ $total_price = $obj -> getTotal();
         window.location.href = 'http://localhost:8080/Gleamcraft_MVC/public/';
         window.location.href = 'http://localhost/Gleamcraft_MVC/public/';
 
-    });
+
 </script>
     <?php
     require_once "../shared/footer.php";

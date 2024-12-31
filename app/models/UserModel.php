@@ -1,102 +1,72 @@
 <?php
-require_once "../../config/db.php";
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php');
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
+require '../PHPMailer-master/src/Exception.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-class UserModel {
+class UserModel extends Database {
+    public function register($name, $password, $email, $phone, $role = "User") {
+        // Kiểm tra xem email đã tồn tại hay chưa
+        $checkAccount = "SELECT COUNT(*) as user_count FROM Users WHERE email=?";
+        $stmt = $this->conn->prepare($checkAccount);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
 
-    private $conn;
-
-    public function __construct($conn) {
-        $this->conn = $conn;
-    }
-
-    // Kiểm tra email đã tồn tại
-    public function checkEmailExists($email) {
-        $check_email_sql = "SELECT * FROM users WHERE email = ?";
-        $stmt = $this->conn->prepare($check_email_sql);
-        
-        if ($stmt) {
-            $stmt->bind_param("s", $email); // Liên kết tham số (s = string)
-            $stmt->execute();
-            $result = $stmt->get_result(); // Lấy kết quả sau khi thực thi
-            return $result->fetch_all(MYSQLI_ASSOC); // Trả về mảng kết quả
+        if ($row['user_count'] > 0) {
+            return ['success' => false, 'message' => 'Email đã tồn tại!'];
         }
-        
-        return [];
-    }
 
-    // Thêm người dùng vào cơ sở dữ liệu
-    public function registerUser($username, $email, $password, $phone, $role) {
-        $stmt = $this->conn->prepare("INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, ?)");
-        
-        if ($stmt) {
-            $stmt->bind_param("sssss", $username, $email, $password, $phone, $role); // Liên kết tham số
-            return $stmt->execute(); // Thực thi truy vấn
+        // Băm mật khẩu
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        // Thêm người dùng mới
+        $sql = "INSERT INTO Users (name, password, email, phone, role) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssis", $name, $hashedPassword, $email, $phone, $role);
+
+        if ($stmt->execute()) {
+            return ['success' => true];
+        } else {
+            return ['success' => false, 'message' => 'Lỗi khi đăng ký.'];
         }
-        
-        return false;
     }
 
-    // Kiểm tra và xác định vai trò của người dùng
-    public function getRole() {
-        $role_check = $this->conn->query("SELECT * FROM users WHERE role = 'admin'");
-        
-        if ($role_check) {
-            $result = $role_check->fetch_all(MYSQLI_ASSOC);
-            return (count($result) > 0) ? "user" : "admin";
-        }
-        
-        return "user";
-    }
-}
-?>
-<?php
-session_start();
-class Login_Data
-{
-    private $conn;
-
-    public function __construct($conn)
-    {
-        $this->conn = $conn;
-    }
-
-    public function login($email, $password)
-    {
+    public function sendConfirmationEmail($username, $email, $confirmationLink) {
+        $mail = new PHPMailer(true);
         try {
-            $query = "SELECT * FROM Users WHERE email = ?";
-            $stmt = $this->conn->prepare($query);
+            // Cấu hình SMTP
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'your_email@gmail.com'; // Cập nhật với email của bạn
+            $mail->Password = 'your_password';  // Cập nhật với mật khẩu email của bạn
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
-            if ($stmt === false) {
-                return ['success' => false, 'error' => 'prepare_failed'];
-            }
+            $mail->setFrom('no-reply@gleamcraft.com', 'GleamCraft');
+            $mail->addAddress($email, $username);
 
+            // Cấu hình mã hóa UTF-8
+            $mail->CharSet = 'UTF-8';
 
-            $stmt->bind_param("s", $email);
+            // Nội dung email xác nhận
+            $mail->isHTML(true);
+            $mail->Subject = "Xác nhận địa chỉ email của bạn";
+            $mail->Body = "Xin chào $username,<br><br>"
+                . "Cảm ơn bạn đã đăng ký với GleamCraft!<br><br>"
+                . "Để hoàn tất quá trình đăng ký, vui lòng nhấp vào đường dẫn dưới đây để xác nhận địa chỉ email của bạn:<br><br>"
+                . "<a href='$confirmationLink' target='_blank'>Xác nhận email</a><br><br>"
+                . "Chúc bạn một ngày tốt lành!";
 
-
-            $stmt->execute();
-
-            // Lấy kết quả
-            $result = $stmt->get_result();
-            $user = $result->fetch_assoc(); 
-
-            if ($user) {
-                if ($password === $user['password']) { 
-                    return ['success' => true, 'user' => $user];
-                } else {
-                    return ['success' => false, 'error' => 'wrong_password'];
-                }
-            }
-            return ['success' => false, 'error' => 'email_not_found'];
+            // Gửi email
+            $mail->send();
+            return ['success' => true];
         } catch (Exception $e) {
-            return ['success' => false, 'error' => 'query_error', 'message' => $e->getMessage()];
+            return ['success' => false, 'message' => 'Không thể gửi email xác nhận: ' . $e->getMessage()];
         }
-    }
-
-    public function setUserSession($user)
-    {
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['password'] = $user['password'];
     }
 }
