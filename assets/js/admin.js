@@ -10,12 +10,10 @@ function showTab(tabId) {
     tabs.forEach(function (tab) {
         tab.classList.add('d-none');
     });
-
     // Hiển thị tab đã chọn
     let activeTab = document.getElementById(tabId);
     activeTab.classList.remove('d-none');
 
-    // Cập nhật trạng thái của các nút sidebar
     let buttons = document.querySelectorAll('.sidebar button');
     buttons.forEach(function (button) {
         button.classList.remove('active');
@@ -31,7 +29,8 @@ function openEditFormUser(user_id, name, email, password, phone, role) {
     document.getElementById('edit-password').value = password;
     document.getElementById('edit-phone').value = phone;
     document.getElementById('edit-role').value = role;
-    document.getElementById('edit-user-form').action = "/Gleamcraft_MVC/public/Admin1/editUser/"+user_id;
+    document.getElementById('edit-user-form').action = "/Admin/editUser?user_id="+user_id;
+
     document.getElementById('edit-form-user').style.display = 'block';
 }
 
@@ -59,7 +58,7 @@ function openEditFormProduct(product_id, name, description, color, gender, type_
     document.getElementById('edit-image').value = image;
 
     // Hiển thị overlay và form
-    document.getElementById('edit-product-form').action = "/Gleamcraft_MVC/public/Admin1/editProducts/"+product_id;
+    document.getElementById('edit-product-form').action = "/Admin/editProducts?product_id="+product_id;
     console.log(product_id, name, description, color, gender, type_name, price, image);
 
     // Gửi form ngay sau khi thay đổi action (nếu muốn tự động cập nhật)
