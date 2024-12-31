@@ -1,80 +1,57 @@
 <?php
 class App {
-    protected $controller = 'HomepageController';
-    protected $method = 'index';
-    protected $params = [];
+    protected $controller = 'homepage'; // Default controller
+    protected $method = 'index'; // Default method
+    protected $params = []; // Default parameters
 
     public function __construct() {
         $url = $this->parsePath();
-        // var_dump($url); die;
-        if (!empty($url)){
-            $path = $url['path'];
-            $params = $url['params'];
-            // Xử lý controller
-            if (isset($path[0]) && file_exists('./app/controllers/' . $path[0] . 'Controller.php')) {
-                $this->controller = $path[0] . "Controller";
+        //after parsing the path, we have an array with keys 'path' and 'params'
+        //ex with url = 'user/login?blabla=1' => controller = user, method = login, params = ['blabla' => 1]
+        //  it means call function login with parameter blabla = 1 in UserController
+        if (!empty($url['path'])) {
+            
+            $controllerName = ucfirst($url['path'][0] ?? '') . 'Controller'; // get path[0] => get controller name = 'user'
+            // after that, we add string 'Controller' => userController
+            if (file_exists('./app/controllers/' . $controllerName . '.php')) {
+                // check if file userController.php exists in folder app/controllers
+                $this->controller = $controllerName;
+            } else {
+                http_response_code(404);
+                die("Controller '{$controllerName}' not found.");
             }
-
             require_once './app/controllers/' . $this->controller . '.php';
-            $controller = new $this->controller;
-            // Xử lý method
-            if (isset($path[1]) && method_exists($controller, $path[1])) {
-                $this->method = $path[1];
+            $controllerInstance = new $this->controller;
+            // path[1] => method (login)
+            if (isset($url['path'][1]) && method_exists($controllerInstance, $url['path'][1])) {
+                $this->method = $url['path'][1];
+            } elseif (!isset($url['path'][1])) {
+                $this->method = 'index';
+            } else {
+                http_response_code(404);
+                die("Method '{$url['path'][1]}' not found in controller '{$this->controller}'.");
             }
-            // Tham số
-            $this->params = $params ? array_values($params) : [];
+            $this->params = $url['params'] ?? [];
         }
-        call_user_func_array([$controller, $this->method], $this->params);
+        call_user_func_array([$controllerInstance, $this->method], $this->params);
     }
-    
-    function parsePath() {
-        $path = $_SERVER['REQUEST_URI'] ?? '';
-        // Kiểm tra nếu đường dẫn trống
-        if (empty($path)) {
-            return [
-                'path' => [],
-                'params' => []
-            ];
-        }
 
-        // Tách phần đường dẫn và phần query (nếu có)
+    private function parsePath() {
+        // get url path
+        $path = $_SERVER['REQUEST_URI'] ?? '/';
+        // return array of path and params
         $pathParts = explode('?', $path);
-        
-        // Tách đường dẫn chính theo dấu "/"
-        $pathArray = explode('/', $pathParts[0]);
-
-        // Kiểm tra nếu đường dẫn có ít hơn 4 phần, trả về lỗi hoặc mảng trống
-        if (count($pathArray) < 4) {
-            return [
-                'path' => [],
-                'params' => []
-            ];
-        }
-
-        // Loại bỏ 2 phần đầu tiên (aba và ab)
-        $pathArray = array_slice($pathArray, 3);
-
-        // Lấy phần thứ 3 và thứ 4 (nếu có) tạo thành mảng path
-        $path = array_slice($pathArray, 0, 2);
-        // Xử lý các phần còn lại sau thứ 4 hoặc phần query nếu có
+        $pathArray = explode('/', trim($pathParts[0], '/'));
         $params = [];
-        if (count($pathArray) > 2) {
-            // Phần còn lại sau thứ 4
-            $params = array_slice($pathArray, 2);
-        }
-
-        // Nếu có phần query (sau dấu ?), tách và xử lý
         if (isset($pathParts[1])) {
             parse_str($pathParts[1], $queryParams);
-            $params = array_merge($params, $queryParams);
+            $params = $queryParams;
         }
 
         return [
-            'path' => $path,
+            'path' => $pathArray,
             'params' => $params
         ];
     }
 }
-
-
 ?>

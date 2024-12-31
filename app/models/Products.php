@@ -88,7 +88,22 @@ class Products extends Database
         return $result;
     }
 
-
+    // Lấy tất cả review của một user
+    public function addReview($data)
+    {
+        $conn = $this->getConnection();
+        $sql = "INSERT INTO reviews (user_id, review_text, created_at) VALUES (?, ?, ?)";
+    
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('iss', $data['user_id'], $data['review_text'], $data['created_at']);
+    
+        $result = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    
+        return $result;
+    }
+    
 
 
 }

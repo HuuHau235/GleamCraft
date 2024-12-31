@@ -1,44 +1,57 @@
 <?php
-session_start();
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\UserModel.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
-// require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\User1Model.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php'); 
-class UserController extends Controller {
-    private $conn;
 
+class UserController extends Controller {
+    protected $userModel;
+    
     public function __construct() {
-        // Khởi tạo đối tượng Database và lấy kết nối CSDL
-        $db = new Database();
-        $this->conn = $db->getConnection();
+        $this->userModel = new UserModel();
+    }
+    
+    public function index() {
+        // Kiểm tra nếu người dùng đã đăng nhập
+        if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+            header("Location: /homepage");  // Điều hướng đến homepage nếu đã đăng nhập
+            exit();
+        }
+        $this->view("user/login");  // Hiển thị trang login
     }
 
     public function login() {
-        // Kiểm tra nếu form đăng nhập được gửi
-        if (isset($_POST['login'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-
-            // Tạo đối tượng UserModel và gọi phương thức login
-            $userModel = new User1Model($this->conn);
-            $user = $userModel->login($email, $password);
-
-            // Nếu đăng nhập thành công
-            if ($user) {
-                // Lưu thông tin người dùng vào session
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['email'] = $user['email'];
-                // Chuyển hướng đến trang chính (index)
-                header("Location: /GleamCraft_MVC/");
-                exit;
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+        
+        // Kiểm tra nếu email và password không rỗng
+        if ($email != '' && $password != '') {
+            $result = $this->userModel->login($email, $password);  // Kiểm tra đăng nhập
+            if ($result) {
+                $_SESSION['user_logged_in'] = true;  // Lưu session đăng nhập
+                
+                // Lấy vai trò người dùng sau khi đăng nhập thành công
+                $userRole = $this->userModel->getUserRoleByEmail($email); // Giả sử phương thức này trả về 'admin' hoặc 'user'
+                
+                // Điều hướng dựa trên vai trò người dùng
+                if ($userRole == 'admin') {
+                    header("Location: /Admin/");  // Điều hướng đến trang admin
+                } else {
+                    header("Location: /homepage");  // Điều hướng đến trang homepage
+                }
+                exit();
             } else {
-                // Nếu đăng nhập không thành công, chuyển hướng về trang login và thông báo lỗi
-                header("Location: /GleamCraft_MVC/views/login.php?error=Invalid email or password");
-                exit;
+                // Nếu đăng nhập không thành công (email hoặc mật khẩu không đúng)
+                $_SESSION['login_error'] = 'Email hoặc mật khẩu không đúng. Vui lòng kiểm tra lại.';
+                header("Location: /User");  // Quay lại trang login
+                exit();
             }
         } else {
-            // Hiển thị form đăng nhập nếu không có POST
-            $this->view('login');
+            // Nếu email hoặc password để trống
+            $_SESSION['login_error'] = 'Vui lòng nhập đầy đủ email và mật khẩu.';
+            header("Location: /User");  // Quay lại trang login
+            exit();
         }
     }
+    
+    
 }
 ?>

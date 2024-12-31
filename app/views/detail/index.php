@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,31 +69,16 @@
         </div>
     </div>
 </div>
+<form method="POST" action="/GleamCraft_MVC/public/Reviews/addReviews">
+    <input type="hidden" name="review_id" value="<?= htmlspecialchars($data['review_id'] ?? ''); ?>">
+    <input type="hidden" name="product_id" value="<?= htmlspecialchars($data['comment'] ?? ''); ?>">
+    <div class="mb-3">
+        <label for="comment" class="form-label">Your Review:</label>
+        <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-sm btn-danger">Submit Review</button>
+</form>
 
-
-
-        <div class="mt-4">
-            <h3>Reviews</h3>
-            <?php if (!empty($reviews)): ?>
-                <?php foreach ($reviews as $review): ?>
-                    <div class="border p-2 mb-2">
-                        <strong><?= htmlspecialchars($review['user_name']); ?>:</strong>
-                        <p><?= htmlspecialchars($review['comment']); ?></p>
-                        <small><?= htmlspecialchars($review['created_at']); ?></small>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No reviews yet. Be the first to leave a review!</p>
-            <?php endif; ?>
-        </div>
-
-        <form action="/Gleamcraft_MVC/public/product/detail/<?= htmlspecialchars($product['product_id']); ?>" method="POST">
-            <div class="mb-3">
-                <label for="comment" class="form-label">Your Review:</label>
-                <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-        </form>
 
 
         <div class="related-products my-5">

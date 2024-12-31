@@ -1,102 +1,131 @@
 <?php
-require_once "../../config/db.php";
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php');
 
-class UserModel {
-
-    private $conn;
-
-    public function __construct($conn) {
-        $this->conn = $conn;
-    }
-
-    // Kiểm tra email đã tồn tại
-    public function checkEmailExists($email) {
-        $check_email_sql = "SELECT * FROM users WHERE email = ?";
-        $stmt = $this->conn->prepare($check_email_sql);
-        
-        if ($stmt) {
-            $stmt->bind_param("s", $email); // Liên kết tham số (s = string)
-            $stmt->execute();
-            $result = $stmt->get_result(); // Lấy kết quả sau khi thực thi
-            return $result->fetch_all(MYSQLI_ASSOC); // Trả về mảng kết quả
-        }
-        
-        return [];
-    }
-
-    // Thêm người dùng vào cơ sở dữ liệu
-    public function registerUser($username, $email, $password, $phone, $role) {
-        $stmt = $this->conn->prepare("INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, ?)");
-        
-        if ($stmt) {
-            $stmt->bind_param("sssss", $username, $email, $password, $phone, $role); // Liên kết tham số
-            return $stmt->execute(); // Thực thi truy vấn
-        }
-        
-        return false;
-    }
-
-    // Kiểm tra và xác định vai trò của người dùng
-    public function getRole() {
-        $role_check = $this->conn->query("SELECT * FROM users WHERE role = 'admin'");
-        
-        if ($role_check) {
-            $result = $role_check->fetch_all(MYSQLI_ASSOC);
-            return (count($result) > 0) ? "user" : "admin";
-        }
-        
-        return "user";
-    }
-}
-?>
-<?php
-session_start();
-class Login_Data
+class UserModel extends Database
 {
-    private $conn;
 
-    public function __construct($conn)
+    public function getUserList()
     {
-        $this->conn = $conn;
+        $sql = "SELECT * FROM users";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return null;
+        }
     }
+
+    public function deleteUser($user_id)
+    {
+        // Kiểm tra nếu user_id hợp lệ (chẳng hạn là một số dương)
+        if (!is_numeric($user_id) || $user_id <= 0) {
+            throw new InvalidArgumentException("Invalid user ID.");
+        }
+
+        // Câu lệnh SQL
+        $sql = "DELETE FROM users WHERE user_id = ?";
+
+        // Chuẩn bị câu lệnh
+        if ($stmt = $this->conn->prepare($sql)) {
+            // Bind tham số
+            $stmt->bind_param("i", $user_id);
+
+            // Thực thi câu lệnh
+            if ($stmt->execute()) {
+                // Kiểm tra số lượng dòng bị ảnh hưởng
+                if ($stmt->affected_rows == 1) {
+                    return true; // Xóa thành công
+                } else {
+                    return false; // Không có người dùng nào bị xóa (ID không tồn tại)
+                }
+            } else {
+                throw new Exception("Failed to execute delete query.");
+            }
+        } else {
+            throw new Exception("Failed to prepare query.");
+        }
+    }
+
+    public function getUserById($id)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function updateUser($id, $name, $email, $password, $phone, $role)
+    {
+        $sql = "UPDATE users SET name = ?, email = ?, password = ?, phone = ?, role = ? WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssssi", $name, $email, $password, $phone, $role, $id);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public function login($email, $password)
-    {
-        try {
-            $query = "SELECT * FROM Users WHERE email = ?";
-            $stmt = $this->conn->prepare($query);
+{
+    // Chuẩn bị câu lệnh SQL để lấy người dùng với email và mật khẩu
+    $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    $stmt = $this->conn->prepare($sql);
 
-            if ($stmt === false) {
-                return ['success' => false, 'error' => 'prepare_failed'];
-            }
+    // Liên kết tham số với câu lệnh SQL (sử dụng 'ss' cho email và mật khẩu)
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-
-            $stmt->bind_param("s", $email);
-
-
-            $stmt->execute();
-
-            // Lấy kết quả
-            $result = $stmt->get_result();
-            $user = $result->fetch_assoc(); 
-
-            if ($user) {
-                if ($password === $user['password']) { 
-                    return ['success' => true, 'user' => $user];
-                } else {
-                    return ['success' => false, 'error' => 'wrong_password'];
-                }
-            }
-            return ['success' => false, 'error' => 'email_not_found'];
-        } catch (Exception $e) {
-            return ['success' => false, 'error' => 'query_error', 'message' => $e->getMessage()];
-        }
-    }
-
-    public function setUserSession($user)
-    {
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['password'] = $user['password'];
+    // Kiểm tra nếu có người dùng và mật khẩu đúng
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc(); // Trả về thông tin người dùng
+    } else {
+        return null; // Trả về null nếu không tìm thấy người dùng hoặc mật khẩu sai
     }
 }
+
+public function getUserRoleByEmail($email) {
+    // Truy vấn cơ sở dữ liệu để lấy vai trò người dùng
+    $query = "SELECT role FROM users WHERE email = ?";
+    
+    // Sử dụng MySQLi để thực thi truy vấn
+    if ($stmt = $this->conn->prepare($query)) {
+        // Gắn giá trị email vào tham số truy vấn
+        $stmt->bind_param('s', $email);
+        
+        // Thực thi truy vấn
+        $stmt->execute();
+        
+        // Lấy kết quả
+        $stmt->bind_result($role);
+        
+        if ($stmt->fetch()) {
+            return $role;  
+        } else {
+            return null;
+        }
+        
+        // Đóng kết nối
+        $stmt->close();
+    } else {
+
+        return null;
+    }
+}
+
+public function getAdminCount() {
+    $query = "SELECT COUNT(*) FROM users WHERE role = 'admin'";
+    $result = $this->conn->query($query);
+    $count = $result->fetch_row();
+    return $count[0]; // Trả về số lượng admin
+}
+
+
+}
+?>

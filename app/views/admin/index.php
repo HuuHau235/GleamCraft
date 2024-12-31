@@ -29,6 +29,7 @@ $payment = $data['payment'];
                 <button class="btn btn-light" onclick="showTab('product')">Product</button>
                 <button class="btn btn-light" onclick="showTab('review')">Review</button>
                 <button class="btn btn-light" onclick="showTab('payment')">Payment</button>
+                <a href="/User/"><button class="btn btn-light" onclick="showTab('login')">Login</button></a>
             </div>
 
             <!-- Main Content -->
@@ -63,7 +64,7 @@ $payment = $data['payment'];
                                     echo "<td>" . $row['created_at'] . "</td>";
                                     echo "<td>
                                         <button class='btn btn-sm btn-primary' onclick=\"openEditFormUser('" . $row['user_id'] . "', '" . $row['name'] . "', '" . $row['email'] . "', '" . $row['password'] . "', '" . $row['phone'] . "', '" . $row['role'] . "')\">Edit</button>
-                                        <a href='/Gleamcraft_MVC/public/Admin1/delete?user_id={$row['user_id']}' onclick='confirmDelete()' class='btn btn-sm btn-danger'>Del</a>
+                                    <a href='/Admin/deleteUser?user_id={$row['user_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
                                         
 
                                     </td>";
@@ -109,7 +110,7 @@ $payment = $data['payment'];
                                         echo "<td><img src='{$row['image']}' alt='{$row['name']}' style='width: 100px;'></td>";
                                         echo "<td>
                                         <button class='btn btn-sm btn-primary' onclick=\"openEditFormProduct('" . $row['product_id'] . "', '" . $row['name'] . "', '" . $row['description'] . "', '" . $row['color'] . "', '" . $row['gender'] . "', '" . $row['type_name'] . "', '" . $row['price'] . "', '" . $row['image'] . "')\">Edit</button>
-                                            <a href='/Gleamcraft_MVC/public/Admin1/delete?product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
+                                            <a href='/Admin/deleteProduct?product_id={$row['product_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
 
                                           </td>";
                                         echo "</tr>";
@@ -150,7 +151,7 @@ $payment = $data['payment'];
                                     echo "<td>" . htmlspecialchars($row['comment']) . "</td>";
                                     echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
                                     echo "<td>
-                                   <a href='/Gleamcraft_MVC/public/Admin1/delete?review_id={$row['review_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
+                                   <a href='/Admin/deleteReview?review_id={$row['review_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
               
                                       </td>";
                                     echo "</tr>";
@@ -189,7 +190,7 @@ $payment = $data['payment'];
                                     echo "<td>" . htmlspecialchars($row['total_amount']) . "</td>"; // Hiển thị total_amount
                                     echo "<td>" . htmlspecialchars($row['payment_date']) . "</td>"; // Hiển thị payment_date
                                     echo "<td>
-                                    <a href='/Gleamcraft_MVC/public/Admin1/delete?payment_id={$row['payment_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
+                                    <a href='/Admin/deletePayment?payment_id={$row['payment_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
 
                   </td>"; // Nút xóa
                                     echo "</tr>";
@@ -236,7 +237,7 @@ $payment = $data['payment'];
                 <input type="text" class="form-control" name="role" id="edit-role" required>
             </div>
             <div>
-                <!-- <a href="/Gleamcraft_MVC/public/Admin1/edit?user_id={$row['user_id']}'"></a> -->
+                <!-- <a href="/Gleamcraft_MVC/public/Admin/edit?user_id={$row['user_id']}'"></a> -->
                 <button type="submit" class="btn btn-success" name="update_user">Save Changes</button>
                 <button type="button" class="btn btn-secondary" onclick="closeEditFormUser()">Cancel</button>
             </div>
@@ -244,45 +245,45 @@ $payment = $data['payment'];
     </div>
 
 
-    
+
     <div id="overlay" onclick="closeEditFormProduct()"></div>
     <div id="edit-form-product" style="display: none;">
         <h4>Edit Products</h4>
-    <form id="edit-product-form" method="POST" action="" >
-        <input type="hidden" id="edit-product-id" name="product_id">
-        <i class="fas fa-times close-icon" onclick="closeEditFormProduct()"></i>
+        <form id="edit-product-form" method="POST" action="">
+            <input type="hidden" id="edit-product-id" name="product_id">
+            <i class="fas fa-times close-icon" onclick="closeEditFormProduct()"></i>
 
-        <div class="mb-3">
-            <label for="editt-name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="editt-name" name="name">
-        </div>
-        <div class="mb-3">
-            <label for="edit-description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="edit-description" name="description">
-        </div>
-        <div class="mb-3">
-            <label for="edit-color" class="form-label">Color</label>
-            <input type="text" class="form-control" id="edit-color" name="color">
-        </div>
-        <div class="mb-3">
-            <label for="edit-gender" class="form-label">Gender</label>
-            <input type="text" class="form-control" id="edit-gender" name="gender">
-        </div>
-        <div class="mb-3">
-            <label for="edit-type-name" class="form-label">Type Name</label>
-            <input type="text" class="form-control" id="edit-type-name" name="type_name">
-        </div>
-        <div class="mb-3">
-            <label for="edit-price" class="form-label">Price</label>
-            <input type="text" class="form-control" id="edit-price" name="price">
-        </div>
-        <div class="mb-3">
-            <label for="edit-image" class="form-label">Image</label>
-            <input type="text" class="form-control" id="edit-image" name="image">
-        </div>
-        <button type="submit" class="btn btn-success" name="update_product">Save Changes</button>
-        <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
-    </form>
+            <div class="mb-3">
+                <label for="editt-name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="editt-name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="edit-description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="edit-description" name="description">
+            </div>
+            <div class="mb-3">
+                <label for="edit-color" class="form-label">Color</label>
+                <input type="text" class="form-control" id="edit-color" name="color">
+            </div>
+            <div class="mb-3">
+                <label for="edit-gender" class="form-label">Gender</label>
+                <input type="text" class="form-control" id="edit-gender" name="gender">
+            </div>
+            <div class="mb-3">
+                <label for="edit-type-name" class="form-label">Type Name</label>
+                <input type="text" class="form-control" id="edit-type-name" name="type_name">
+            </div>
+            <div class="mb-3">
+                <label for="edit-price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="edit-price" name="price">
+            </div>
+            <div class="mb-3">
+                <label for="edit-image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="edit-image" name="image">
+            </div>
+            <button type="submit" class="btn btn-success" name="update_product">Save Changes</button>
+            <button type="button" class="btn btn-secondary" onclick="closeEditFormProduct()">Cancel</button>
+        </form>
     </div>
     <script src="../../../assets/js/admin.js"></script>
 </body>
