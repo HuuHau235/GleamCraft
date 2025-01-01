@@ -47,7 +47,6 @@ class App {
             parse_str($pathParts[1], $queryParams);
             $params = $queryParams;
         }
-
         return [
             'path' => $pathArray,
             'params' => $params

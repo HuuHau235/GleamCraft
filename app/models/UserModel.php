@@ -126,6 +126,43 @@ public function getAdminCount() {
     return $count[0]; // Trả về số lượng admin
 }
 
+// Đăng ký 
+public function registerUser($name, $password, $email, $phone, $role = "User") {
+    // Kiểm tra email đã tồn tại
+    $checkAccount = "SELECT COUNT(*) as user_count FROM Users WHERE email=?";
+    $stmt = $this->conn->prepare($checkAccount);
+    if (!$stmt) {
+        return ['success' => false, 'message' => 'Lỗi khi chuẩn bị truy vấn kiểm tra email.'];
+    }
+
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close(); // Đóng statement
+
+    if ($row['user_count'] > 0) {
+        return ['success' => false, 'message' => 'Email đã tồn tại!'];
+    }
+
+    // Thêm người dùng mới
+    $sql = "INSERT INTO Users (name, password, email, phone, role) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $this->conn->prepare($sql);
+    if (!$stmt) {
+        return ['success' => false, 'message' => 'Lỗi khi chuẩn bị truy vấn thêm người dùng.'];
+    }
+
+    $stmt->bind_param("sssss", $name, $password, $email, $phone, $role);
+
+    if ($stmt->execute()) {
+        $stmt->close(); // Đóng statement
+        return ['success' => true];
+    } else {
+        $error = $stmt->error; // Ghi log lỗi chi tiết
+        $stmt->close(); // Đóng statement
+        return ['success' => false, 'message' => 'Lỗi khi thực hiện truy vấn thêm người dùng: ' . $error];
+    }
+}
 
 }
 ?>

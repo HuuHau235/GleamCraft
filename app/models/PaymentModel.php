@@ -55,7 +55,7 @@
 //         $stmt->execute();
 //     }
 // }
- 
+
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php');
 class PaymentMethod extends Database {
     public function getAllPayment() {

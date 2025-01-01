@@ -72,7 +72,7 @@ $total_price = $obj -> getTotal();
             <p>Complete your purchase by providing your payment details:</p>
             <div class="underline3"></div>
 
-            <form method="POST" action="../../controllers/PaymentController.php?action=process">
+            <form id="payment-form"  method="POST" action="../../controllers/PaymentController.php?action=process">
                 <div class="infor">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -111,7 +111,7 @@ $total_price = $obj -> getTotal();
         window.location.href = 'http://localhost:8080/Gleamcraft_MVC/public/';
         window.location.href = 'http://localhost/Gleamcraft_MVC/public/';
 
-    });
+
 </script>
     <?php
     require_once "../shared/footer.php";

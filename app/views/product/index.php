@@ -163,7 +163,7 @@
         </div>
     </header><br>
 <div class="container">
-    <form class="filter" action="/GleamCraft_MVC/app/controllers/ProductController.php" method="POST">
+    <form class="filter" action="/Product/filter" method="POST">
         <!-- Lọc theo giới tính -->
         <div class="gender">
             <h2>Gender</h2>
