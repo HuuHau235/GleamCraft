@@ -1,70 +1,56 @@
-<?php 
-
-// namespace App\Controllers;
-
-// use App\Models\Product;
+<?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\UserModel.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\PaymentModel.php');
-class DetailController  extends Controller{
-    private $db;
+// require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\PaymentModel.php');
 
-    public function __construct($db) {
-        $this->db = $db;
+class DetailController extends Controller
+{
+    protected $userModel;
+    protected $productModel;
+
+    // Hàm khởi tạo
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+        $this->productModel = new Products();
     }
 
-    public function show($id) {
-        // Tạo đối tượng Product Model
-        $productModel = new Products($this->db);
+    // Hàm hiển thị trang admin index
+    public function index()
+    {
+        $users = $this->userModel->getUserList();
+        $products = $this->productModel->getAllProduct();
 
-        // Lấy sản phẩm theo ID
-        $product = $productModel->getProductById($id);
-
-        // Kiểm tra nếu sản phẩm không tồn tại
-        if (!$product) {
-            echo "Product not found.";
-            return;
-        }
-
-        // Lấy các sản phẩm liên quan (ngẫu nhiên)
-        // $relatedProducts = $productModel->getRelatedProducts();
-
-        // Lấy danh sách đánh giá cho sản phẩm
-        // $reviews = $productModel->getReviewsByProductId($id);
-
-        // Truyền dữ liệu sang view
-        require_once '../app/views/detail/index.php';
-
-        // Tải footer
-        require_once '../app/views/shared/footer.php';
+        $this->view("detail/index", [
+            "users" => $users,
+            "products" => $products
+        ]);
+    }
+ // Hàm hiển thị chi tiết sản phẩm
+ public function viewProduct($product_id = null)
+{
+    // Kiểm tra nếu product_id không tồn tại hoặc không hợp lệ
+    if ($product_id === null) {
+        die("Product ID is missing!");
     }
 
-    public function addReview($id) {
-        // Kiểm tra nếu yêu cầu là POST
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user_id = $_SESSION['user_id'] ?? null; // Lấy user_id từ session
-            $comment = trim($_POST['comment']);      // Nội dung đánh giá
+    // Lấy chi tiết sản phẩm từ model
+    $product = $this->productModel->getProductById($product_id);
 
-            if (!$user_id) {
-                echo "You need to log in to leave a review.";
-                return;
-            }
-
-            if (empty($comment)) {
-                echo "Comment cannot be empty.";
-                return;
-            }
-
-            // Sử dụng Product Model để thêm đánh giá
-            $productModel = new Products($this->db);
-            if ($productModel->addReview($id, $user_id, $comment)) {
-                // Chuyển hướng về trang chi tiết sản phẩm
-                header("Location: /Gleamcraft_MVC/public/product/detail/$id");
-                exit;
-            } else {
-                echo "Error adding review.";
-            }
-        }
+    // Kiểm tra nếu sản phẩm tồn tại
+    if ($product) {
+        // Truyền dữ liệu vào view
+        $this->view("detail/index", [
+            "product" => $product
+        ]);
+    } else {
+        // Nếu sản phẩm không tồn tại, chuyển hướng về trang admin
+        header("Location: /detail/index");
+        exit;
     }
 }
+}
+?>
+
+

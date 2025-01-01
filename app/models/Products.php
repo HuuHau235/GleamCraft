@@ -24,14 +24,27 @@ class Products extends Database
         return $result->fetch_all(MYSQLI_ASSOC);  // Lấy tất cả sản phẩm dưới dạng mảng
     }
 
-    // Lấy sản phẩm theo ID
     public function getProductById($id)
     {
+        // Chuẩn bị câu lệnh SQL
         $sql = "SELECT * FROM products WHERE product_id = ?";
-        $result = $this->executeQuery($sql, [$id], "i");
-        return $result->fetch_assoc();
+        
+        // Thực thi truy vấn với tham số id
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);  // "i" là kiểu dữ liệu của id (integer)
+        $stmt->execute();
+        
+        // Lấy kết quả
+        $result = $stmt->get_result();
+        
+        // Kiểm tra nếu có kết quả
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc(); // Trả về sản phẩm
+        }
+        
+        // Nếu không có sản phẩm, trả về null
+        return null;
     }
-
     // Lấy tất cả sản phẩm
     public function getAllProduct()
     {
@@ -103,8 +116,5 @@ class Products extends Database
     
         return $result;
     }
-    
-
-
 }
 ?>

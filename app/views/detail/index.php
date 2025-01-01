@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +24,8 @@
                     <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
                     <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                     <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php"
+                            class="nav-link text-dark">Products</a></li>
                     <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
                 </ul>
             </nav>
@@ -40,43 +40,49 @@
         </div>
     </header><br>
     <div class="container product-detail">
-    <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-5">
-            <!-- Hiển thị hình ảnh sản phẩm -->
-            <img src="<?= htmlspecialchars($data['product']['image']); ?>" 
-                 alt="<?= htmlspecialchars($data['product']['name']); ?>" 
-                 class="img-fluid product-image" 
-                 style="width: 500px; height: 400px;">
-        </div>
-        <div class="col-md-6 product-info">
-            <!-- Hiển thị thông tin sản phẩm -->
-            <h1><strong><?= htmlspecialchars($data['product']['name']); ?></strong></h1>
-            <h4><strong>Description:</strong> <?= htmlspecialchars($data['product']['description']); ?></h4>
-            <h2><strong>Color:</strong> <?= htmlspecialchars($data['product']['color']); ?></h2>
-            <h3><?= number_format($data['product']['price'], 0, ',', '.'); ?> VND</h3>
-            
-            <!-- Thêm sản phẩm vào giỏ hàng -->
-            <div class="quantity-and-cart">
-                <div class="mb-3">
-                    <label for="quantity"><strong>Quantity:</strong></label>
-                    <input type="number" id="quantity" class="form-control" value="1" min="1" style="width: 70px;">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- Hiển thị hình ảnh sản phẩm -->
+                    <img src="<?= htmlspecialchars($data['product']['image']); ?>"
+                        alt="<?= htmlspecialchars($data['product']['name']); ?>" class="img-fluid product-image"
+                        style="width: 500px; height: 400px;">
                 </div>
-                <a href="/GleamCraft_MVC/public/cart/add/<?= htmlspecialchars($data['product']['product_id']); ?>?quantity=1">
-                    <button class="btn btn-primary">Add to Cart</button>
-                </a>
+                <div class="col-md-6 product-info">
+                    <!-- Hiển thị thông tin sản phẩm -->
+                    <h1><strong><?= htmlspecialchars($data['product']['name']); ?></strong></h1>
+                    <h4><strong>Description:</strong> <?= htmlspecialchars($data['product']['description']); ?></h4>
+                    <h2><strong>Color:</strong> <?= htmlspecialchars($data['product']['color']); ?></h2>
+                    <h3><?= number_format($data['product']['price'], 0, ',', '.'); ?> VND</h3>
+
+                    <!-- Thêm sản phẩm vào giỏ hàng -->
+                    <div class="quantity-and-cart">
+                        <div class="mb-3">
+                            <label for="quantity"><strong>Quantity:</strong></label>
+                            <input type="number" id="quantity" class="form-control" value="1" min="1"
+                                style="width: 70px;">
+                        </div>
+                        <a
+                            href="/GleamCraft_MVC/public/cart/add/<?= htmlspecialchars($data['product']['product_id']); ?>?quantity=1">
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<form method="POST" action="/GleamCraft_MVC/public/Reviews/addReviews">
-    <input type="hidden" name="review_id" value="<?= htmlspecialchars($data['review_id'] ?? ''); ?>">
-    <input type="hidden" name="product_id" value="<?= htmlspecialchars($data['comment'] ?? ''); ?>">
+        <form method="POST" action="/Reviews/addReview">
+    <input type="hidden" name="review_id" value="<?= htmlspecialchars($product['review_id']); ?>">
+    <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['product_id']); ?>">
+
     <div class="mb-3">
         <label for="comment" class="form-label">Your Review:</label>
         <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
     </div>
-    <button type="submit" class="btn btn-sm btn-danger">Submit Review</button>
+    <a href="/Reviews/addReview?user_id=<?= $_SESSION['user_id']; ?>&product_id=<?= $product['product_id']; ?>" 
+       class="btn btn-sm btn-danger">
+       Submit Review
+    </a>
+    <!-- <button type="submit" class="btn btn-sm btn-danger">Submit Review</button> -->
 </form>
 
 
@@ -86,16 +92,18 @@
             <div class="row">
                 <?php if (!empty($relatedProducts)): ?>
                     <?php foreach ($relatedProducts as $relatedProduct): ?>
-                    <div class="col-md-3">
-                        <div class="card mb-3" style="height: 450px;">
-                        <a href="/Gleamcraft_MVC/public/product/detail/<?= $relatedProduct['product_id']; ?>"><img src="<?= $relatedProduct['image']; ?>" class="card-img-top" alt="<?= $relatedProduct['name']; ?>"></a>
+                        <div class="col-md-3">
+                            <div class="card mb-3" style="height: 450px;">
+                                <a href="/Gleamcraft_MVC/public/product/detail/<?= $relatedProduct['product_id']; ?>"><img
+                                        src="<?= $relatedProduct['image']; ?>" class="card-img-top"
+                                        alt="<?= $relatedProduct['name']; ?>"></a>
 
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $relatedProduct['name']; ?></h5>
-                                <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $relatedProduct['name']; ?></h5>
+                                    <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p>No related products found.</p>
