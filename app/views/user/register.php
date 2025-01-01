@@ -14,7 +14,7 @@
             <img src="../../../assets/images/anh_login_logout.png" alt="Registration Image">
         </div>
 
-        <form class="register-form" action="/app/controllers/UserController.php?register" method="POST">
+        <form class="register-form" action="/User/register" method="POST">
             <h1>Create Your Account</h1>
             <div class="information">
                 <div class="first-name">

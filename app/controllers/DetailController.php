@@ -1,10 +1,13 @@
 <?php 
 
-namespace App\Controllers;
+// namespace App\Controllers;
 
-use App\Models\Product;
-
-class DetailController {
+// use App\Models\Product;
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\UserModel.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\PaymentModel.php');
+class DetailController  extends Controller{
     private $db;
 
     public function __construct($db) {
@@ -13,7 +16,7 @@ class DetailController {
 
     public function show($id) {
         // Tạo đối tượng Product Model
-        $productModel = new Product($this->db);
+        $productModel = new Products($this->db);
 
         // Lấy sản phẩm theo ID
         $product = $productModel->getProductById($id);
@@ -25,10 +28,10 @@ class DetailController {
         }
 
         // Lấy các sản phẩm liên quan (ngẫu nhiên)
-        $relatedProducts = $productModel->getRelatedProducts();
+        // $relatedProducts = $productModel->getRelatedProducts();
 
         // Lấy danh sách đánh giá cho sản phẩm
-        $reviews = $productModel->getReviewsByProductId($id);
+        // $reviews = $productModel->getReviewsByProductId($id);
 
         // Truyền dữ liệu sang view
         require_once '../app/views/detail/index.php';
@@ -54,7 +57,7 @@ class DetailController {
             }
 
             // Sử dụng Product Model để thêm đánh giá
-            $productModel = new Product($this->db);
+            $productModel = new Products($this->db);
             if ($productModel->addReview($id, $user_id, $comment)) {
                 // Chuyển hướng về trang chi tiết sản phẩm
                 header("Location: /Gleamcraft_MVC/public/product/detail/$id");

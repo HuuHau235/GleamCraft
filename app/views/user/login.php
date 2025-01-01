@@ -1,6 +1,8 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +13,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../../../assets/css/login.css">
 </head>
-
 <body>
     <div class="container py-5">
-        <form action="/user/login" method="POST">
+        <form action="/User/login" method="POST">
             <div class="row justify-content-center align-items-center" style="height: 100%;">
                 <div class="col-sm-5 text-center image-container">
                     <img src="../../../assets/images/anh_login_logout.png" alt="Image" class="img-fluid">
@@ -23,30 +24,19 @@
                     <div class="form-container">
                         <h3 class="mb-4">Login</h3>
                         <p>Don't have an account? <a href="./register.php" style="color: #FE8B4B;">Create Now</a></p>
-                        <!-- <div class="mb-3">
-                            <label for="user_id" class="form-label">User ID</label>
-                            <input type="text" class="form-control" id="user_id" name="user_id"
-                                placeholder="Enter your User ID">
-                        </div> -->
-
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Enter your email">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                         </div>
                         <div class="mb-3 position-relative">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Enter your password">
-                            <i class="fas fa-eye position-absolute" id="togglePassword"
-                                style="top: 38px; right: 10px; cursor: pointer;"></i>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                            <i class="fas fa-eye position-absolute" id="togglePassword" style="top: 38px; right: 10px; cursor: pointer;"></i>
                         </div>
 
-                        <?php
-                        if (isset($_GET['error'])) {
-                            echo "<p style='color: red;'>{$_GET['error']}</p>";
-                        }
-                        ?>
+                        <?php if (isset($_GET['error'])): ?>
+                            <p style="color: red;"><?php echo $_GET['error']; ?></p>
+                        <?php endif; ?>
 
                         <button type="submit" name="login" class="btn login w-100">Login</button>
                         <p><a href="../../models/Forgot_password.php">Forgot a password?</a></p>
@@ -58,8 +48,15 @@
             </div>
         </form>
     </div>
+    <!-- <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const type = passwordField.type === 'password' ? 'text' : 'password';
+    passwordField.type = type;
+}); -->
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../../assets/js/login.js"></script>
 </body>
-
 </html>

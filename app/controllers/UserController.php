@@ -1,102 +1,104 @@
 <?php
-session_start();
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\UserModel.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\User1Model.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php'); 
-class UserController extends Controller {
-    private $conn;
 
+class UserController extends Controller {
+    protected $userModel;
+    
     public function __construct() {
-        // Khởi tạo đối tượng Database và lấy kết nối CSDL
-        $db = new Database();
-        $this->conn = $db->getConnection();
+        $this->userModel = new UserModel();
+    }
+    
+    public function index() {
+        // Kiểm tra nếu người dùng đã đăng nhập
+        if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+            header("Location: /homepage");  // Điều hướng đến homepage nếu đã đăng nhập
+            exit();
+        }
+        $this->view("user/login");  // Hiển thị trang login
     }
 
     public function login() {
-        // Kiểm tra nếu form đăng nhập được gửi
-        if (isset($_POST['login'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-
-            // Tạo đối tượng UserModel và gọi phương thức login
-            $userModel = new User1Model($this->conn);
-            $user = $userModel->login($email, $password);
-
-            // Nếu đăng nhập thành công
-            if ($user) {
-                // Lưu thông tin người dùng vào session
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['email'] = $user['email'];
-                // Chuyển hướng đến trang chính (index)
-                header("Location: /GleamCraft_MVC/");
-                exit;
-            } else {
-                // Nếu đăng nhập không thành công, chuyển hướng về trang login và thông báo lỗi
-                header("/user/login?error=Invalid email or password");
-                exit;
-            }
-        } else {
-            // Hiển thị form đăng nhập nếu không có POST
-            $this->view('user/login');
-        }
-    }
-// Đăng ký
-    public function register() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $username = isset($_POST['username']) ? trim($_POST['username']) : '';
-            $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-            $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
-            $password = isset($_POST['password']) ? trim($_POST['password']) : '';
-            $confirmPassword = isset($_POST['confirmpassword']) ? trim($_POST['confirmpassword']) : '';
-            
-            $error = "";
-
-            // Kiểm tra đầu vào
-            if (empty($username) || empty($email) || empty($phone) || empty($password) || empty($confirmPassword)) {
-                $error = "Vui lòng nhập đầy đủ thông tin.";
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $error = "Email không hợp lệ!";
-            } elseif (strlen($password) < 5) {
-                $error = "Mật khẩu phải có ít nhất 5 ký tự!";
-            } elseif ($password !== $confirmPassword) {
-                $error = "Mật khẩu không khớp!";
-            }
-
-            // Hiển thị form với lỗi nếu có
-            if (!empty($error)) {
-                $this->view('user/register', ['error' => $error]);
-                return;
-            }
-
-            // Gọi model để thực hiện đăng ký
-            $registerModel = $this->model("User1Model");
-            $role = "User"; // Vai trò mặc định
-            $result = $registerModel->registerUser($username, $password, $email, $phone, $role);
-
-            // Kiểm tra kết quả từ model
-            if ($result['success']) {
-                // Gửi email xác nhận
-                $confirmationLink = "http://your_confirmation_link.com"; // Đặt đường dẫn xác nhận của bạn
-                $emailResult = $registerModel->sendConfirmationEmail($username, $email, $confirmationLink);
-
-                // Kiểm tra kết quả gửi email nếu cần
-                if (!$emailResult['success']) {
-                    // Nếu gửi email thất bại, có thể lưu thông báo lỗi
-                    $_SESSION['error'] = $emailResult['message'];
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+        
+        // Kiểm tra nếu email và password không rỗng
+        if ($email != '' && $password != '') {
+            $result = $this->userModel->login($email, $password);  // Kiểm tra đăng nhập
+            if ($result) {
+                $_SESSION['user_logged_in'] = true;  // Lưu session đăng nhập
+                
+                // Lấy vai trò người dùng sau khi đăng nhập thành công
+                $userRole = $this->userModel->getUserRoleByEmail($email); // Giả sử phương thức này trả về 'admin' hoặc 'user'
+                
+                // Điều hướng dựa trên vai trò người dùng
+                if ($userRole == 'admin') {
+                    header("Location: /Admin/");  // Điều hướng đến trang admin
+                } else {
+                    header("Location: /homepage");  // Điều hướng đến trang homepage
                 }
-
-                // Chuyển hướng đến trang đăng nhập
-                $_SESSION['success'] = "Đăng ký thành công! Vui lòng kiểm tra email của bạn để xác nhận.";
-                header("user/login");
                 exit();
             } else {
-                // Hiển thị lỗi từ model
-                $this->view('user/register', ['error' => $result['message'] ?? 'Đăng ký thất bại.']);
+                // Nếu đăng nhập không thành công (email hoặc mật khẩu không đúng)
+                $_SESSION['login_error'] = 'Email hoặc mật khẩu không đúng. Vui lòng kiểm tra lại.';
+                header("Location: /User");  // Quay lại trang login
+                exit();
             }
         } else {
-            // Hiển thị form đăng ký nếu không có dữ liệu POST
-            $this->view('user/register');
+            // Nếu email hoặc password để trống
+            $_SESSION['login_error'] = 'Vui lòng nhập đầy đủ email và mật khẩu.';
+            header("Location: /User");  // Quay lại trang login
+            exit();
         }
     }
+    
+   // Đăng Ký
+public function register() {
+    if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') == 0) { // So sánh không phân biệt hoa thường
+        $username = isset($_POST['username']) ? trim($_POST['username']) : '';
+        $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+        $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+        $password = isset($_POST['password']) ? trim($_POST['password']) : '';
+        $confirmPassword = isset($_POST['confirmpassword']) ? trim($_POST['confirmpassword']) : '';
+
+        $error = "";
+
+        // Kiểm tra các điều kiện nhập liệu
+        if (empty($username) || empty($email) || empty($phone) || empty($password) || empty($confirmPassword)) {
+            $error = "Please enter complete information.";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // Kiểm tra email hợp lệ
+            $error = "Invalid email!";
+        } elseif (strlen($password) < 5) {
+            $error = "Password must have at least 5 characters!";
+        } elseif ($password !== $confirmPassword) {
+            $error = "Passwords do not match!";
+        }
+
+        // Hiển thị form kèm lỗi nếu có
+        if (!empty($error)) {
+            echo "<script>alert('$error');</script>";
+            $this->view('User/register');
+            return;
+        }
+
+        // Gọi model để đăng ký người dùng
+        $registerModel = $this->model("UserModel");
+        $role = "User"; // Vai trò mặc định
+        $result = $registerModel->registerUser($username, $password, $email, $phone, $role);
+
+        // Kiểm tra kết quả từ model
+        if ($result['success']) {
+            $_SESSION['success'] = "Registered successfully! Please check your email for confirmation.";
+            header("Location: /User"); // Đảm bảo điều hướng đúng
+            exit();
+        } else {
+            $this->view('User/register', ['error' => $result['message'] ?? 'Registration failed.']);
+        }
+    } else {
+        $this->view('User/register'); // Hiển thị form đăng ký nếu không có POST
+    }
+}
+
+
 }
 ?>

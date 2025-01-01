@@ -1,6 +1,4 @@
 <?php
-// // require_once(__DIR__ . '/../core/Db.php');
-// require_once(__DIR__ . '/../../config/db.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php');
 
 class AdminModel extends Database {
