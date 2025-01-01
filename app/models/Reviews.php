@@ -8,6 +8,12 @@ class ReviewsModel extends Database
         parent::__construct(); // Kết nối đến cơ sở dữ liệu
     }
 
+    public function getAllReview()
+    {
+        $sql = "SELECT * FROM reviews";
+        $result = $this->conn->query($sql);
+        return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
+    }
     // Lấy tất cả các review ID
     public function getAllReviewsID()
     {

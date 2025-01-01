@@ -23,7 +23,7 @@ session_start();
                 <div class="col-sm-5">
                     <div class="form-container">
                         <h3 class="mb-4">Login</h3>
-                        <p>Don't have an account? <a href="./register.php" style="color: #FE8B4B;">Create Now</a></p>
+                        <p>Don't have an account? <a href="/User/register/" style="color: #FE8B4B;">Create Now</a></p>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
@@ -48,12 +48,6 @@ session_start();
             </div>
         </form>
     </div>
-    <!-- <script>
-        document.getElementById('togglePassword').addEventListener('click', function () {
-    const passwordField = document.getElementById('password');
-    const type = passwordField.type === 'password' ? 'text' : 'password';
-    passwordField.type = type;
-}); -->
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,6 +1,7 @@
 <?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\UserModel.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Reviews.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\PaymentModel.php');
 
@@ -9,17 +10,19 @@ class AdminController extends Controller
     protected $userModel;
     protected $productModel;
     protected $paymentMethod;
+    protected $reviewMethod;
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->productModel = new Products();
         $this->paymentMethod = new PaymentMethod();
+        $this->reviewMethod = new  ReviewsModel();
     }
     public function index()
     {
         $users = $this->userModel->getUserList();
         $products = $this->productModel->getAllProduct();
-        $reviews = $this->productModel->getAllReview();
+        $reviews = $this->reviewMethod->getAllReview();
         $payment = $this->paymentMethod->getAllPayment();
         // var_dump($users); die;
         $this->view("admin/index", [

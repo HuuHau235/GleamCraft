@@ -21,10 +21,10 @@
 
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="/homepage/" class="nav-link text-dark">Home</a></li>
                     <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                     <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php"
+                    <li class="nav-item"><a href="/Product/"
                             class="nav-link text-dark">Products</a></li>
                     <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
                 </ul>
@@ -33,8 +33,8 @@
             <div class="user-icon position-relative">
                 <i class="bi bi-person"></i>
                 <div class="tooltip-box">
-                    <a href="../../../app/views/user/login.php" class="d-block text-dark">Login</a>
-                    <a href="../../../app/views/user/register.php" class="d-block text-dark">Register</a>
+                <a href="/User/login" class="d-block text-dark">Login</a>
+                <a href="/User/register" class="d-block text-dark">Register</a>
                 </div>
             </div>
         </div>
