@@ -2,29 +2,24 @@
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
 
-class ProductController extends Controller {
-    public function index() {
-        $product = $this->model('Products');
-        $products = $product->getAllProduct();
+class ProductController extends Controller
+{
+    protected $productModel;
 
-        if (!$products) {
-            die("No products found.");
-        }
-
-        $this->view("homepage", ["products" => $products]);
+    public function __construct()
+    {
+        $this->productModel = new Products();
     }
 
-    public function detail($id) {
-        $product = $this->model('Products');
-        $productDetail = $product->getProductById($id);
+    public function index()
+    {
+        // Lấy tất cả sản phẩm từ model
+        $products = $this->productModel->getAllProduct();
 
-        if ($productDetail) {
-            $this->view('detail/index', ['product' => $productDetail]);
-        } else {
-            echo "Product not found.";
-        }
+        // Gửi dữ liệu sản phẩm đến view
+        $this->view("product/index", [
+            "products" => $products,
+        ]);
     }
-
-
 }
 ?>

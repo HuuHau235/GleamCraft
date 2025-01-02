@@ -25,6 +25,7 @@ class App {
             // path[1] => method (login)
             if (isset($url['path'][1]) && method_exists($controllerInstance, $url['path'][1])) {
                 $this->method = $url['path'][1];
+
             } elseif (!isset($url['path'][1])) {
                 $this->method = 'index';
             } else {

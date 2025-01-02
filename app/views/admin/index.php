@@ -29,7 +29,7 @@ $payment = $data['payment'];
                 <button class="btn btn-light" onclick="showTab('product')">Product</button>
                 <button class="btn btn-light" onclick="showTab('review')">Review</button>
                 <button class="btn btn-light" onclick="showTab('payment')">Payment</button>
-                <a href="/User/"><button class="btn btn-light" onclick="showTab('login')">Login</button></a>
+                <a href="/User/"><button class="btn btn-light" onclick="showTab('login')">Log Out</button></a>
             </div>
 
             <!-- Main Content -->

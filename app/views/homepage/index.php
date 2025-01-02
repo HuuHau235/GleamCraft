@@ -1,9 +1,10 @@
 <?php
-    require_once('C:\xampp\htdocs\GleamCraft_MVC\app\controllers\ProductController.php');
-    $products = $data['productHomepage']; 
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\controllers\ProductController.php');
+// $products = $data['productHomepage'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/banner.css">
 </head>
+
 <body class="body">
     <header class="bg-light border-bottom d-flex align-items-center">
         <div class="container-fluid d-flex justify-content-between align-items-center px-4">
@@ -27,7 +29,8 @@
                     <li class="nav-item"><a href="" class="nav-link text-dark">Home</a></li>
                     <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                     <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/Product/"
+                            class="nav-link text-dark">Products</a></li>
                     <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
                 </ul>
             </nav>
@@ -44,13 +47,13 @@
     <div class="banner">
         <img src="/assets/images/brands/Day-chuyen-1.jpg" alt="Banner Image">
         <div class="banner-text">Welcome to GleamCraft </div>
-    </div> <br> 
+    </div> <br>
 
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6">
-            <h2 class="h2 highlight-text">Gemstone Rings - Luxurious and Classy</h2>
-                <p>                 
+                <h2 class="h2 highlight-text">Gemstone Rings - Luxurious and Classy</h2>
+                <p>
                     Gemstone Rings - Luxury and ClassBearing the power and natural beauty of gemstones,
                     gemstone rings are symbols of longevity and class, enhancing the beauty and style of the wearer.
                 </p>
@@ -60,7 +63,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container content-section">
         <div class="row align-items-center">
             <div class="col-md-6 text-center">
@@ -81,8 +84,9 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h2 class="h2 highlight-text">Adorn yourself with timeless elegance</h2>
-                <p>               
-                    Celebrate your style with exquisitely crafted jewelry necklaces that reflect your beauty and personality. 
+                <p>
+                    Celebrate your style with exquisitely crafted jewelry necklaces that reflect your beauty and
+                    personality.
                     Each design is a blend of artistry and sophistication, giving you a lasting impression.
                 </p>
             </div>
@@ -100,12 +104,14 @@
             <div class="col-md-6">
                 <h2 class="h2 highlight-text">Shine bright in just three simple steps</h2>
                 <h4>Choose your style</h4>
-                <p>            
-                    Explore our diverse collection of earrings to find the style that suits your style. Choose a design that reflects your personality and elegance.
+                <p>
+                    Explore our diverse collection of earrings to find the style that suits your style. Choose a design
+                    that reflects your personality and elegance.
                 </p>
                 <h4>Customize your diamond</h4>
                 <p>
-                    Highlight your own beauty by customizing your diamond: choose the size, cut, and material. Each choice creates a unique piece just for you.
+                    Highlight your own beauty by customizing your diamond: choose the size, cut, and material. Each
+                    choice creates a unique piece just for you.
                 </p>
                 <h4>Wear with confidence</h4>
                 <p>
@@ -121,9 +127,12 @@
                 <?php foreach ($data['productHomepage'] as $product): ?>
                     <div class="col-md-3 mb-4">
                         <div class="card" style="height: 450px;">
-                        <a href="/Gleamcraft_MVC/public/product/detail/<?= $product['product_id']; ?>">
-                           <img src="<?= $product['image'] ?>" class="card-img-top" alt="<?= htmlspecialchars($product['name']) ?>" style="height: 300px; object-fit: cover;">
+
+                            <a href="/detail/viewProduct?product_id=<?= $product['product_id']; ?>">
+                                <img src="<?= $product['image'] ?>" class="card-img-top"
+                                    alt="<?= htmlspecialchars($product['name']) ?>" style="height: 300px; object-fit: cover;">
                             </a>
+
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
                                 <p class="card-text"><?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
@@ -144,12 +153,12 @@
                     <p>GleamCraft is a supplier of high-end and luxury diamond jewelry.</p>
                 </div>
                 <div class="col-md-3">
-                <h5>GleamCraft</h5>
-                <ul class="list-unstyled">
-                    <li><a href="/about" class="text-light text-decoration-none">About us</a></li>
-                    <li><a href="/products/" class="text-light text-decoration-none">Products</a></li>
-                    <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
-                </ul>
+                    <h5>GleamCraft</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/about" class="text-light text-decoration-none">About us</a></li>
+                        <li><a href="/products/" class="text-light text-decoration-none">Products</a></li>
+                        <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
+                    </ul>
                 </div>
                 <div class="col-md-3">
                     <h5>GleamCraft</h5>
@@ -176,4 +185,5 @@
     </footer>
     <script src="/assets/js/homepage.js"></script>
 </body>
+
 </html>

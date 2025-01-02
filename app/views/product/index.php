@@ -1,3 +1,7 @@
+<?php
+$products = $data['products'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,10 +149,10 @@
 
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="/homepage/" class="nav-link text-dark">Home</a></li>
                     <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
                     <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php" class="nav-link text-dark">Products</a></li>
+                    <li class="nav-item"><a href="/Product/" class="nav-link text-dark">Products</a></li>
                     <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
                 </ul>
             </nav>
@@ -156,8 +160,8 @@
             <div class="user-icon position-relative">
                 <i class="bi bi-person"></i>
                 <div class="tooltip-box">
-                    <a href="../../app/views/user/login.php" class="d-block text-dark">Login</a>
-                    <a href="../../app/views/user/register.php" class="d-block text-dark">Register</a>
+                <a href="/User/login" class="d-block text-dark">Login</a>
+                <a href="/User/register" class="d-block text-dark">Register</a>
                 </div>
             </div>
         </div>
@@ -213,27 +217,25 @@
     </form>
 
     <div class="products">
-        <?php 
-        global $products;   
-        ?>
-        <?php if (!empty($products)): ?>
-            <ul>
-                <?php foreach ($products as $product): ?>
-                    <li>
-                        <a href="http://localhost:8080/Gleamcraft_MVC/public/product/detail/<?php echo htmlspecialchars($product['product_id']); ?>">
-                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" ><br>
-                            <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
-                            Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND<br>
-                            Type: <?php echo htmlspecialchars($product['type_name']); ?><br>
-                            Color: <?php echo htmlspecialchars($product['color']); ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <p>No products found.</p>
-        <?php endif; ?>
-    </div>
+    <?php if (!empty($products)): ?>
+        <ul>
+            <?php foreach ($products as $product): ?>
+                <li>
+                    <a href="/detail/viewProduct?product_id=<?= $product['product_id']; ?>">
+                        <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image"><br>
+                        <strong><?php echo htmlspecialchars($product['name']); ?></strong><br>
+                        Price: <?php echo number_format($product['price'], 0, ',', '.'); ?> VND<br>
+                        Type: <?php echo htmlspecialchars($product['type_name']); ?><br>
+                        Color: <?php echo htmlspecialchars($product['color']); ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>No products found.</p>
+    <?php endif; ?>
+</div>
+
 </div>
 <!-- <?php include('../shared/footer.php'); ?> -->
 

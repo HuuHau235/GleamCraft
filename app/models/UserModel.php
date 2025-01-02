@@ -72,59 +72,61 @@ class UserModel extends Database
 
 
     public function login($email, $password)
-{
-    // Chuẩn bị câu lệnh SQL để lấy người dùng với email và mật khẩu
-    $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-    $stmt = $this->conn->prepare($sql);
+    {
+        // Chuẩn bị câu lệnh SQL để lấy người dùng với email và mật khẩu
+        $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+        $stmt = $this->conn->prepare($sql);
 
-    // Liên kết tham số với câu lệnh SQL (sử dụng 'ss' cho email và mật khẩu)
-    $stmt->bind_param("ss", $email, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Kiểm tra nếu có người dùng và mật khẩu đúng
-    if ($result->num_rows > 0) {
-        return $result->fetch_assoc(); // Trả về thông tin người dùng
-    } else {
-        return null; // Trả về null nếu không tìm thấy người dùng hoặc mật khẩu sai
-    }
-}
-
-public function getUserRoleByEmail($email) {
-    // Truy vấn cơ sở dữ liệu để lấy vai trò người dùng
-    $query = "SELECT role FROM users WHERE email = ?";
-    
-    // Sử dụng MySQLi để thực thi truy vấn
-    if ($stmt = $this->conn->prepare($query)) {
-        // Gắn giá trị email vào tham số truy vấn
-        $stmt->bind_param('s', $email);
-        
-        // Thực thi truy vấn
+        // Liên kết tham số với câu lệnh SQL (sử dụng 'ss' cho email và mật khẩu)
+        $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
-        
-        // Lấy kết quả
-        $stmt->bind_result($role);
-        
-        if ($stmt->fetch()) {
-            return $role;  
+        $result = $stmt->get_result();
+
+        // Kiểm tra nếu có người dùng và mật khẩu đúng
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc(); // Trả về thông tin người dùng
         } else {
+            return null; // Trả về null nếu không tìm thấy người dùng hoặc mật khẩu sai
+        }
+    }
+
+    public function getUserRoleByEmail($email)
+    {
+        // Truy vấn cơ sở dữ liệu để lấy vai trò người dùng
+        $query = "SELECT role FROM users WHERE email = ?";
+
+        // Sử dụng MySQLi để thực thi truy vấn
+        if ($stmt = $this->conn->prepare($query)) {
+            // Gắn giá trị email vào tham số truy vấn
+            $stmt->bind_param('s', $email);
+
+            // Thực thi truy vấn
+            $stmt->execute();
+
+            // Lấy kết quả
+            $stmt->bind_result($role);
+
+            if ($stmt->fetch()) {
+                return $role;
+            } else {
+                return null;
+            }
+
+            // Đóng kết nối
+            $stmt->close();
+        } else {
+
             return null;
         }
-        
-        // Đóng kết nối
-        $stmt->close();
-    } else {
-
-        return null;
     }
-}
 
-public function getAdminCount() {
-    $query = "SELECT COUNT(*) FROM users WHERE role = 'admin'";
-    $result = $this->conn->query($query);
-    $count = $result->fetch_row();
-    return $count[0]; // Trả về số lượng admin
-}
+    public function getAdminCount()
+    {
+        $query = "SELECT COUNT(*) FROM users WHERE role = 'admin'";
+        $result = $this->conn->query($query);
+        $count = $result->fetch_row();
+        return $count[0]; // Trả về số lượng admin
+    }
 
 // Đăng ký 
 public function registerUser($name, $password, $email, $phone, $role = "User") {
