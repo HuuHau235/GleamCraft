@@ -114,5 +114,56 @@ class Products extends Database
     
         return $result;
     }
+    // Bộ lọc sản phẩm
+    public function getFilteredProducts($filters) {
+        $query = "SELECT * FROM Products";
+        $conditions = [];
+        $params = [];
+        $types = "";
+    
+        if (!empty($filters['gender'])) {
+            $conditions[] = "gender = ?";
+            $params[] = $filters['gender'];
+            $types .= "s";
+        }
+    
+        if (!empty($filters['type_name'])) {
+            $conditions[] = "type_name = ?";
+            $params[] = $filters['type_name'];
+            $types .= "s";
+        }
+    
+        if (!empty($filters['color'])) {
+            $conditions[] = "color = ?";
+            $params[] = $filters['color'];
+            $types .= "s";
+        }
+    
+        if (!empty($filters['price_range'])) {
+            $price_parts = explode('-', $filters['price_range']);
+            if (count($price_parts) === 2 && is_numeric($price_parts[0]) && is_numeric($price_parts[1])) {
+                $conditions[] = "price BETWEEN ? AND ?";
+                $params[] = (float) $price_parts[0];
+                $params[] = (float) $price_parts[1];
+                $types .= "dd";
+            } else {
+                throw new Exception("Giá trị khoảng giá không hợp lệ.");
+            }
+        }
+    
+        if ($conditions) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+    
+        $stmt = $this->conn->prepare($query);
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
-?>
