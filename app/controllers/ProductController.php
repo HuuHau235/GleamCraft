@@ -1,6 +1,6 @@
 <?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\ProductsModel.php');
 
 class ProductController extends Controller
 {
@@ -8,7 +8,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->productModel = new Products();
+        $this->productModel = new ProductsModel();
     }
 
     public function index()

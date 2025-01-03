@@ -1,7 +1,7 @@
 <?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\UserModel.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\ProductsModel.php');
 // require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\PaymentModel.php');
 
 class DetailController extends Controller
@@ -14,22 +14,8 @@ class DetailController extends Controller
     public function __construct()
     {
         $this->userModel = new UserModel();
-        $this->productModel = new Products();
+        $this->productModel = new ProductsModel();
     }
-
-    // Hàm hiển thị trang admin index
-    // public function index()
-    // {
-    //     $users = $this->userModel->getUserList();
-    //     $products = $this->productModel->getAllProduct();
-    //     $productsRelate = $this->productRelatedModel->getRelatedProduct();
-        
-    //     $this->view("detail/index", [
-    //         "users" => $users,
-    //         "products" => $products
-    //     ]);
-    // }
-
     public function index()
     {
         // Lấy thông tin người dùng
@@ -46,10 +32,6 @@ class DetailController extends Controller
            
         ]);
     }
-    
-
-
-
  // Hàm hiển thị chi tiết sản phẩm
  public function viewProduct($product_id = null)
 {

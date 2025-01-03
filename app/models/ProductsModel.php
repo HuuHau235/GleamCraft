@@ -1,6 +1,6 @@
 <?php
 require_once 'C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php';  // Bao gồm lớp Db
-class Products extends Database
+class ProductsModel extends Database
 {
     // Phương thức thực thi truy vấn chung
     private function executeQuery($sql, $params = null, $types = null)
