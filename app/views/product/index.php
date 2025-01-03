@@ -11,134 +11,9 @@ $products = $data['products'];
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/header.css">
-    <!-- <base href="http://localhost/GleamCraft/"> -->
-    <!-- <link rel="stylesheet" href="/GleamCraft/assets/css/product.css"> -->
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../assets/css/product.css">
     <title>GleamCraft</title>
-    <style>
-    body {
-        font-family: 'Source Sans Pro', sans-serif;
-        background-color: #FFFFE9;
-
-    }
-
-    .container {
-        display: flex;
-        width: 100%;
-        margin: 60px 0px 0px 30px;
-    }
-    .filter {
-        width: 28%;
-        height: 100%;
-        padding: 15px;
-    }
-    h2 {
-        margin-top: 5px;
-    }
-    label {
-        padding-left: 20px;
-        cursor: pointer;
-        font-size: 20px;
-    }
-    .underline {
-        width: 100%;
-        height: 2px;
-        background-color: black;
-        margin: 15px;
-    }
-    details summary {
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-        margin-bottom: 10px;
-    }
-
-    .gem-colors label div {
-        display: inline-block;
-        width: 16px; 
-        height: 16px; 
-        margin-right: 5px; 
-    }
-    .gem-colors div.red { background-color: #f00; }
-    .gem-colors div.white { background-color: white;}
-    .gem-colors div.blue { background-color: #00f; }
-
-    #filterBtn {
-        height: 45px;
-        width: 100%;
-        background-color: black;
-        border-radius: 10px;
-        border: none;
-        color: aliceblue;
-        font-size: 25px;
-        margin-top: 30px;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-    }
-    #filterBtn:hover {
-        transition: all 0.3s ease;
-        transform: scale(1.1);
-        color: aliceblue;
-        background-color: rgb(255, 0, 0);
-    }
-
-    .products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px; 
-        justify-content: space-between; 
-        padding: 20px 0 20px 0px;
-        list-style: none;
-        width: 80%;
-        border-left: 2px solid black;
-    }
-
-    .products ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        list-style: none;
-    }
-
-    .products li {
-        width: 205px; 
-        border: 1px solid #ddd; 
-        border-radius: 5px; 
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-        overflow: hidden;
-        text-align: center; 
-        background-color: #fff; 
-        transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    }
-
-    .products li:hover {
-        transform: scale(1.05); 
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
-    }
-    .products img {
-        width: 100%; 
-        height: auto;
-        border-bottom: 1px solid #ddd; 
-    }
-
-    .products a {
-        text-decoration: none; 
-        color: #333; 
-    }
-
-    .products strong {
-        font-weight: 600; 
-        display: block;
-        margin: 10px 0 5px;
-    }
-
-    .products p, .products span {
-        font-size: 14px;
-        color: #555; 
-        margin: 5px 0;
-    }
-
-    </style>
 </head>
 <body>
 <header class="bg-light border-bottom d-flex align-items-center">
@@ -200,15 +75,15 @@ $products = $data['products'];
         <div class="price_range">
             <details>
                 <summary>Price Range</summary>
-                <label><input type="radio" name="price_range" value="400-500"> 400.000vnd - 500.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="500-600"> 500.000vnd - 600.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="600-700"> 600.000vnd - 700.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="700-800"> 700.000vnd - 800.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="800-900"> 800.000vnd - 900.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="900-1000"> 900.000vnd - 1.000.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="1000-2000"> 1.000.000vnd - 2.000.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="2000-5000"> 2.000.000vnd - 5.000.000vnd </label><br>
-                <label><input type="radio" name="price_range" value="5000-10000"> 5.000.000vnd - 10.000.000vnd </label><br>
+                <label><input type="radio" name="price_range" value="400000-500000"> 400.000 VND - 500.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="500000-600000"> 500.000 VND - 600.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="600000-700000"> 600.000 VND - 700.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="700000-800000"> 700.000 VND - 800.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="800000-900000"> 800.000 VND - 900.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="900000-1000000"> 900.000 VND - 1.000.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="1000000-2000000"> 1.000.000 VND - 2.000.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="2000000-5000000"> 2.000.000 VND - 5.000.000 VND </label><br>
+                <label><input type="radio" name="price_range" value="5000000-10000000"> 5.000.000 VND - 10.000.000 VND </label><br>
             </details>
         </div>
         <button type="submit" id="filterBtn">Select</button>
