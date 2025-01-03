@@ -114,8 +114,3 @@ class Products extends Database
     
         return $result;
     }
-    
-
-  
-}
-?>
