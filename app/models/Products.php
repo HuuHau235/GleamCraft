@@ -53,9 +53,13 @@ class Products extends Database
         return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
     }
 
+    public function getRelatedProduct()
+    {
+        $sql = "SELECT * FROM products ORDER BY product_id DESC LIMIT 4";
+        $result = $this->executeQuery($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);  
+    }
     
-    
-    // Phương thức chung để xóa bản ghi
     private function deleteRecord($table, $column, $id)
     {
         try {
@@ -112,60 +116,6 @@ class Products extends Database
     }
     
 
-    // Bộ lọc 
-    public function getFilteredProducts($filters) {
-        $query = "SELECT * FROM Products";
-        $conditions = [];
-        $params = [];
-        $params_price = [];
-
-        // Thêm điều kiện nếu có bộ lọc
-        if (!empty($filters['gender'])) {
-            $conditions[] = "gender = ?";
-            $params[] = $filters['gender'];
-        }
-
-        if (!empty($filters['type_name'])) {
-            $conditions[] = "type_name = ?";
-            $params[] = $filters['type_name'];
-        }
-
-        if (!empty($filters['color'])) {
-            $conditions[] = "color = ?";
-            $params[] = $filters['color'];
-        }
-        
-        if (!empty($filters['price_range'])) {
-            [$min, $max] = explode('-', $filters['price_range']);
-            $conditions[] = "price BETWEEN ? AND ?";
-            $params_price[] = $min;
-            $params_price[] = $max;
-        }
-
-        // Thêm điều kiện vào query
-        if ($conditions) {
-            $query .= " WHERE " . implode(" AND ", $conditions);
-        }
-
-        
-        $stmt = $this->conn->prepare($query);
-
-        // Gán giá trị tham số vào câu lệnh
-        if (!empty($params)) {
-            $stmt->bind_param(str_repeat('s', count($params)), ...$params); 
-        }
-        
-        // Gán tham số price với kiểu dữ liệu dd cho 2 giá trị min và max
-        if (!empty($params_price)) {
-            $stmt->bind_param('dd', $params_price[0], $params_price[1]);
-        }
-
-        
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
+  
 }
 ?>

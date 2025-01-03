@@ -36,7 +36,6 @@ class Cart
         $this->conn = $conn;
     }
 
-    // Thêm sản phẩm vào giỏ hàng
     public function addToCart($product_id, $quantity, $user_id)
     {
         $query = "SELECT name, image, description, price FROM products WHERE product_id = ?";

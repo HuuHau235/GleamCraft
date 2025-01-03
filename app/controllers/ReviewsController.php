@@ -47,6 +47,7 @@ class ReviewsController extends Controller
             }
         }
     }
+    
 }
 ?>
 
