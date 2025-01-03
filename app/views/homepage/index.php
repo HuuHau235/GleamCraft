@@ -1,7 +1,4 @@
-<?php
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\controllers\ProductController.php');
-// $products = $data['productHomepage'];
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 

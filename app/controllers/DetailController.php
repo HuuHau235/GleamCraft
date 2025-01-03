@@ -8,6 +8,7 @@ class DetailController extends Controller
 {
     protected $userModel;
     protected $productModel;
+    protected $productRelatedModel;
 
     // Hàm khởi tạo
     public function __construct()
@@ -17,16 +18,38 @@ class DetailController extends Controller
     }
 
     // Hàm hiển thị trang admin index
+    // public function index()
+    // {
+    //     $users = $this->userModel->getUserList();
+    //     $products = $this->productModel->getAllProduct();
+    //     $productsRelate = $this->productRelatedModel->getRelatedProduct();
+        
+    //     $this->view("detail/index", [
+    //         "users" => $users,
+    //         "products" => $products
+    //     ]);
+    // }
+
     public function index()
     {
+        // Lấy thông tin người dùng
         $users = $this->userModel->getUserList();
+        
         $products = $this->productModel->getAllProduct();
-
+        
+        $productId = $_GET['product_id'];
+    
+        // Truyền dữ liệu vào view
         $this->view("detail/index", [
             "users" => $users,
-            "products" => $products
+            "products" => $products,
+           
         ]);
     }
+    
+
+
+
  // Hàm hiển thị chi tiết sản phẩm
  public function viewProduct($product_id = null)
 {
@@ -37,15 +60,15 @@ class DetailController extends Controller
 
     // Lấy chi tiết sản phẩm từ model
     $product = $this->productModel->getProductById($product_id);
+    $productsRelate = $this->productModel->getRelatedProduct();
 
-    // Kiểm tra nếu sản phẩm tồn tại
+
     if ($product) {
-        // Truyền dữ liệu vào view
         $this->view("detail/index", [
-            "product" => $product
+            "product" => $product,
+            "productsRelate" => $productsRelate  
         ]);
     } else {
-        // Nếu sản phẩm không tồn tại, chuyển hướng về trang admin
         header("Location: /detail/index");
         exit;
     }

@@ -1,18 +1,3 @@
-<?php
-session_start();
-require_once '../../../config/db.php';
-require_once "../../models/CartManager.php";
-
-if (!isset($_SESSION['user_id'])) {
-    echo "Vui lòng đăng nhập!";
-    exit();
-}
-
-$user_id = $_SESSION['user_id'];
-
-$cartManager = new Cart($conn);
-$cartItems = $cartManager->getAllCartItems($user_id);
-?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -56,54 +41,47 @@ $cartItems = $cartManager->getAllCartItems($user_id);
             </div>
         </div>
     </header><br>
+    
     <section class="cart-section">
         <div class="container">
-
             <div class="cart">
-                <?php if (count($cartItems) > 0): ?>
-                    <?php foreach ($cartItems as $item): ?>
+                <?php if (!empty($data['cartItems'])): ?>
+                    <?php foreach ($data['cartItems'] as $item): ?>
                         <div class="cart-item mb-3">
                             <div class="contain_cart p-2 border rounded">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-md-2">
-                                        <img src="<?= htmlspecialchars($item['product_image']); ?>"
-                                            class="img-fluid rounded-start"
-                                            alt="<?= htmlspecialchars($item['product_name']); ?>">
+                                        <img src="<?= htmlspecialchars($item['image']); ?>" alt="<?= htmlspecialchars($item['name']); ?>" width="200">
                                     </div>
                                     <div class="col-md-3 text-center">
                                         <div class="card-body">
-                                            <h5 class="card-title"><?= htmlspecialchars($item['product_name']); ?></h5>
+                                            <h5 class="card-title"><?= htmlspecialchars($item['name']); ?></h5>
                                         </div>
-
                                         <div class="card-body">
-                                            <p class="card-text"><?= htmlspecialchars($item['product_description']); ?></p>
                                         </div>
-
                                     </div>
+
                                     <div class="col-md-3 text-center">
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <a
-                                                href="../../models/CartManager.php?update_add_to_cart=true&product_id=<?= $item['product_id']; ?>&quantity=<?= $item['quantity'] - 1; ?>">
+                                            <a href="../../models/CartManager.php?update_add_to_cart=true&product_id=<?= intval($item['product_id']); ?>&quantity=<?= intval($item['quantity']) - 1; ?>">
                                                 <button class="btn btn-outline-secondary btn-sm reduce" type="button">-</button>
                                             </a>
-                                            <input type="text" value="<?= $item['quantity']; ?>"
+                                            <input type="text" value="<?= intval($item['quantity']); ?>"
                                                 class="form-control mx-2 text-center quantity" style="width: 50px;">
-                                            <a
-                                                href="../../models/CartManager.php?update_add_to_cart=true&product_id=<?= $item['product_id']; ?>&quantity=<?= $item['quantity'] + 1; ?>">
-                                                <button class="btn btn-outline-secondary btn-sm increase"
-                                                    type="button">+</button>
+                                            <a href="/Cart/addToCart?product_id=<?= intval($item['product_id']); ?>&quantity=<?= intval($item['quantity']) + 1; ?>">
+                                                <button class="btn btn-outline-secondary btn-sm increase" type="button">+</button>
                                             </a>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4 d-flex justify-content-between align-items-center">
-                                        <p class="price mb-0"><?= number_format($item['product_price'], 0); ?> VND</p>
-                                        <a
-                                            href="../../models/CartManager.php?delete_add_to_cart=true&product_id=<?= $item['product_id']; ?>">
+                                    <p class="price mb-0"><?= number_format($item['total_price'], 0, ',', '.'); ?> VND</p>
+
+                                        <a href="../../models/CartManager.php?delete_add_to_cart=true&product_id=<?= intval($item['product_id']); ?>">
                                             <button class="btn btn-sm text-danger" type="button">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </a>
-
                                     </div>
                                 </div>
                             </div>
@@ -114,14 +92,16 @@ $cartItems = $cartManager->getAllCartItems($user_id);
                 <?php endif; ?>
             </div>
         </div>
+
         <div class="button">
             <a href="http://localhost:/Gleamcraft_MVC/app/views/payment/"><button type="button" class="btn btn-dark payment">Payment</button></a>
-
         </div>
     </section>
+
     <?php
-    require_once "../shared/footer.php";
+    // require_once "../shared/footer.php";
     ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

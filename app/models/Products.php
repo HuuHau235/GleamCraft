@@ -53,9 +53,13 @@ class Products extends Database
         return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
     }
 
+    public function getRelatedProduct()
+    {
+        $sql = "SELECT * FROM products ORDER BY product_id DESC LIMIT 4";
+        $result = $this->executeQuery($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);  
+    }
     
-    
-    // Phương thức chung để xóa bản ghi
     private function deleteRecord($table, $column, $id)
     {
         try {
@@ -110,5 +114,3 @@ class Products extends Database
     
         return $result;
     }
-}
-?>
