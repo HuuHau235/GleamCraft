@@ -17,23 +17,15 @@ class CartModel extends Database
     {
         session_start();
 
-        // Lấy thông tin sản phẩm
         $product = $this->getProductById($product_id);
-
-        // Kiểm tra nếu sản phẩm tồn tại
         if ($product) {
-            // Kiểm tra nếu giỏ hàng chưa tồn tại, khởi tạo giỏ hàng mới
             if (!isset($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
             }
-
-            // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
             if (isset($_SESSION['cart'][$product_id])) {
-                // Nếu có, tăng số lượng và cập nhật tổng giá
                 $_SESSION['cart'][$product_id]['quantity'] += $quantity;
                 $_SESSION['cart'][$product_id]['total_price'] = $_SESSION['cart'][$product_id]['quantity'] * $product['price'];
             } else {
-                // Nếu chưa có, thêm sản phẩm mới vào giỏ và tính giá
                 $_SESSION['cart'][$product_id] = [
                     'product_id' => $product['product_id'],
                     'name' => $product['name'],
@@ -44,21 +36,11 @@ class CartModel extends Database
                     'total_price' => $quantity * $product['price']
                 ];
             }
-
-            // Cập nhật tổng giá của giỏ hàng
-            if (!isset($_SESSION['cart_total_price'])) {
-                $_SESSION['cart_total_price'] = 0;
-            }
-
-            // Cộng thêm giá trị mới vào tổng giá giỏ hàng
             $_SESSION['cart_total_price'] = array_sum(array_column($_SESSION['cart'], 'total_price'));
-
-            return true; // Trả về true nếu thành công
+            return true; 
         }
-
-        return false; // Trả về false nếu sản phẩm không tồn tại
+        return false; 
     }
-    
 
     public function removeProductFromCart($product_id)
     {
@@ -66,18 +48,55 @@ class CartModel extends Database
 
         if (isset($_SESSION['cart'][$product_id])) {
             unset($_SESSION['cart'][$product_id]);
+            $_SESSION['cart_total_price'] = array_sum(array_column($_SESSION['cart'], 'total_price'));
+            return true; // Xóa thành công
         }
+
+        return false; // Sản phẩm không tồn tại
     }
 
-    public function clearCart()
+    public function updateProductQuantity($product_id, $quantity)
     {
         session_start();
-        $_SESSION['cart'] = [];
+
+        if (isset($_SESSION['cart'][$product_id])) {
+            // Đảm bảo số lượng không giảm xuống dưới 0
+            $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+            if ($_SESSION['cart'][$product_id]['quantity'] <= 0) {
+                unset($_SESSION['cart'][$product_id]); // Xóa sản phẩm nếu số lượng <= 0
+            } else {
+                $_SESSION['cart'][$product_id]['total_price'] = $_SESSION['cart'][$product_id]['quantity'] * $_SESSION['cart'][$product_id]['price'];
+            }
+            $_SESSION['cart_total_price'] = array_sum(array_column($_SESSION['cart'], 'total_price'));
+            return true; // Cập nhật thành công
+        }
+
+        return false; // Sản phẩm không tồn tại
     }
 
-    public function getCartItems()
+    public function decreaseProductQuantity($product_id, $quantity)
     {
         session_start();
-        return isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    
+        if (isset($_SESSION['cart'][$product_id])) {
+            // Kiểm tra số lượng hiện tại để đảm bảo không giảm xuống dưới 1
+            if ($_SESSION['cart'][$product_id]['quantity'] > 1) {
+                $_SESSION['cart'][$product_id]['quantity'] -= $quantity;
+    
+                // Cập nhật tổng giá cho sản phẩm này
+                $_SESSION['cart'][$product_id]['total_price'] = $_SESSION['cart'][$product_id]['quantity'] * $_SESSION['cart'][$product_id]['price'];
+            } else {
+                // Nếu số lượng <= 1, không giảm nữa
+                echo "<script>alert('Số lượng sản phẩm không thể nhỏ hơn 1.');</script>";
+            }
+    
+            // Cập nhật tổng giá toàn bộ giỏ hàng
+            $_SESSION['cart_total_price'] = array_sum(array_column($_SESSION['cart'], 'total_price'));
+            return true; // Cập nhật thành công
+        }
+    
+        return false; // Sản phẩm không tồn tại
     }
+    
 }
+?>
