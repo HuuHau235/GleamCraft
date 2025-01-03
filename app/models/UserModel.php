@@ -113,7 +113,7 @@ class UserModel extends Database
             }
 
             // Đóng kết nối
-            $stmt->close();
+            // $stmt->close();
         } else {
 
             return null;
