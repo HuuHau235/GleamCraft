@@ -1,6 +1,6 @@
 <?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');  // Bao gồm model sản phẩm
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\ProductsModel.php');  // Bao gồm model sản phẩm
 
 class HomepageController extends Controller {
     public function index() {
@@ -8,7 +8,7 @@ class HomepageController extends Controller {
         $db = new Database();  // Khởi tạo đối tượng Db
         
         // Tạo đối tượng ProductModel và truyền kết nối CSDL vào
-        $productModel = $this->model('Products', [$db->getConnection()]);  // Truyền kết nối CSDL
+        $productModel = $this->model('ProductsModel', [$db->getConnection()]);  // Truyền kết nối CSDL
         
         // Lấy danh sách sản phẩm từ model
         $productHomepage = $productModel->getProductHomepage();

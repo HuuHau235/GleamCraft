@@ -1,6 +1,6 @@
 <?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\ProductsModel.php');
 require_once('C:\xampp\htdocs\Gleamcraft_MVC\app\models\CartModel.php');
 
 class CartController extends Controller

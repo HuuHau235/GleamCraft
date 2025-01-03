@@ -11,36 +11,13 @@ $productsRelate = $data['productsRelate'];
     <title>GleamCraft</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/header.css">
-    <link rel="stylesheet" href="../../../assets/css/detail.css">
+    
 </head>
 
 <body>
-    <header class="bg-light border-bottom d-flex align-items-center">
-        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
-            <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="../../../assets/images/brands/logo.jpg" alt="Logo">
-            </a>
-
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a href="/homepage/" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
-                    <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="/Product/" class="nav-link text-dark">Products</a></li>
-                    <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
-                </ul>
-            </nav>
-
-            <div class="user-icon position-relative">
-                <i class="bi bi-person"></i>
-                <div class="tooltip-box">
-                    <a href="/User/login" class="d-block text-dark">Login</a>
-                    <a href="/User/register" class="d-block text-dark">Register</a>
-                </div>
-            </div>
-        </div>
-    </header><br>
+    <?php
+    require_once(__DIR__ . '/../shared/header.php');  // Đảm bảo đường dẫn đúng
+    ?>
     <div class="container product-detail">
         <div class="container mt-5">
             <div class="row">
@@ -89,38 +66,36 @@ $productsRelate = $data['productsRelate'];
 
 
         <div class="related-products my-5">
-    <h3 class="text-center">Related Products</h3>
-    <div class="row">
-        <?php if (!empty($productsRelate)): ?> <!-- Kiểm tra xem mảng có dữ liệu không -->
-            <?php foreach ($productsRelate as $relatedProduct): ?> <!-- Lặp qua các sản phẩm liên quan -->
-                <div class="col-md-3">
-                    <div class="card mb-3" style="height: 450px;">
-                        <a href="/detail/viewProduct?product_id=<?= htmlspecialchars($relatedProduct['product_id']); ?>">
-                            <img src="<?= htmlspecialchars($relatedProduct['image']); ?>" class="card-img-top" alt="<?= htmlspecialchars($relatedProduct['name']); ?>">
-                        </a>
-
-                        
-                       
-
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($relatedProduct['name']); ?></h5>
-                            <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+            <h3 class="text-center">Related Products</h3>
+            <div class="row">
+                <?php if (!empty($productsRelate)): ?> <!-- Kiểm tra xem mảng có dữ liệu không -->
+                    <?php foreach ($productsRelate as $relatedProduct): ?> <!-- Lặp qua các sản phẩm liên quan -->
+                        <div class="col-md-3">
+                            <div class="card mb-3" style="height: 450px;">
+                                <a
+                                    href="/detail/viewProduct?product_id=<?= htmlspecialchars($relatedProduct['product_id']); ?>">
+                                    <img src="<?= htmlspecialchars($relatedProduct['image']); ?>" class="card-img-top"
+                                        alt="<?= htmlspecialchars($relatedProduct['name']); ?>">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($relatedProduct['name']); ?></h5>
+                                    <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No related products found.</p> <!-- Thông báo nếu không có sản phẩm -->
-        <?php endif; ?>
-    </div>
-</div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No related products found.</p> <!-- Thông báo nếu không có sản phẩm -->
+                <?php endif; ?>
+            </div>
+        </div>
 
 
     </div>
 
-
-
-    </div>
+    <?php
+require_once(__DIR__ . '/../shared/footer.php');  
+?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
