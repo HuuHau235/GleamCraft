@@ -63,12 +63,12 @@
 
                                     <div class="col-md-3 text-center">
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <a href="../../models/CartManager.php?update_add_to_cart=true&product_id=<?= intval($item['product_id']); ?>&quantity=<?= intval($item['quantity']) - 1; ?>">
+                                            <a href="/Cart/decreaseQuantity?product_id=<?= intval($item['product_id']); ?>&quantity=<?= intval($item['quantity']) - 1; ?>">
                                                 <button class="btn btn-outline-secondary btn-sm reduce" type="button">-</button>
                                             </a>
                                             <input type="text" value="<?= intval($item['quantity']); ?>"
                                                 class="form-control mx-2 text-center quantity" style="width: 50px;">
-                                            <a href="/Cart/addToCart?product_id=<?= intval($item['product_id']); ?>&quantity=<?= intval($item['quantity']) + 1; ?>">
+                                            <a href="/Cart/increaseQuantity?product_id=<?= intval($item['product_id']); ?>&quantity=<?= intval($item['quantity']) + 1; ?>">
                                                 <button class="btn btn-outline-secondary btn-sm increase" type="button">+</button>
                                             </a>
                                         </div>
@@ -76,8 +76,7 @@
 
                                     <div class="col-md-4 d-flex justify-content-between align-items-center">
                                     <p class="price mb-0"><?= number_format($item['total_price'], 0, ',', '.'); ?> VND</p>
-
-                                        <a href="../../models/CartManager.php?delete_add_to_cart=true&product_id=<?= intval($item['product_id']); ?>">
+                                        <a href="/Cart/removeFromCart?product_id=<?= intval($item['product_id']); ?>">
                                             <button class="btn btn-sm text-danger" type="button">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
