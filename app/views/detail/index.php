@@ -95,9 +95,13 @@ $productsRelate = $data['productsRelate'];
             <?php foreach ($productsRelate as $relatedProduct): ?> <!-- Lặp qua các sản phẩm liên quan -->
                 <div class="col-md-3">
                     <div class="card mb-3" style="height: 450px;">
-                        <a href="/detail/viewProduct/<?= htmlspecialchars($relatedProduct['product_id']); ?>">
+                        <a href="/detail/viewProduct?product_id=<?= htmlspecialchars($relatedProduct['product_id']); ?>">
                             <img src="<?= htmlspecialchars($relatedProduct['image']); ?>" class="card-img-top" alt="<?= htmlspecialchars($relatedProduct['name']); ?>">
                         </a>
+
+                        
+                       
+
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($relatedProduct['name']); ?></h5>
                             <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
