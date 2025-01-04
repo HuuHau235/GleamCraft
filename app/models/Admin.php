@@ -1,22 +1,27 @@
 <?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php');
 
-class AdminModel extends Database {
+class AdminModel extends Database
+{
     // protected $conn;
-    public function __construct() {
+    public function __construct()
+    {
         // $this->conn = $conn;
     }
     // Kiểm tra kết nối cơ sở dữ liệu
-    private function checkConnection() {
+    private function checkConnection()
+    {
         if (!$this->conn || $this->conn->connect_errno) {
             return "Database connection failed: " . $this->conn->connect_error;
         }
         return null;
     }
     // Xóa người dùng
-    public function deleteUser($user_id) {
+    public function deleteUser($user_id)
+    {
         $error = $this->checkConnection();
-        if ($error) return $error;
+        if ($error)
+            return $error;
 
         // $this->conn->query("SET FOREIGN_KEY_CHECKS = 0");
         $this->deleteRelatedData($user_id);
@@ -35,17 +40,20 @@ class AdminModel extends Database {
     }
 
     // Cập nhật thông tin người dùng
-    public function updateUser($user_id, $name, $email, $password, $phone, $role) {
+    public function updateUser($user_id, $name, $email, $password, $phone, $role)
+    {
         $stmt = $this->conn->prepare("UPDATE users SET name = ?, email = ?, password = ?, phone = ?, role = ? WHERE user_id = ?");
         $stmt->bind_param("sssssi", $name, $email, $password, $phone, $role, $user_id);
         return $stmt->execute() ? "Product updated successfully" : "Failed to update product";
     }
-   
+
 
     // Xóa sản phẩm
-    public function deleteProduct($product_id) {
+    public function deleteProduct($product_id)
+    {
         $error = $this->checkConnection();
-        if ($error) return $error;
+        if ($error)
+            return $error;
 
         $sql = "DELETE FROM products WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -60,16 +68,19 @@ class AdminModel extends Database {
     }
 
     // Cập nhật thông tin sản phẩm
-    public function updateProduct($product_id, $name, $description, $color, $gender, $type_name, $price, $image) {
+    public function updateProduct($product_id, $name, $description, $color, $gender, $type_name, $price, $image)
+    {
         $stmt = $this->conn->prepare("UPDATE products SET name = ?, description = ?, color = ?, gender = ?, type_name = ?, price = ?, image = ? WHERE product_id = ?");
         $stmt->bind_param("sssssssi", $name, $description, $color, $gender, $type_name, $price, $image, $product_id);
         return $stmt->execute() ? "Product updated successfully" : "Failed to update product";
     }
 
     // Xóa review
-    public function deleteReview($review_id) {
+    public function deleteReview($review_id)
+    {
         $error = $this->checkConnection();
-        if ($error) return $error;
+        if ($error)
+            return $error;
 
         $sql = "DELETE FROM reviews WHERE review_id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -84,9 +95,11 @@ class AdminModel extends Database {
     }
 
     // Xóa thanh toán
-    public function deletePayment($payment_id) {
+    public function deletePayment($payment_id)
+    {
         $error = $this->checkConnection();
-        if ($error) return $error;
+        if ($error)
+            return $error;
 
         $sql = "DELETE FROM payments WHERE payment_id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -101,31 +114,35 @@ class AdminModel extends Database {
     }
 
     // Các phương thức xóa dữ liệu liên quan đến người dùng
-    public function deleteRelatedData($user_id) {
+    public function deleteRelatedData($user_id)
+    {
         $this->deleteReviews($user_id);
         $this->deleteOrders($user_id);
         $this->deletePayments($user_id);
     }
 
-    public function deleteReviews($user_id) {
+    public function deleteReviews($user_id)
+    {
         $sql = "DELETE FROM reviews WHERE user_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
     }
 
-    public function deleteOrders($user_id) {
+    public function deleteOrders($user_id)
+    {
         $sql = "DELETE FROM orders WHERE user_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
     }
-    public function deletePayments($user_id) {
+    public function deletePayments($user_id)
+    {
         $sql = "DELETE FROM payments WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
     }
-    
+
 }
 ?>

@@ -7,6 +7,7 @@ class App {
     public function __construct()
     {
         $url = $this->parsePath();
+        // var_dump($url);
     
         if (!empty($url['path'])) {
             $controllerName = ucfirst($url['path'][0]) . 'Controller';

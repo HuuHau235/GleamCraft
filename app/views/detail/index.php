@@ -1,9 +1,16 @@
 <?php
 $productsRelate = $data['productsRelate'];
 ?>
+<?php
+// Hiển thị thông báo thành công hoặc lỗi
+if (isset($message)) {
+    echo '<div class="alert alert-success">' . htmlspecialchars($message) . '</div>';
+} elseif (isset($error)) {
+    echo '<div class="alert alert-danger">' . htmlspecialchars($error) . '</div>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +20,6 @@ $productsRelate = $data['productsRelate'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     
 </head>
-
 <body>
     <?php
     require_once(__DIR__ . '/../shared/header.php');  // Đảm bảo đường dẫn đúng
@@ -49,21 +55,44 @@ $productsRelate = $data['productsRelate'];
                 </div>
             </div>
         </div>
-        <form method="POST" action="/Reviews/addReview">
-            <input type="hidden" name="review_id" value="<?= htmlspecialchars($product['review_id']); ?>">
-            <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['product_id']); ?>">
+        <?php if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['message']; ?>
+    </div>
+    <?php unset($_SESSION['message']); ?>
+<?php elseif (isset($_SESSION['error'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error']; ?>
+    </div>
+    <?php unset($_SESSION['error']); ?>
+<?php endif; ?>
 
-            <div class="mb-3">
-                <label for="comment" class="form-label">Your Review:</label>
-                <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+<!-- <h2>Reviews for <?= htmlspecialchars($data['product']['name']); ?></h2> -->
+
+<!-- Hiển thị các đánh giá -->
+<?php if (!empty($data['reviews'])): ?>
+    <div class="reviews-list">
+        <?php foreach ($data['reviews'] as $review): ?>
+            <div class="review">
+                <p><strong><?= htmlspecialchars($review['username']); ?></strong> 
+                <span class="review-date"><?= date("F j, Y, g:i a", strtotime($review['created_at'])); ?></span></p>
+                <p><?= nl2br(htmlspecialchars($review['comment'])); ?></p>
             </div>
-            <a href="/Reviews/addReview?user_id=<?= $_SESSION['user_id']; ?>&product_id=<?= $product['product_id']; ?>"
-                class="btn btn-sm btn-danger">
-                Submit Review
-            </a>
-        </form>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p>No reviews yet.</p>
+<?php endif; ?>
 
-
+<!-- Form thêm review -->
+<form method="POST" action="/Reviews/addReview">
+    <input type="hidden" name="product_id" value="<?= htmlspecialchars($data['product']['product_id']); ?>">
+    <div class="mb-3">
+        <label for="comment" class="form-label">Your Review:</label>
+        <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
 
         <div class="related-products my-5">
             <h3 class="text-center">Related Products</h3>
@@ -89,14 +118,10 @@ $productsRelate = $data['productsRelate'];
                 <?php endif; ?>
             </div>
         </div>
-
-
     </div>
-
     <?php
 require_once(__DIR__ . '/../shared/footer.php');  
 ?>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
