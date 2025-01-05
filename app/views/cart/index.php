@@ -69,7 +69,7 @@ require_once(__DIR__ . '/../shared/header.php');
         </div>
 
         <div class="button">
-            <a href="/PaymentMethod/"><button type="button" class="btn btn-dark payment">Payment</button></a>
+            <a href="/Payment/index"><button type="button" class="btn btn-dark payment">Payment</button></a>
         </div>
     </section>
 
