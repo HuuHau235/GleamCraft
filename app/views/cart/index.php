@@ -11,36 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../../../assets/css/header.css">
 </head>
 
 <body>
-    <header class="bg-light border-bottom d-flex align-items-center">
-        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
-            <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="../../../assets/images/brands/logo.jpg" alt="Logo">
-            </a>
-
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/public" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
-                    <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="/Gleamcraft_MVC/app/controllers/ProductController.php"
-                            class="nav-link text-dark">Products</a></li>
-                    <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
-                </ul>
-            </nav>
-
-            <div class="user-icon position-relative">
-                <i class="bi bi-person"></i>
-                <div class="tooltip-box">
-                    <a href="../../views/user/login.php" class="d-block text-dark">Login</a>
-                    <a href="../../views/user/register.php" class="d-block text-dark">Register</a>
-                </div>
-            </div>
-        </div>
-    </header><br>
+<?php
+require_once(__DIR__ . '/../shared/header.php');  
+?>
     
     <section class="cart-section">
         <div class="container">
@@ -93,13 +69,13 @@
         </div>
 
         <div class="button">
-            <a href="http://localhost:/Gleamcraft_MVC/app/views/payment/"><button type="button" class="btn btn-dark payment">Payment</button></a>
+            <a href="/Payment/index"><button type="button" class="btn btn-dark payment">Payment</button></a>
         </div>
     </section>
 
     <?php
-    // require_once "../shared/footer.php";
-    ?>
+require_once(__DIR__ . '/../shared/footer.php');  
+?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

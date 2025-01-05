@@ -6,6 +6,7 @@ body {
 .g-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-top: 70px;
 }
 
 .g-grid-col1 {

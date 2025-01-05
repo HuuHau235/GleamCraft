@@ -109,39 +109,69 @@ class UserModel extends Database
     }
 
     // Đăng ký người dùng
-    public function registerUser($name, $password, $email, $phone, $role = "User")
-    {
-        $checkSql = "SELECT COUNT(*) as user_count FROM users WHERE email = ?";
-        $stmt = $this->conn->prepare($checkSql);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $stmt->close();
+    public function registerUser($name, $password, $email, $phone, $role = "user")
+{
+    // Kiểm tra email đã tồn tại trong cơ sở dữ liệu chưa
+    $checkSql = "SELECT COUNT(*) as user_count FROM users WHERE email = ?";
+    $stmt = $this->conn->prepare($checkSql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
 
-        if ($row['user_count'] > 0) {
-            return ['success' => false, 'message' => 'Email đã tồn tại!'];
-        }
-
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO users (name, password, email, phone, role) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssss", $name, $hashedPassword, $email, $phone, $role);
-
-        if ($stmt->execute()) {
-            $user_id = $this->conn->insert_id;
-
-            // Lưu thông tin vào session
-            session_start();
-            $_SESSION['user_name'] = $name;
-            $_SESSION['user_id'] = $user_id;
-            $_SESSION['user_role'] = $role;
-
-            $stmt->close();
-            return ['success' => true];
-        }
-
-        return ['success' => false, 'message' => 'Đăng ký thất bại.'];
+    // Nếu email đã tồn tại, trả về thông báo
+    if ($row['user_count'] > 0) {
+        return ['success' => false, 'message' => 'Email đã tồn tại!'];
     }
+
+    // Chuyển role thành chữ thường
+    $role = strtolower($role);
+
+
+    // Thực hiện câu lệnh SQL để chèn thông tin người dùng vào cơ sở dữ liệu
+    $sql = "INSERT INTO users (name, password, email, phone, role) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("sssss", $name, $password, $email, $phone, $role);
+
+    // Kiểm tra nếu câu lệnh SQL thực thi thành công
+    if ($stmt->execute()) {
+        $user_id = $this->conn->insert_id;
+
+        // Lưu thông tin người dùng vào session
+        session_start();
+        $_SESSION['user_name'] = $name;
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['user_role'] = $role;
+
+        $stmt->close();
+        return ['success' => true];
+    }
+
+    return ['success' => false, 'message' => 'Đăng ký thất bại.'];
+}
+
+    public function getFirstUser()
+    {
+        // Thực hiện truy vấn SQL để lấy người dùng đầu tiên
+        $query = "SELECT * FROM users LIMIT 1";
+        
+        // Sử dụng kết nối MySQLi để thực thi truy vấn
+        $result = $this->conn->query($query);
+        
+        // Kiểm tra nếu có kết quả trả về
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            
+            // Chuyển tên người dùng thành chữ thường
+            // $user['username'] = strtolower($user['username']);
+            
+            return $user; // Trả về dữ liệu của người dùng đầu tiên đã chuyển thành chữ thường
+        } else {
+            return null; // Nếu không có người dùng nào, trả về null
+        }
+    }
+    
+    
 }
 ?>

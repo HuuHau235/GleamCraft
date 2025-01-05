@@ -2,7 +2,7 @@
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\UserModel.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Reviews.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\ProductsModel.php');
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\PaymentModel.php');
 
 class AdminController extends Controller
@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->userModel = new UserModel();
-        $this->productModel = new Products();
+        $this->productModel = new ProductsModel();
         $this->paymentMethod = new PaymentMethod();
         $this->reviewMethod = new  ReviewsModel();
     }
@@ -107,15 +107,11 @@ class AdminController extends Controller
             $role = htmlspecialchars($_POST['role']);
             // Lấy thông tin người dùng để kiểm tra vai trò
             $user = $this->userModel->getUserById($user_id);
-            // Kiểm tra nếu người dùng đang chỉnh sửa tài khoản admin
             if ($user['role'] === 'admin' && $role === 'admin') {
-                // Nếu tài khoản admin đang được chỉnh sửa, vẫn cho phép chỉnh sửa các thông tin khác
-                // Và không cho phép thay đổi vai trò admin
                 $this->userModel->updateUser($user_id, $name, $email, $password, $phone, $role);
                 echo "<script>alert('Tài khoản admin đã được cập nhật thành công.'); window.location.href = '/Admin';</script>";
                 exit;
             }
-            // Kiểm tra nếu người dùng cố gắng thay đổi vai trò thành admin khi đã có admin
             $adminCount = $this->userModel->getAdminCount();
             if ($role === 'admin' && $adminCount >= 1) {
                 echo "<script>alert('Bạn không được phép chỉ vai trò thành admin vì đã có một tài khoản admin.'); window.location.href = '/Admin';</script>";
@@ -126,13 +122,10 @@ class AdminController extends Controller
             echo "<script>alert('User updated successfully.'); window.location.href = '/Admin';</script>";
             exit;
         } else {
-            // Lấy thông tin người dùng
             $user = $this->userModel->getUserById($user_id);
             if ($user) {
-                // Hiển thị form chỉnh sửa người dùng
                 $this->view("admin/index", ['user' => $user]);
             } else {
-                // Nếu không tìm thấy người dùng
                 header("Location:/Admin");
                 exit;
             }

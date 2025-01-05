@@ -1,9 +1,16 @@
 <?php
 $productsRelate = $data['productsRelate'];
 ?>
+<?php
+// Hiển thị thông báo thành công hoặc lỗi
+if (isset($message)) {
+    echo '<div class="alert alert-success">' . htmlspecialchars($message) . '</div>';
+} elseif (isset($error)) {
+    echo '<div class="alert alert-danger">' . htmlspecialchars($error) . '</div>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,36 +18,12 @@ $productsRelate = $data['productsRelate'];
     <title>GleamCraft</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/header.css">
-    <link rel="stylesheet" href="../../../assets/css/detail.css">
+    
 </head>
-
 <body>
-    <header class="bg-light border-bottom d-flex align-items-center">
-        <div class="container-fluid d-flex justify-content-between align-items-center px-4">
-            <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="../../../assets/images/brands/logo.jpg" alt="Logo">
-            </a>
-
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a href="/homepage/" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
-                    <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
-                    <li class="nav-item"><a href="/Product/" class="nav-link text-dark">Products</a></li>
-                    <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
-                </ul>
-            </nav>
-
-            <div class="user-icon position-relative">
-                <i class="bi bi-person"></i>
-                <div class="tooltip-box">
-                    <a href="/User/login" class="d-block text-dark">Login</a>
-                    <a href="/User/register" class="d-block text-dark">Register</a>
-                </div>
-            </div>
-        </div>
-    </header><br>
+    <?php
+    require_once(__DIR__ . '/../shared/header.php');  // Đảm bảo đường dẫn đúng
+    ?>
     <div class="container product-detail">
         <div class="container mt-5">
             <div class="row">
@@ -72,56 +55,73 @@ $productsRelate = $data['productsRelate'];
                 </div>
             </div>
         </div>
-        <form method="POST" action="/Reviews/addReview">
-            <input type="hidden" name="review_id" value="<?= htmlspecialchars($product['review_id']); ?>">
-            <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['product_id']); ?>">
+        <?php if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['message']; ?>
+    </div>
+    <?php unset($_SESSION['message']); ?>
+<?php elseif (isset($_SESSION['error'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error']; ?>
+    </div>
+    <?php unset($_SESSION['error']); ?>
+<?php endif; ?>
 
-            <div class="mb-3">
-                <label for="comment" class="form-label">Your Review:</label>
-                <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+<!-- <h2>Reviews for <?= htmlspecialchars($data['product']['name']); ?></h2> -->
+
+<!-- Hiển thị các đánh giá -->
+<?php if (!empty($data['reviews'])): ?>
+    <div class="reviews-list">
+        <?php foreach ($data['reviews'] as $review): ?>
+            <div class="review">
+                <p><strong><?= htmlspecialchars($review['username']); ?></strong> 
+                <span class="review-date"><?= date("F j, Y, g:i a", strtotime($review['created_at'])); ?></span></p>
+                <p><?= nl2br(htmlspecialchars($review['comment'])); ?></p>
             </div>
-            <a href="/Reviews/addReview?user_id=<?= $_SESSION['user_id']; ?>&product_id=<?= $product['product_id']; ?>"
-                class="btn btn-sm btn-danger">
-                Submit Review
-            </a>
-        </form>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p>No reviews yet.</p>
+<?php endif; ?>
 
-
+<!-- Form thêm review -->
+<form method="POST" action="/Reviews/addReview">
+    <input type="hidden" name="product_id" value="<?= htmlspecialchars($data['product']['product_id']); ?>">
+    <div class="mb-3">
+        <label for="comment" class="form-label">Your Review:</label>
+        <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
 
         <div class="related-products my-5">
-    <h3 class="text-center">Related Products</h3>
-    <div class="row">
-        <?php if (!empty($productsRelate)): ?> <!-- Kiểm tra xem mảng có dữ liệu không -->
-            <?php foreach ($productsRelate as $relatedProduct): ?> <!-- Lặp qua các sản phẩm liên quan -->
-                <div class="col-md-3">
-                    <div class="card mb-3" style="height: 450px;">
-                        <a href="/detail/viewProduct?product_id=<?= htmlspecialchars($relatedProduct['product_id']); ?>">
-                            <img src="<?= htmlspecialchars($relatedProduct['image']); ?>" class="card-img-top" alt="<?= htmlspecialchars($relatedProduct['name']); ?>">
-                        </a>
-
-                        
-                       
-
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($relatedProduct['name']); ?></h5>
-                            <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+            <h3 class="text-center">Related Products</h3>
+            <div class="row">
+                <?php if (!empty($productsRelate)): ?> <!-- Kiểm tra xem mảng có dữ liệu không -->
+                    <?php foreach ($productsRelate as $relatedProduct): ?> <!-- Lặp qua các sản phẩm liên quan -->
+                        <div class="col-md-3">
+                            <div class="card mb-3" style="height: 450px;">
+                                <a
+                                    href="/detail/viewProduct?product_id=<?= htmlspecialchars($relatedProduct['product_id']); ?>">
+                                    <img src="<?= htmlspecialchars($relatedProduct['image']); ?>" class="card-img-top"
+                                        alt="<?= htmlspecialchars($relatedProduct['name']); ?>">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($relatedProduct['name']); ?></h5>
+                                    <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No related products found.</p> <!-- Thông báo nếu không có sản phẩm -->
-        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No related products found.</p> <!-- Thông báo nếu không có sản phẩm -->
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
-</div>
-
-
-    </div>
-
-
-
-    </div>
-
+    <?php
+require_once(__DIR__ . '/../shared/footer.php');  
+?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

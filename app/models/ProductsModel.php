@@ -1,6 +1,6 @@
 <?php
 require_once 'C:\xampp\htdocs\GleamCraft_MVC\app\core\Db.php';  // Bao gồm lớp Db
-class Products extends Database
+class ProductsModel extends Database
 {
     // Phương thức thực thi truy vấn chung
     private function executeQuery($sql, $params = null, $types = null)
@@ -19,7 +19,7 @@ class Products extends Database
 
     public function getProductHomepage()
     {
-        $sql = "SELECT * FROM products ORDER BY product_id DESC LIMIT 8";
+        $sql = "SELECT * FROM products ORDER BY RAND() LIMIT 8";
         $result = $this->executeQuery($sql);
         return $result->fetch_all(MYSQLI_ASSOC);  // Lấy tất cả sản phẩm dưới dạng mảng
     }
@@ -55,7 +55,7 @@ class Products extends Database
 
     public function getRelatedProduct()
     {
-        $sql = "SELECT * FROM products ORDER BY product_id DESC LIMIT 4";
+        $sql = "SELECT * FROM products ORDER BY RAND() LIMIT 4";
         $result = $this->executeQuery($sql);
         return $result->fetch_all(MYSQLI_ASSOC);  
     }

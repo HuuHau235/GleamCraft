@@ -1,6 +1,6 @@
 <?php
 require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
-require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\Products.php');
+require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\ProductsModel.php');
 require_once('C:\xampp\htdocs\Gleamcraft_MVC\app\models\CartModel.php');
 
 class CartController extends Controller
@@ -9,8 +9,12 @@ class CartController extends Controller
     public function index()
     {
         $this->startSession();
-        $cartItems = $this->getCartItems();
+        $user_id = $_SESSION['user_id']; // Lấy user_id từ session
+
+        // Lấy các sản phẩm trong giỏ hàng của người dùng
+        $cartItems = $this->getCartItems($user_id);
         $total = $this->calculateCartTotal($cartItems);
+
         $this->view("cart/index", [
             "cartItems" => $cartItems,
             "total" => $total
@@ -24,9 +28,9 @@ class CartController extends Controller
         }
     }
 
-    private function getCartItems()
+    private function getCartItems($user_id)
     {
-        return isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+        return isset($_SESSION['cart'][$user_id]) ? $_SESSION['cart'][$user_id] : [];
     }
 
     // Tính tổng tiền giỏ hàng
@@ -37,13 +41,15 @@ class CartController extends Controller
         }, 0);
     }
 
+    // Thêm sản phẩm vào giỏ hàng
     public function addToCart($product_id, $quantity)
     {
         $this->startSession();
+        $user_id = $_SESSION['user_id']; // Lấy user_id từ session
 
         if ($product_id && $quantity > 0) {
             $cartModel = $this->model('CartModel');
-            $result = $cartModel->addProductToCart($product_id, $quantity);
+            $result = $cartModel->addProductToCart($user_id, $product_id, $quantity);
             if ($result) {
                 header('Location: /Cart/index');
                 exit;
@@ -55,12 +61,15 @@ class CartController extends Controller
         }
     }
 
+    // Xóa sản phẩm khỏi giỏ hàng
     public function removeFromCart($product_id)
     {
         $this->startSession();
+        $user_id = $_SESSION['user_id'];
+
         if ($product_id) {
             $cartModel = $this->model('CartModel');
-            $cartModel->removeProductFromCart($product_id);
+            $cartModel->removeProductFromCart($user_id, $product_id);
             header('Location: /Cart/index');
             exit;
         } else {
@@ -68,15 +77,15 @@ class CartController extends Controller
         }
     }
 
-    public function increaseQuantity($product_id, $quantity)
+    // Tăng số lượng sản phẩm trong giỏ hàng
+    public function increaseQuantity($product_id,$quantity)
     {
         $this->startSession();
-
-        $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : null;
+        $user_id = $_SESSION['user_id'];
 
         if ($product_id) {
             $cartModel = $this->model('CartModel');
-            $success = $cartModel->updateProductQuantity($product_id, 1);
+            $success = $cartModel->updateProductQuantity($user_id, $product_id, 1); // Tăng 1 số lượng
 
             if ($success) {
                 $_SESSION['message'] = "Tăng số lượng sản phẩm thành công.";
@@ -93,21 +102,20 @@ class CartController extends Controller
         }
     }
 
-
+    // Giảm số lượng sản phẩm trong giỏ hàng
     public function decreaseQuantity($product_id, $quantity)
     {
         $this->startSession();
-
-        $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : null;
+        $user_id = $_SESSION['user_id'];
 
         if ($product_id) {
             $cartModel = $this->model('CartModel');
-            $success = $cartModel->decreaseProductQuantity($product_id, 1);
+            $success = $cartModel->decreaseProductQuantity($user_id, $product_id, 1); // Giảm 1 số lượng
 
             if ($success) {
-                $_SESSION['message'] = "Tăng số lượng sản phẩm thành công.";
+                $_SESSION['message'] = "Giảm số lượng sản phẩm thành công.";
             } else {
-                $_SESSION['error'] = "Không thể tăng số lượng sản phẩm.";
+                $_SESSION['error'] = "Không thể giảm số lượng sản phẩm.";
             }
 
             header('Location: /Cart/index');
@@ -118,6 +126,7 @@ class CartController extends Controller
             exit;
         }
     }
+
     private function showErrorMessage($message)
     {
         echo "<script>alert('$message');</script>";
