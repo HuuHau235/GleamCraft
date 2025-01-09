@@ -13,6 +13,17 @@ class UserModel extends Database
         $result = $stmt->get_result();
         return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
     }
+    public function searchUsersByAll($query)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE name LIKE ? OR email LIKE ? OR phone LIKE ? OR role LIKE ?");
+        $searchTerm = "%" . $query . "%";
+        $stmt->bind_param("ssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm); // Liên kết 'name', 'email', 'phone', và 'role' với cùng một biến
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC); 
+    }
+    
+    
 
     // Xóa người dùng theo ID
     public function deleteUser($user_id)
@@ -61,32 +72,34 @@ class UserModel extends Database
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-
+    
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-
-            // Lưu thông tin vào session
-            session_start();
-            $_SESSION['user_name'] = $user['name'];
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['user_email'] = $user['email'];
-            $_SESSION['user_role'] = $user['role'];
-
-            return $user;
-        } else {
-            return null;
+    
+            // So sánh trực tiếp mật khẩu
+            if ($password === $user['password']) {
+                return $user; // Trả về thông tin người dùng nếu mật khẩu đúng
+            }
         }
+    
+        return null; // Trả về null nếu email không tồn tại hoặc mật khẩu không đúng
     }
+    
 
-    // Lấy vai trò người dùng theo email
     public function getUserRoleByEmail($email)
     {
         $sql = "SELECT role FROM users WHERE email = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->bind_result($role);
-        return $stmt->fetch() ? $role : null;
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['role'];
+        } else {
+            return null;
+        }
     }
 
     // Lấy thông tin người dùng theo email

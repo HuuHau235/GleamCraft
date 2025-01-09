@@ -1,10 +1,3 @@
-<?php
-$users = $data['users'];
-$products = $data['products'];
-$reviews = $data['reviews'];
-$payment = $data['payment'];
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,12 +9,61 @@ $payment = $data['payment'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/admin.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
 
+    
 </head>
 
+
 <body>
+<header class="bg-light border-bottom d-flex align-items-center">
+    <div class="container-fluid d-flex justify-content-between align-items-center px-4">
+        <a href="/" class="navbar-brand d-flex align-items-center">
+            <img src="../assets/images/brands/logo.jpg" alt="Logo" height="40">
+        </a>
+        <ul class="nav d-flex justify-content-end align-items-center">
+            <li class="nav-item">
+                <form action="/Admin/index" method="GET" class="d-flex">
+                    <input type="text" name="query" class="form-control me-2" placeholder="Tìm kiếm..."
+                        value="<?= htmlspecialchars($query ?? '') ?>" />
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </form>
+                <div id="search-results" style="display: none;"></div>
+            </li>
+        </ul>
+    </div>
+</header>
     <div class="container-fluid">
+        <!-- Hiển thị tìm kiếm của users -->
+        <?php if (!empty($query)): ?>
+            <?php if (!empty($users)): ?>
+                <ul class="list-group mt-3">
+                    <?php foreach ($users as $useproductsr): ?>
+                        <li class="list-group-item">
+                            <?= htmlspecialchars($user['name']) ?> (Email: <?= htmlspecialchars($user['email']) ?>)
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p class="mt-3">Không tìm thấy kết quả nào.</p>
+            <?php endif; ?>
+        <?php endif; ?>
+        <!-- Hiển thị tìm kiếm của products -->
+        <?php if (!empty($query)): ?>
+            <?php if (!empty($products)): ?>
+                <ul class="list-group mt-3">
+                    <?php foreach ($products as $products): ?>
+                        <li class="list-group-item">
+                            <?= htmlspecialchars($products['name']) ?> (Email: <?= htmlspecialchars($products['email']) ?>)
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p class="mt-3">Không tìm thấy kết quả nào.</p>
+            <?php endif; ?>
+        <?php endif; ?>
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-2 sidebar">
@@ -51,6 +93,9 @@ $payment = $data['payment'];
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            $users = $data['users'];
+                            ?>
                             <?php
                             if ($users) {
                                 foreach ($users as $number => $row) {
@@ -97,6 +142,9 @@ $payment = $data['payment'];
                         </thead>
                         <tbody>
                             <?php
+                            $products = isset($data['products']) ? $data['products'] : [];
+                            ?>
+                            <?php
                             if ($products) {
                                 foreach ($products as $number => $row) { {
                                         echo "<tr data-product_id='" . $row['product_id'] . "'>";
@@ -141,6 +189,9 @@ $payment = $data['payment'];
                         </thead>
                         <tbody>
                             <?php
+                            $reviews = isset($data['reviews']) ? $data['reviews'] : [];
+                            ?>
+                            <?php
                             if ($reviews) {
                                 foreach ($reviews as $index => $row) {
                                     echo "<tr data-review_id='" . htmlspecialchars($row['review_id']) . "'>";
@@ -181,25 +232,25 @@ $payment = $data['payment'];
                         </thead>
                         <tbody>
                             <?php
+                            $payment = isset($data['payment']) ? $data['payment'] : [];
+                            ?>
+                            <?php
                             if ($payment) {
                                 foreach ($payment as $index => $row) {
                                     echo "<tr>";
-                                    echo "<td>" . ($index + 1) . "</td>"; // Hiển thị số thứ tự
-                                    echo "<td>" . htmlspecialchars($row['payment_id']) . "</td>"; // Hiển thị payment_id
-                                    echo "<td>" . htmlspecialchars($row['order_id']) . "</td>"; // Hiển thị order_id
-                                    echo "<td>" . htmlspecialchars($row['total_amount']) . "</td>"; // Hiển thị total_amount
-                                    echo "<td>" . htmlspecialchars($row['payment_date']) . "</td>"; // Hiển thị payment_date
+                                    echo "<td>" . ($index + 1) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['payment_id']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['order_id']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['total_amount']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['payment_date']) . "</td>";
                                     echo "<td>
-                                    <a href='/Admin/deletePayment?payment_id={$row['payment_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a>
-
-                  </td>"; // Nút xóa
+                                    <a href='/Admin/deletePayment?payment_id={$row['payment_id']}' class='btn btn-sm btn-danger' onclick=\"return confirmDelete()\">Del</a </td>";
                                     echo "</tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='6' class='text-center'>No payments found.</td></tr>"; // Nếu không có dữ liệu
+                                echo "<tr><td colspan='6' class='text-center'>No payments found.</td></tr>";
                             }
                             ?>
-
 
                         </tbody>
                     </table>
@@ -244,15 +295,12 @@ $payment = $data['payment'];
         </form>
     </div>
 
-
-
     <div id="overlay" onclick="closeEditFormProduct()"></div>
     <div id="edit-form-product" style="display: none;">
         <h4>Edit Products</h4>
         <form id="edit-product-form" method="POST" action="">
             <input type="hidden" id="edit-product-id" name="product_id">
             <i class="fas fa-times close-icon" onclick="closeEditFormProduct()"></i>
-
             <div class="mb-3">
                 <label for="editt-name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="editt-name" name="name">

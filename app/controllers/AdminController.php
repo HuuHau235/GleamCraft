@@ -15,21 +15,42 @@ class AdminController extends Controller
     {
         $this->userModel = new UserModel();
         $this->productModel = new ProductsModel();
-        $this->paymentMethod = new PaymentMethod();
-        $this->reviewMethod = new  ReviewsModel();
+        $this->paymentMethod = new PaymentModel();
+        $this->reviewMethod = new ReviewsModel();
     }
     public function index()
     {
         $users = $this->userModel->getUserList();
         $products = $this->productModel->getAllProduct();
         $reviews = $this->reviewMethod->getAllReview();
-        $payment = $this->paymentMethod->getAllPayment();
+        $payment = $this->paymentMethod->getAllPayments();
         // var_dump($users); die;
         $this->view("admin/index", [
             "users" => $users,
             "products" => $products,
             "reviews" => $reviews,
             "payment" => $payment,
+        ]);
+    }
+    public function research($query)
+    {
+        // Lấy giá trị của tham số 'query' từ URL
+        $query = isset($_GET['query']) ? $_GET['query'] : '';
+
+        // Kiểm tra nếu có dữ liệu tìm kiếm
+        if ($query) {
+            $users = $this->userModel->searchUsersByAll($query);
+            $products = $this->productModel->searchProductByALL($query);
+        } else {
+            $users = $this->userModel->getUserList();
+            $products = $this->productModel->getAllProduct();
+        }
+
+        // Gọi view và truyền dữ liệu
+        $this->view("Admin/index", [
+            "users" => $users,
+            "products" => $products,
+            "query" => $query
         ]);
     }
     // Xóa User

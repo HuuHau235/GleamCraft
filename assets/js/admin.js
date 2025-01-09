@@ -61,8 +61,9 @@ function openEditFormProduct(product_id, name, description, color, gender, type_
     document.getElementById('edit-product-form').action = "/Admin/editProducts?product_id="+product_id;
     console.log(product_id, name, description, color, gender, type_name, price, image);
 
-    // Gửi form ngay sau khi thay đổi action (nếu muốn tự động cập nhật)
-    // document.getElementById('edit-product-form').submit();  // Uncomment nếu bạn muốn tự động submit
-
     document.getElementById('edit-form-product').style.display = 'block';
 }
+function closeEditFormProduct() {
+    document.getElementById('edit-form-product').style.display = 'none';
+}
+

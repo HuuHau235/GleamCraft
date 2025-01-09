@@ -36,7 +36,6 @@ class App {
             http_response_code(404);
             die("No path found in URL.");
         }
-        // echo $this->params;
         // var_dump($this->params);
         
         call_user_func_array([$controllerInstance, $this->method], $this->params);

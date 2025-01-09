@@ -1,7 +1,6 @@
 <?php
 $user_id = $_SESSION['user_id']; 
 $products = isset($_SESSION['cart'][$user_id]) ? $_SESSION['cart'][$user_id] : [];
-
 $total_price = 0; 
 if (!empty($products)) {
     foreach ($products as $item) {
@@ -14,6 +13,7 @@ if (!empty($products)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../../assets/images/brands/logo.jpg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -23,7 +23,7 @@ if (!empty($products)) {
 
     <title>Payment</title>
 </head>
-<body>
+<body class="body">
 <?php require_once(__DIR__ . '/../shared/header.php'); ?>
 
 <div class="underline1"></div>

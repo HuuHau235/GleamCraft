@@ -1,8 +1,12 @@
 body {
     background-color: #f8f8f8;
     font-family: Arial, sans-serif;
-}
+    background-color: #FFFFE9 !important;
 
+}
+.product-detail{
+    background-color: #FFFFE9 !important;
+}
 .product-image {
     width: 600px;
     height: 400px;
@@ -87,7 +91,9 @@ body {
 .add-to-cart-btn:hover {
     background-color: #c9302c;
 }
-
+.btn-danger {
+    width: 100%;
+}
 .related-products .card-img-top {
     border-radius: 10px;
 }
@@ -100,4 +106,48 @@ body {
     font-size: 16px;
     font-weight: bold;
     color: #333;
+}
+.reviews-container h4{
+    margin-top: 20px;
+    font-weight: bold;
+
+}
+.profile{
+    display: grid;
+    grid-template-columns: 0.1fr 1fr;
+}
+/* Reviews */
+.avatar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.review-box {
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.review-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.review-body {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #555;
+    color: #333;
+}
+.review-footer {
+    font-size: 0.9em;
+    color: #777;
+    text-align: right;
 }

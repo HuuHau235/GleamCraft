@@ -4,17 +4,19 @@ require_once('C:\xampp\htdocs\GleamCraft_MVC\app\models\ProductsModel.php');  //
 
 class HomepageController extends Controller {
     public function index() {
-        // Tạo kết nối cơ sở dữ liệu
-        $db = new Database();  // Khởi tạo đối tượng Db
-        
-        // Tạo đối tượng ProductModel và truyền kết nối CSDL vào
-        $productModel = $this->model('ProductsModel', [$db->getConnection()]);  // Truyền kết nối CSDL
-        
-        // Lấy danh sách sản phẩm từ model
+        $db = new Database();  
+        $productModel = $this->model('ProductsModel', [$db->getConnection()]); 
         $productHomepage = $productModel->getProductHomepage();
-        
-        // Truyền dữ liệu vào view
         $this->view('homepage/index', ['productHomepage' => $productHomepage]);
+    }
+    public function brands() {
+        $this->view("brands/index", []);
+    }
+    public function Collection() {
+        $this->view("collection/index", []);
+    }
+    public function AboutUs() {
+        $this->view("AboutUs/index", []);
     }
 }
 ?>
