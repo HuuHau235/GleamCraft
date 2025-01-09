@@ -17,11 +17,11 @@
 
         <nav>
             <ul class="nav">
-                <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li>
-                <li class="nav-item"><a href="/about" class="nav-link text-dark">About us</a></li>
-                <li class="nav-item"><a href="/collections" class="nav-link text-dark">Collection</a></li>
+                <li class="nav-item"><a href="/Homepage" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item"><a href="/Homepage/AboutUs" class="nav-link text-dark">About us</a></li>
+                <li class="nav-item"><a href="/Homepage/Collection" class="nav-link text-dark">Collection</a></li>
                 <li class="nav-item"><a href="/Product/" class="nav-link text-dark">Products</a></li>
-                <li class="nav-item"><a href="/brands" class="nav-link text-dark">Brands</a></li>
+                <li class="nav-item"><a href="/Homepage/brands" class="nav-link text-dark">Brands</a></li>
             </ul>
         </nav>
 
@@ -30,6 +30,8 @@
             <div class="tooltip-box">
                 <a href="/User/login" class="d-block text-dark">Login</a>
                 <a href="/User/register" class="d-block text-dark">Register</a>
+                <a href="/User/login" class="d-block text-dark">LogOut</a>
+
             </div>
         </div>
     </div>

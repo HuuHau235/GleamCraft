@@ -5,12 +5,10 @@ require_once('C:\xampp\htdocs\GleamCraft_MVC\app\core\Controller.php');
 class UserController extends Controller
 {
     protected $userModel;
-
     public function __construct()
     {
         $this->userModel = new UserModel();
     }
-
     public function index()
     {
         // Kiểm tra nếu người dùng đã đăng nhập
@@ -23,24 +21,27 @@ class UserController extends Controller
 
     public function login()
     {
+        // Lấy email và mật khẩu từ form gửi lên
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
 
         // Kiểm tra nếu email và password không rỗng
         if ($email != '' && $password != '') {
-            $result = $this->userModel->login($email, $password);  // Kiểm tra đăng nhập
-            if ($result) {
-                // Lưu thông tin người dùng vào session
-                $_SESSION['user_logged_in'] = true;  // Lưu session đăng nhập
-                $_SESSION['user_email'] = $email;  // Lưu email người dùng
-                $_SESSION['user_role'] = $this->userModel->getUserRoleByEmail($email);  // Lưu vai trò người dùng
+            // Gọi phương thức login từ UserModel để kiểm tra người dùng
+            $user = $this->userModel->login($email, $password);
 
-                // Điều hướng dựa trên vai trò người dùng
+            if ($user) {
+                // Nếu đăng nhập thành công, lưu thông tin người dùng vào session
+                $_SESSION['user_logged_in'] = true;
+                $_SESSION['user_email'] = $email;
+                $_SESSION['user_role'] = $user['role'];  // Giả sử trả về thông tin người dùng từ Model
+
+                // Điều hướng đến trang admin hoặc homepage dựa trên vai trò người dùng
                 $userRole = $_SESSION['user_role'];
                 if ($userRole == 'admin') {
-                    header("Location: /Admin/");  // Điều hướng đến trang admin
+                    header("Location: /Admin/");
                 } else {
-                    header("Location: /homepage");  // Điều hướng đến trang homepage
+                    header("Location: /homepage");
                 }
                 exit();
             } else {
@@ -56,7 +57,6 @@ class UserController extends Controller
             exit();
         }
     }
-
     // Đăng Ký
     public function register()
     {
@@ -113,7 +113,5 @@ class UserController extends Controller
             $this->view('User/register'); // Hiển thị form đăng ký nếu không có POST
         }
     }
-    
-
 }
 ?>

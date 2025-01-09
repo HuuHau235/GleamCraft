@@ -1,0 +1,111 @@
+.body {
+     background-color: #FFFFE9;
+}
+.h2 {
+    color: yellow;
+}
+.content-section {
+    margin-bottom: 50px; 
+}
+
+.content-section img {
+    margin-bottom: 20px; 
+}
+.highlight-text {
+    font-size: 36px; 
+    color: gold;    
+    font-weight: bold; 
+}
+
+.content-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.content-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2.visible, p.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+img {
+    transition: transform 1.5s ease-out, opacity 1.5s ease-out;
+}
+
+img.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.banner img {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    z-index: -1; /* Đẩy ảnh nền ra sau */
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    display: flex; /* Kích hoạt Flexbox */
+    flex-direction: column; /* Sắp xếp phần tử theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+}
+
+.banner-text {  
+    color: white;
+    padding: 10px 20px;
+    font-size: 4rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.banner-text-p {  
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Hiệu ứng di chuyển từ dưới lên */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Kết thúc ở vị trí ban đầu */
+    }
+}

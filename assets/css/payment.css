@@ -1,7 +1,9 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
 }
-
+.body{
+    background-color: #FFFFE9;
+}
 /* Order and Payment Details Grid */
 .g-grid {
     display: grid;

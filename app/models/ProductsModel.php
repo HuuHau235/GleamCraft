@@ -52,7 +52,18 @@ class ProductsModel extends Database
         $result = $this->executeQuery($sql);
         return $result->num_rows > 0 ? $result->fetch_all(MYSQLI_ASSOC) : null;
     }
-
+    public function searchProductsByName($query)
+    {
+        global $conn;
+        $sql = "SELECT * FROM products WHERE name LIKE ?";
+        $stmt = $conn->prepare($sql);
+        $searchTerm = "%" . $query . "%";  // Thêm dấu phần trăm để tìm kiếm theo tên sản phẩm
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
     public function getRelatedProduct()
     {
         $sql = "SELECT * FROM products ORDER BY RAND() LIMIT 4";
@@ -165,5 +176,16 @@ class ProductsModel extends Database
     
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    // Research theo tên product 
+    public function searchProductByALL($query)
+{
+    $stmt = $this->conn->prepare("SELECT * FROM products WHERE name LIKE ? OR color LIKE ? OR description LIKE ? OR gender LIKE ? OR type_name LIKE ? OR price LIKE ?");
+    $searchTerm = "%" . $query . "%";
+    $stmt->bind_param("ssssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm); // Liên kết tất cả các trường với cùng một biến
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC); 
+}
 
 }
