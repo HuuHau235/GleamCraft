@@ -21,7 +21,7 @@ class ProductsModel extends Database
     {
         $sql = "SELECT * FROM products ORDER BY RAND() LIMIT 8";
         $result = $this->executeQuery($sql);
-        return $result->fetch_all(MYSQLI_ASSOC);  // Lấy tất cả sản phẩm dưới dạng mảng
+        return $result->fetch_all(MYSQLI_ASSOC); 
     }
 
     public function getProductById($id)
@@ -110,21 +110,6 @@ class ProductsModel extends Database
         return $result;
     }
 
-    // Lấy tất cả review của một user
-    public function addReview($data)
-    {
-        $conn = $this->getConnection();
-        $sql = "INSERT INTO reviews (user_id, review_text, created_at) VALUES (?, ?, ?)";
-    
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('iss', $data['user_id'], $data['review_text'], $data['created_at']);
-    
-        $result = $stmt->execute();
-        $stmt->close();
-        $conn->close();
-    
-        return $result;
-    }
     // Bộ lọc sản phẩm
     public function getFilteredProducts($filters) {
         $query = "SELECT * FROM Products";

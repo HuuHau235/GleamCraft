@@ -25,7 +25,7 @@
         </a>
         <ul class="nav d-flex justify-content-end align-items-center">
             <li class="nav-item">
-                <form action="/Admin/index" method="GET" class="d-flex">
+                <form action="/Admin/research" method="GET" class="d-flex">
                     <input type="text" name="query" class="form-control me-2" placeholder="Tìm kiếm..."
                         value="<?= htmlspecialchars($query ?? '') ?>" />
                     <button type="submit" class="btn btn-primary">Tìm kiếm</button>
@@ -71,7 +71,7 @@
                 <button class="btn btn-light" onclick="showTab('product')">Product</button>
                 <button class="btn btn-light" onclick="showTab('review')">Review</button>
                 <button class="btn btn-light" onclick="showTab('payment')">Payment</button>
-                <a href="/User/"><button class="btn btn-light" onclick="showTab('login')">Log Out</button></a>
+                <a href="/User/login"><button class="btn btn-light" onclick="showTab('login')">Log Out</button></a>
             </div>
 
             <!-- Main Content -->

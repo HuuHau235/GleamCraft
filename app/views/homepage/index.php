@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/index.css">
     <link rel="stylesheet" href="/assets/css/banner.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+
 </head>
 
 <body class="body">
@@ -92,7 +94,7 @@
             </div>
         </div>
     </div>
-    <div class="container mt-5">
+    <div class="container mt-5 product-hompage">
         <h2 class="mb-4">Diamond Products</h2>
         <div class="row">
             <?php if (isset($data['productHomepage']) && is_array($data['productHomepage'])): ?>
@@ -100,15 +102,18 @@
                     <div class="col-md-3 mb-4">
                         <div class="card" style="height: 450px;">
 
-                            <a href="/detail/viewProduct?product_id=<?= $product['product_id']; ?>">
+                            <a class="image-wrap" href="/detail/viewProduct?product_id=<?= $product['product_id']; ?>">
+                                <div class="image-inner">
                                 <img src="<?= $product['image'] ?>" class="card-img-top"
-                                    alt="<?= htmlspecialchars($product['name']) ?>" style="height: 300px; object-fit: cover;">
+                                alt="<?= htmlspecialchars($product['name']) ?>" style="height: 300px; object-fit: cover;">
+                                </div>
                             </a>
-
+                            <a href="/detail/viewProduct?product_id=<?= $product['product_id']; ?>">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
                                 <p class="card-text"><?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
                             </div>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>

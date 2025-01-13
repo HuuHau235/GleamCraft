@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/aboutUs.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+
 </head>
 <body class="body">
 <?php
@@ -53,7 +55,7 @@
         </div>
     </div>
 
-    <div class="container content-section">
+    <div class="container content-section about-us">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h2 class="h2 highlight-text">A timeless symbol of love and commitment</h2>
