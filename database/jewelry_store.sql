@@ -30,18 +30,6 @@ CREATE TABLE Products (
     image VARCHAR(255)
 );
 
--- CREATE TABLE cart (
---     cart_id INT PRIMARY KEY AUTO_INCREMENT,
---     user_id int not null,
---     product_id INT NOT NULL,
---     quantity INT NOT NULL,
---     product_name VARCHAR(255) DEFAULT NULL,
---     product_image VARCHAR(255) DEFAULT NULL,
---     product_description TEXT DEFAULT NULL,
---     product_price DECIMAL(10,2) DEFAULT NULL,
---     INDEX product_idx (product_id)
--- );
-
 -- Table: Orders
 DROP TABLE IF EXISTS Orders;
 CREATE TABLE Orders (
@@ -94,18 +82,6 @@ CREATE TABLE Payments (
     total_amount DECIMAL(10, 2) NOT NULL,  -- Tổng giá trị thanh toán
     FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE
 );
-
-
--- Insert data into the Products table for homepage
--- INSERT INTO products (name, image, price) VALUES
--- ('Diamond necklace', 'Day-chuyen-1.jpg', 817000),
--- ('Diamond necklace', 'Day-chuyen-2.jpg', 785000),
--- ('Diamond necklace', 'Day-chuyen-3.jpg', 1250000),
--- ('Diamond Ring', 'Nhan-1.jpg', 637000),
--- ('Diamond Ring', 'Nhan-2.jpg', 632000),
--- ('Diamond Ring', 'Nhan-3.jpg', 1674000),
--- ('Diamond Earing', 'Khuyen-1.jpg', 708000),
--- ('Diamond Earing', 'Khuyen-2.jpg', 1600000);
 
 
 INSERT INTO Products (name, description, color, gender, type_name, price, image)

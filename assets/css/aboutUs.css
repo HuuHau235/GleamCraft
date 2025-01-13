@@ -98,7 +98,9 @@ body {
     text-align: center;
     animation: fadeIn 1.5s ease-out forwards;
 }
-
+.about-us{
+    margin-bottom: 100px;
+}
 @keyframes fadeIn {
     from {
         opacity: 0;

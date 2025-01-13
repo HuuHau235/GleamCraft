@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/brand.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
 </head>
 <body class="body">
 <?php
@@ -24,7 +25,7 @@
     </div> <br>
     
     <div class="container mt-5">
-        <div class="box left">
+        <div class="box left ">
             <img src="https://images-cdn.ubuy.vn/63701955645e34642a3f683f-tiffany-co-return-to-mini-double.jpg" alt="Placeholder image">
             <div class="text">
                 <h2>Iconic Radiance</h2>
@@ -74,7 +75,7 @@
         </div>
     </div>
     <div class="container mt-5">
-        <div class="box left">
+        <div class="box left brand">
             <img src="https://product.hstatic.net/200000090679/product/a1ccufthsil_480a6a78691542c4be9ae2dbf8a82a53_master.jpg" alt="Placeholder image">
             <div class="text">
                 <h2>Pure Perfection</h2>

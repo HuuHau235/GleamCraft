@@ -9,11 +9,10 @@ header {
 }
 
 body {
-    /* Loại bỏ padding-top nếu không cần thiết */
+   
     margin-top: 0; /* Thêm margin-top để đảm bảo rằng nội dung không bị đẩy xuống bởi header */
 }
 
-/* Giảm padding-top hoặc loại bỏ khi không cần */
 .banner {
     margin-top: 0; /* Đảm bảo banner không bị đẩy xuống */
 }
@@ -58,4 +57,7 @@ body {
 
 .user-icon:hover .tooltip-box {
     display: block;
+}
+.nav-item a:hover{
+    color : red !important;
 }

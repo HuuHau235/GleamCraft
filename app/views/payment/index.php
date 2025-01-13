@@ -1,4 +1,5 @@
 <?php
+
 $user_id = $_SESSION['user_id']; 
 $products = isset($_SESSION['cart'][$user_id]) ? $_SESSION['cart'][$user_id] : [];
 $total_price = 0; 
@@ -13,18 +14,21 @@ if (!empty($products)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gleamcraft-Payment</title>
     <link rel="icon" href="../../../assets/images/brands/logo.jpg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../../../assets/css/payment.css">
     <link rel="stylesheet" href="../../../assets/css/header.css">
-
-    <title>Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="body">
-<?php require_once(__DIR__ . '/../shared/header.php'); ?>
+<?php
+    require_once(__DIR__ . '/../shared/header.php');  
+    ?>
 
 <div class="underline1"></div>
 <div class="g-grid">
@@ -130,5 +134,7 @@ if (!empty($products)) {
     </div>
 </div>
 <?php require_once(__DIR__ . '/../shared/footer.php'); ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

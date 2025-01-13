@@ -34,10 +34,8 @@ class AdminController extends Controller
     }
     public function research($query)
     {
-        // Lấy giá trị của tham số 'query' từ URL
         $query = isset($_GET['query']) ? $_GET['query'] : '';
 
-        // Kiểm tra nếu có dữ liệu tìm kiếm
         if ($query) {
             $users = $this->userModel->searchUsersByAll($query);
             $products = $this->productModel->searchProductByALL($query);

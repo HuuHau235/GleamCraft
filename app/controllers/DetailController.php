@@ -62,10 +62,6 @@ class DetailController extends Controller
         // Lấy các sản phẩm liên quan và các đánh giá của sản phẩm này
         $productsRelate = $this->productModel->getRelatedProduct();
         $reviews = $this->reviewModel->getReviewsByProductId($product_id);
-        // $reviews = $this->reviewModel->getAllReviewByID($product_id);
-        
-    
-        // Nếu sản phẩm tồn tại, hiển thị chi tiết sản phẩm và các đánh giá
         if ($product) {
             $this->view("detail/index", [
                 "product" => $product,
@@ -82,44 +78,49 @@ class DetailController extends Controller
 
     // Hàm xử lý gửi đánh giá cho sản phẩm
     public function submitReview()
-    {
-        // Kiểm tra nếu có product_id trong POST (form)
-        if (isset($_POST['product_id'])) {
-            $product_id = $_POST['product_id'];
-        } else {
-            echo "Product ID is missing!";
-            exit;
-        }
+{
+    // Khởi động session nếu chưa được khởi động
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-        // Kiểm tra phương thức POST và comment không rỗng
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+    // Kiểm tra product_id
+    if (isset($_POST['product_id'])) {
+        $product_id = $_POST['product_id'];
+    } else {
+        echo "Product ID is missing!";
+        exit;
+    }
 
-            if (!empty($comment)) {
-                // Kiểm tra xem người dùng đã đăng nhập chưa
-                if (!isset($_SESSION['user_id'])) {
-                    echo "You must be logged in to submit a review.";
-                    exit;
-                }
+    // Kiểm tra phương thức POST và comment không rỗng
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
 
-                $user_id = $_SESSION['user_id']; // Lấy user_id từ session
-
-                // Thêm đánh giá vào cơ sở dữ liệu
-                $result = $this->reviewModel->addReview($product_id, $user_id, $comment);
-
-                // Kiểm tra nếu thêm đánh giá thành công
-                if ($result) {
-                    // Chuyển hướng về trang chi tiết sản phẩm
-                    header("Location: /detail/viewProduct?product_id=$product_id");
-                    exit;
-                } else {
-                    echo "There was an error adding your review.";
-                }
-            } else {
-                echo "Please enter a review comment.";
+        if (!empty($comment)) {
+            // Kiểm tra xem người dùng đã đăng nhập chưa
+            if (!isset($_SESSION['user_id'])) {
+                echo "You must be logged in to submit a review.";
+                exit;
             }
+
+            $user_id = $_SESSION['user_id']; // Lấy user_id từ session
+
+            $result = $this->reviewModel->addReview($product_id, $user_id, $comment);
+
+            // Kiểm tra nếu thêm đánh giá thành công
+            if ($result) {
+                // Chuyển hướng về trang chi tiết sản phẩm
+                header("Location: /detail/viewProduct?product_id=$product_id");
+                exit;
+            } else {
+                echo "There was an error adding your review.";
+            }
+        } else {
+            echo "Please enter a review comment.";
         }
     }
+}
+
 
 }
 ?>

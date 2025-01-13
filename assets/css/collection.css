@@ -89,7 +89,12 @@ body {
 .box.right {
      top: 70px; 
 }
-
+.collectionn{
+    margin-top: 50px;
+}
+.collection{
+    margin-bottom: 100px;
+}
 @keyframes fadeIn {
     from {
         opacity: 0;

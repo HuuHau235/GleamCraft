@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sticky Header</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/header.css">
-</head>
-<body>
 <header class="bg-light border-bottom d-flex align-items-center">
     <div class="container-fluid d-flex justify-content-between align-items-center px-4">
         <a href="/" class="navbar-brand d-flex align-items-center">
@@ -36,6 +25,3 @@
         </div>
     </div>
 </header>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

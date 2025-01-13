@@ -113,5 +113,17 @@ class UserController extends Controller
             $this->view('User/register'); // Hiển thị form đăng ký nếu không có POST
         }
     }
+//     public function logout()
+// {
+//     // Hủy tất cả session và biến liên quan đến người dùng
+//     session_start(); // Bắt đầu session để hủy session đã tồn tại
+//     session_unset(); // Hủy tất cả các biến session
+//     session_destroy(); // Hủy session
+
+//     // Điều hướng về trang đăng nhập hoặc trang chủ sau khi đăng xuất
+//     header("Location: /User"); // Điều hướng tới trang login
+//     exit();
+// }
+
 }
 ?>
