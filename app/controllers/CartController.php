@@ -63,19 +63,19 @@ class CartController extends Controller
 
     // Xóa sản phẩm khỏi giỏ hàng
     public function removeFromCart($product_id)
-    {
-        $this->startSession();
-        $user_id = $_SESSION['user_id'];
+{
+    $this->startSession();
+    $user_id = $_SESSION['user_id'];
 
-        if ($product_id) {
-            $cartModel = $this->model('CartModel');
-            $cartModel->removeProductFromCart($user_id, $product_id);
-            header('Location: /Cart/index');
-            exit;
-        } else {
-            $this->showErrorMessage("Dữ liệu không hợp lệ.");
-        }
+    if ($product_id) {
+        $cartModel = $this->model('CartModel');
+        $cartModel->removeProductFromCart($user_id, $product_id);
+        header('Location: /Cart/index'); // Điều hướng về trang giỏ hàng sau khi xóa
+        exit;
+    } else {
+        $this->showErrorMessage("Dữ liệu không hợp lệ.");
     }
+}
 
     // Tăng số lượng sản phẩm trong giỏ hàng
     public function increaseQuantity($product_id,$quantity)
@@ -104,28 +104,25 @@ class CartController extends Controller
 
     // Giảm số lượng sản phẩm trong giỏ hàng
     public function decreaseQuantity($product_id, $quantity)
-    {
-        $this->startSession();
-        $user_id = $_SESSION['user_id'];
+{
+    $this->startSession();
+    $user_id = $_SESSION['user_id'];
 
-        if ($product_id) {
-            $cartModel = $this->model('CartModel');
-            $success = $cartModel->decreaseProductQuantity($user_id, $product_id, 1); // Giảm 1 số lượng
-
-            if ($success) {
-                $_SESSION['message'] = "Giảm số lượng sản phẩm thành công.";
-            } else {
-                $_SESSION['error'] = "Không thể giảm số lượng sản phẩm.";
-            }
-
+    if ($product_id) {
+        $cartModel = $this->model('CartModel');
+        $success = $cartModel->decreaseProductQuantity($user_id, $product_id, 1);
+        if ($success) {
             header('Location: /Cart/index');
             exit;
         } else {
-            $_SESSION['error'] = "Dữ liệu không hợp lệ.";
             header('Location: /Cart/index');
             exit;
         }
+    } else {
+        header('Location: /Cart/index');
+        exit;
     }
+}
 
     private function showErrorMessage($message)
     {

@@ -45,10 +45,10 @@
 
                                     <div class="col-md-3 text-center">
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <a
-                                                href="/Cart/decreaseQuantity?product_id=<?= intval($item['product_id']); ?>&quantity=<?= intval($item['quantity']) - 1; ?>">
-                                                <button class="btn btn-outline-secondary btn-sm reduce" type="button">-</button>
-                                            </a>
+                                        <a href="javascript:void(0);" 
+   onclick="confirmDecrease(<?= intval($item['product_id']); ?>, <?= intval($item['quantity']); ?>)">
+    <button class="btn btn-outline-secondary btn-sm reduce" type="button">-</button>
+</a>
                                             <input type="text" value="<?= intval($item['quantity']); ?>"
                                                 class="form-control mx-2 text-center quantity" style="width: 50px;">
                                             <a
@@ -61,7 +61,7 @@
 
                                     <div class="col-md-4 d-flex justify-content-between align-items-center">
                                         <p class="price mb-0"><?= number_format($item['total_price'], 0, ',', '.'); ?> VND</p>
-                                        <a href="/Cart/removeFromCart?product_id=<?= intval($item['product_id']); ?>">
+                                        <a href="javascript:void(0);" onclick="confirmDelete(<?= intval($item['product_id']) ?>)">
                                             <button class="btn btn-sm text-danger" type="button">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
@@ -87,6 +87,21 @@
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function confirmDelete(productId) {
+        if (confirm("Are you sure you want to remove this product from your cart?")) {
+            window.location.href = '/Cart/removeFromCart?product_id=' + productId;
+        }
+    }
+
+    function confirmDecrease(productId, currentQuantity) {
+        if (currentQuantity <= 1) {
+            alert("The product quantity cannot be decreased below 1.");
+        } else {
+                window.location.href = '/Cart/decreaseQuantity?product_id=' + productId + '&quantity=' + (currentQuantity - 1);  
+        }
+    }
+</script>
 </body>
 
 </html>

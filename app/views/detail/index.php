@@ -91,14 +91,20 @@
                         <?php foreach ($productsRelate as $relatedProduct): ?> <!-- Lặp qua các sản phẩm liên quan -->
                             <div class="col-md-3">
                                 <div class="card mb-3" style="height: 450px;">
-                                    <a
+                                    <a class="image-wrap"
                                         href="/detail/viewProduct?product_id=<?= htmlspecialchars($relatedProduct['product_id']); ?>">
+                                        <div class="image-inner">
                                         <img src="<?= htmlspecialchars($relatedProduct['image']); ?>" class="card-img-top"
                                             alt="<?= htmlspecialchars($relatedProduct['name']); ?>">
+                                            </div>
                                     </a>
+                                    
                                     <div class="card-body">
+                                    <a 
+                                    href="/detail/viewProduct?product_id=<?= htmlspecialchars($relatedProduct['product_id']); ?>">
                                         <h5 class="card-title"><?= htmlspecialchars($relatedProduct['name']); ?></h5>
                                         <p><?= number_format($relatedProduct['price'], 0, ',', '.'); ?> VND</p>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

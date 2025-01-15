@@ -151,3 +151,18 @@ body {
     color: #777;
     text-align: right;
 }
+
+
+.image-wrap:hover img{
+    transform: scale(1.2);
+}
+.image-wrap .image-inner{
+    overflow: hidden;
+ }
+.image-wrap img{
+   transition: all 0.4s;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
