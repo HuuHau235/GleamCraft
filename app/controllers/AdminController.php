@@ -24,7 +24,6 @@ class AdminController extends Controller
         $products = $this->productModel->getAllProduct();
         $reviews = $this->reviewMethod->getAllReview();
         $payment = $this->paymentMethod->getAllPayments();
-        // var_dump($users); die;
         $this->view("admin/index", [
             "users" => $users,
             "products" => $products,
@@ -128,12 +127,12 @@ class AdminController extends Controller
             $user = $this->userModel->getUserById($user_id);
             if ($user['role'] === 'admin' && $role === 'admin') {
                 $this->userModel->updateUser($user_id, $name, $email, $password, $phone, $role);
-                echo "<script>alert('Tài khoản admin đã được cập nhật thành công.'); window.location.href = '/Admin';</script>";
+                echo "<script>alert('The admin account has been successfully updated.'); window.location.href = '/Admin';</script>";
                 exit;
             }
             $adminCount = $this->userModel->getAdminCount();
             if ($role === 'admin' && $adminCount >= 1) {
-                echo "<script>alert('Bạn không được phép chỉ vai trò thành admin vì đã có một tài khoản admin.'); window.location.href = '/Admin';</script>";
+                echo "<script>alert('You are not allowed to assign the role of admin because there is already an admin account.'); window.location.href = '/Admin';</script>";
                 exit;
             }
             // Cập nhật thông tin người dùng

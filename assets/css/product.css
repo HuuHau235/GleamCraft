@@ -91,7 +91,7 @@ details summary {
     text-align: center; 
     background-color: #fff; 
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    max-height: 388px;
+    height: 400px;
 }
 
 .products li:hover {
